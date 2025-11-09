@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "index.html#we-should-not-cause-unnecessary-suffering",
+    "href": "index.html#we-should-not-cause-unnecessary-suffering",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "We should not cause unnecessary suffering",
+    "text": "We should not cause unnecessary suffering\n\n\n\n\n\n\n\nWe should always minimise suffering\n\n\nThis may mean not performing an experiment at all. Not all new knowledge or understanding is worth causing suffering to obtain it.\nWhere there is sufficient justification to perform an experiment, we are ethically obliged to minimise the amount of distress or suffering that is caused.\n\n\n\n\n\n\n\n\n\n\n\nWhy we need statistics\n\n\nIt may be easy to tell whether an animal is well-treated, or whether an experiment is necessary.\nBut what is an acceptable (i.e. the least possible) amount of suffering necessary to obtain an informative result?\n\n\n\n\n\n\nNo-one like talking about animal experiments.\nIt’s a difficult, emotive topic that crosses people’s moral red lines.\nAnimal experiments may be the only practical way to gain essential scientific knowledge\nWhatever you believe “suffering” means for an animal, our ethical premise is that this suffering should not be in vain"
+  },
+  {
+    "objectID": "index.html#challenge",
+    "href": "index.html#challenge",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "Challenge",
+    "text": "Challenge\n\n\n\n\n\n\n\nQuiz question\n\n\nSuppose you are running a necessary and useful experiment with animal subjects, where the use of animals is morally justified. You are comparing a treatment group to a control group. Which of the following choices will cause the least amount of suffering?\n\n\n\n\n\nUse three subjects per group so a standard deviation can be calculated\nUse just enough subjects to establish that the outcome is likely to be correct\nUse just enough subjects to be certain that the outcome is correct\nUse as many subjects as you have available, to avoid wastage\n\n\nWe carry out experiments to obtain answers to our scientific hypotheses, but the answers we obtain are rarely if ever 100% certain. We usually aim to obtain answers that are very likely to be correct (think about what a statistical hypothesis test means: that the explanation is more likely or less likely to be the null hypothesis than some alternative), rather than 100% certain.\nIf we use too few subjects we may still be able to perform a statistical test, but the results of the experiment will be more uncertain and may be more likely to be incorrect than correct. The use of animal subjects in an experiment that is unlikely to give a correct answer (e.g. because too few animals are used) causes unnecessary suffering.\nIf we attempt to obtain a 100% certain - or nearly so - result we may need to use many more subjects - possibly tens or hundreds more - than are required to obtain a result about which we are (say) 80% certain. The use of animal subjects to obtain a level of certainty greater than is needed to answer the question reasonably causes unnecessary suffering.\nIf we use the number of subjects that are available, just because it is convenient, then we may not know how likely the experiment is to give us a correct answer. The use of animal subjects in an experiment where you do not know how likely you are to get a correct answer is likely to cause unnecessary suffering."
+  },
+  {
+    "objectID": "index.html#how-many-individuals",
+    "href": "index.html#how-many-individuals",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "How many individuals?",
+    "text": "How many individuals?\n\n\n\n\n\n\n\nThe appropriate number of subjects\n\n\nThe appropriate number of animal subjects to use in an experiment is always the smallest number that - given reasonable assumptions - will satisfactorily give the correct result to the desired level of certainty.\n\nWhat assumptions are reasonable?\nWhat is an appropriate level of certainty?_\n\nBy convention1 the usual level of certainty is: “we have an 80% chance of getting the correct true/false answer for the hypothesis being tested”\n\n\n\n\n\nThe appropriate number of animal subjects to use in an experiment is always the smallest number that - given reasonable assumptions - will satisfactorily give the correct result to the desired level of certainty.\nThis may sound like a very flexible statement. What assumptions are reasonable? What is an appropriate level of certainty?\nWe’ll consider these questions again later but, for now, just know that by convention the usual level of certainty is: “we have an 80% chance of getting the correct true/false answer for the hypothesis being tested”._\nNote though that the appropriate level of certainty may change depending on the nature of the question being asked.\n\nConventions are guidelines, not rigid standards, and you should always consider whether a convention is appropriate in your use case"
+  },
+  {
+    "objectID": "index.html#design-experiments-to-minimise-suffering",
+    "href": "index.html#design-experiments-to-minimise-suffering",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "Design experiments to minimise suffering",
+    "text": "Design experiments to minimise suffering\n\n\n\n\n\n\n\nExperimental design and statistics work together\n\n\nOnce a research hypothesis has been devised:\n\nExperimental design is the process of devising a practical way of answering the question\nStatistics informs the choices of variables, controls, numbers of individuals and groups, and the appropriate analysis of results\n\n\n\n\n\n\n\n\n\n\n\n\nDesign your experiment for…\n\n\n\nyour population or subject group (e.g. sex, age, prior history, etc.)\nyour intervention (e.g. drug treatment)\nyour contrast or comparison between groups (e.g. lung capacity, drug concentration, etc.)\nyour outcome (i.e. is there a measurable or clinically relevant effect)\n\n\n\n\n\n\nOnce a research hypothesis has been devised, Experimental Design is the process by which the practical means of answering that question is constructed. The design should aim to exclude extraneous or confounding influences on the experiment such that the causal factors are isolated and measurable, and any difference in outcome as a result of changing those factors (the “signals”) can also be measured cleanly.\nStatistics is the branch of applied science that allows us to make probabilistic inferences about our certainty in the “signal” - measurements, comparisons and experimental outcomes - even in the face of natural variations in processes and “noise,” and the way we choose small groups to represent populations.\nYou should design your experiment specifically for your combination of population/subject group, the intervention you’re applying, the contrast or comparison you’re making, and the outcome you’re expecting to see - specifically a measurable or clinically relevant effect."
+  },
+  {
+    "objectID": "index.html#the-importance-of-experimental-design",
+    "href": "index.html#the-importance-of-experimental-design",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "The importance of experimental design",
+    "text": "The importance of experimental design\n\n\n\nFor scientific, ethical and economic reasons, experiments involving animals should be appropriately designed, correctly analysed and transparently reported. This increases the scientific validity of the results, and maximises the knowledge gained from each experiment. A minimum amount of relevant information must be included in scientific publications to ensure that the methods and results of a study can be reviewed, analysed and repeated. Omitting essential information can raise scientific and ethical concerns. (Kilkenny et al. (2009))\n\n\n\n\n\nThe National Centre for the Replacement, Refinement, and Reduction of Animals in Research (NC3Rs) was established in 2004 as the UK’s national organisation for the 3Rs (Reduction, Replacement, Refinement). It works with scientists to replace the use of animals by developing new approaches and technologies or, where use of animals is unavoidable, to reduce the number of animals used in each experiment and to minimise any pain, suffering or distress that the animals may experience.\nIn 2009, the NC3Rs published a systematic survey (Kilkenny et al. (2009)) of the quality of reporting, experimental design, and statistical analysis of recently-published biomedical research using animals.\nIt did not make for pleasant reading."
+  },
+  {
+    "objectID": "index.html#causes-for-concern-1",
+    "href": "index.html#causes-for-concern-1",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "Causes for concern 1",
+    "text": "Causes for concern 1\n\n\n\nDetailed information was collected from 271 publications, about the objective or hypothesis of the study, the number, sex, age and/or weight of animals used, and experimental and statistical methods. Only 59% of the studies stated the hypothesis or objective of the study and the number and characteristics of the animals used. […] Most of the papers surveyed did not use randomisation (87%) or blinding (86%), to reduce bias in animal selection and outcome assessment. Only 70% of the publications that used statistical methods described their methods and presented the results with a measure of error or variability. (Kilkenny et al. (2009))\n\n\n\n\n\nThe state of the published literature around animal experiments was not good in 2009.\n\n40% of studies did not state the hypothesis or objective of the experiment\nMost papers did not use randomisation or blinding, although this is an essential practice to avoid bias\nOnly 70% of publications described their statistical methods at all"
+  },
+  {
+    "objectID": "index.html#causes-for-concern-2",
+    "href": "index.html#causes-for-concern-2",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "Causes for concern 2",
+    "text": "Causes for concern 2\n\n\n\n\n\n\n\nNo publication explained their choice for the number of animals used\n\n\n\n\n\n\n\n\nOne of the most shocking pieces of information is that, of the 48 papers surveyed, not a single one explained why they used the number of animals that they did.\nWe cannot therefore be assured that the number of animals used was chosen to minimise suffering, or to obtain a statistically justifiable result."
+  },
+  {
+    "objectID": "index.html#very-strong-cause-for-concern",
+    "href": "index.html#very-strong-cause-for-concern",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "Very strong cause for concern",
+    "text": "Very strong cause for concern\n\nPower analysis or other very simple calculations, which are widely used in human clinical trials and are often expected by regulatory authorities in some animal studies, can help to determine an appropriate number of animals to use in an experiment in order to detect a biologically important effect if there is one. This is a scientifically robust and efficient way of determining animal numbers and may ultimately help to prevent animals being used unnecessarily. Many of the studies that did report the number of animals used reported the numbers inconsistently between the methods and results sections. The reason for this is unclear, but this does pose a significant problem when analysing, interpreting and repeating the results. (Kilkenny et al. (2009))"
+  },
+  {
+    "objectID": "index.html#the-arrive-guidelines",
+    "href": "index.html#the-arrive-guidelines",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "The ARRIVE guidelines",
+    "text": "The ARRIVE guidelines\n\n\nThe next year (Kilkenny et al. (2010)) proposed the ARRIVE guidelines: a checklist to help researchers report their animal research transparently and reproducibly.\n\nGood reporting is essential for peer review and to inform future research\nReporting guidelines measurably improve reporting quality\nImproved reporting maximises the output of published research"
+  },
+  {
+    "objectID": "index.html#arrive-guidelines-highlightes",
+    "href": "index.html#arrive-guidelines-highlightes",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "ARRIVE guidelines highlightes",
+    "text": "ARRIVE guidelines highlightes\nMany journals now routinely request information in the ARRIVE framework, often as electronic supplementary information. The framework covers 20 items including the following (Kilkenny et al. (2010)):\n\n\n\n\n\n\n\nARRIVE guidelines (highlights)\n\n\n\n\nObjectives: primary and any secondary objectives of the study, or specific hypotheses being tested\n\n\nStudy design: brief details of the study design, including the number of experimental and control groups, any steps taken to minimise the effects of subjective bias, and the experimental unit\n\n\nSample size: the total number of animals used in each experiment and the number of animals in each experimental group; how the number of animals was decided\n\n\nStatistical methods: details of the statistical methods used for each analysis; methods used to assess whether the data met the assumptions of the statistical approach\n\n\nOutcomes and estimation: results for each analysis carried out, with a measure of precision (e.g., standard error or confidence interval)."
+  },
+  {
+    "objectID": "index.html#a-vital-step",
+    "href": "index.html#a-vital-step",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "A vital step",
+    "text": "A vital step\n\n\n\n\n\n\n\n\nImportant\n\n\nA key step in tackling these issues is to ensure that the next generation of scientists are aware of what makes for good practice in experimental design and animal research, and that they are not led into poor or inappropriate practices by more senior scientists without a proper grasp of these issues."
+  },
+  {
+    "objectID": "index.html#references-1",
+    "href": "index.html#references-1",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "References",
+    "text": "References\n\n\n\n\nKilkenny, Carol, William J Browne, Innes C Cuthill, Michael Emerson, and Douglas G Altman. 2010. “Improving Bioscience Research Reporting: The ARRIVE Guidelines for Reporting Animal Research.” PLoS Biol. 8 (6): e1000412.\n\n\nKilkenny, Carol, Nick Parsons, Ed Kadyszewski, Michael F W Festing, Innes C Cuthill, Derek Fry, Jane Hutton, and Douglas G Altman. 2009. “Survey of the Quality of Experimental Design, Statistical Analysis and Reporting of Research Using Animals.” PLoS One 4 (11): e7824."
+  }
+]
