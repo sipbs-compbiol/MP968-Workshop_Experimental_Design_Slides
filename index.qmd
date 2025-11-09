@@ -10,8 +10,8 @@ format:
     slide-number: true
     controls: true
     preview-links: true
-    footer: "IBioIC Carpentries Workshop"
-    logo: "images/carpentries_logo.png"
+    footer: "MP968 Experimental Design Workshop"
+    logo: "assets/images/sipbs_compbio_800.png"
     theme: [default, ./includes/custom.scss]
     width: 1280
     height: 720

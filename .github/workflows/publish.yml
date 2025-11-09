@@ -4,7 +4,7 @@ on:
   # to be able to trigger a manual build
   workflow_dispatch:
 
-name: Render and deploy Book
+name: Render and deploy
 
 env:
   isExtPR: ${{ github.event.pull_request.head.repo.fork == true }}
@@ -24,7 +24,7 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           # To install LaTeX to build PDF book
-          # tinytex: true
+          tinytex: true
           # uncomment below and fill to pin a version
           # version: 0.9.105
 
