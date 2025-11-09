@@ -74,13 +74,34 @@
     "href": "index.html#a-vital-step",
     "title": "MP968 Experimental Design Workshop",
     "section": "A vital step",
-    "text": "A vital step\n\n\n\n\n\n\n\n\nImportant\n\n\nA key step in tackling these issues is to ensure that the next generation of scientists are aware of what makes for good practice in experimental design and animal research, and that they are not led into poor or inappropriate practices by more senior scientists without a proper grasp of these issues."
+    "text": "A vital step\n\n\n\n\n\n\n\n\nWarning\n\n\nA key step in tackling these issues is to ensure that the next generation of scientists are aware of what makes for good practice in experimental design and animal research, and that they are not led into poor or inappropriate practices by more senior scientists without a proper grasp of these issues.\n\n\n\n\n\n\n\n\n\n\nRecommended reading\n\n\nBate and Clark (2014)"
+  },
+  {
+    "objectID": "index.html#probability-distributions",
+    "href": "index.html#probability-distributions",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "Probability distributions",
+    "text": "Probability distributions\nA probability distribution of a random variable \\(z\\) takes on some range of values\n\n\n\n\n\n\n\nThe mean of the distribution \\(z\\)\n\n\n\nThe mean (aka expected value or expectation) is the average of all the values in \\(z\\)\n\nEquivalently: the mean is the value that is obtained on average from a random sample from the distribution\n\nWritten as \\(\\mu_{z}\\) or \\(E(z)\\)\n\n\n\n\n\n\n\n\n\n\n\n\nThe variance of a distribution \\(z\\)\n\n\n\nThe variance of the distribution of \\(z\\) represents the mean squared difference from the mean \\(\\mu_z\\) (or \\(E(z)\\)) of any individual value in the distribution.\n\n\\(\\textrm{variance} = E((z - \\mu_z)^2)\\)\n\n\n\n\n\n\n\n\nA probability distribution describes the range of values that a random variable - let’s call it \\(z\\) - takes.\n\nYou can think of \\(z\\) being a single ball drawn from a bag containing an infinite number of balls, each ball with a number written on it\n\nProbability distributions can describe many measures, including\n\nheights of men, incomes of women, political party preference, and so on\n\nThe mean of a probability distribution - its expected value or expectation is the average of all numbers in the distribution\n\nThis may be infinite, and there is an equivalent definition: the mean is the value obtained on average from a random sample taken from the distribution\n\nThe variance of a probability distribution expresses how much the individual values might differ from that mean.\n\nVariance is defined as the mean of the square of the difference between each individual value in the distribution and the mean of the distribution"
+  },
+  {
+    "objectID": "index.html#understanding-variance",
+    "href": "index.html#understanding-variance",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "Understanding variance",
+    "text": "Understanding variance\n\n\n\n\n\n\n\nA distribution where all values of \\(z\\) are the same\n\n\n\nThe single value in the distribution is also the mean, therefore\n\n\\[z - \\mu_z = 0 \\implies (z - \\mu_z)^2 = 0\\] \\[E((z - \\mu_z)^2) = E(0^2) = 0\\]\n\n\n\n\n\n\n\n\n\n\n\nAll other distributions\n\n\nIn every other distribution, there are some values of \\(z\\) that differ: there is variation.\n\nTherefore, for at least some values of \\(z\\)\n\n\\[z - \\mu_z \\neq 0 \\implies (z - \\mu_z)^2 \\gt 0 \\implies E((z - \\mu_z)^2) \\gt 0 \\]\n\n\n\n\n\n\nTo get some intuition about the idea of variance, imagine that you have a set of values \\(z\\) that are all the same.\nIf they are all the same, then they all have the same value as the mean of the distribution, and \\(z - \\mu_z = 0\\)\nThis means that, for all \\(z\\), \\((z - \\mu_z)^2\\) is also zero, and the variance is zero.\nBut if any value of \\(z\\) is different then, for at least that value, \\(z - \\mu_z \\neq 0\\), so the square of that value is greater than zero. It follows that the variance must then be greater than zero: \\(E((z - \\mu_z)^2) \\gt 0\\)\nIn any dataset you meet, the variance is going to take a positive value"
+  },
+  {
+    "objectID": "index.html#standard-deviation",
+    "href": "index.html#standard-deviation",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "Standard deviation",
+    "text": "Standard deviation\n\n\n\n\n\n\n\nWhat is standard deviation?\n\n\nThe standard deviation is the square root of the variance\n\\[\\textrm{standard deviation} = \\sqrt{E((z - \\mu_z)^2)}\\]\n\n\n\n\n\n\n\n\n\n\n\nAdvantages\n\n\n\nThe standard deviation (unlike variance) is on the same scale as the original distribution\n\nStandard deviation is a more “natural” interpretation of variation\n\n\n\n\n\n\n\n\nYou are probably more familiar with the standard deviation of a distribution.\nThe standard deviation is on the same kind of scale as the values of the distribution, which makes this an easier value to interpret than the variance"
   },
   {
     "objectID": "index.html#references-1",
     "href": "index.html#references-1",
     "title": "MP968 Experimental Design Workshop",
     "section": "References",
-    "text": "References\n\n\n\n\nKilkenny, Carol, William J Browne, Innes C Cuthill, Michael Emerson, and Douglas G Altman. 2010. “Improving Bioscience Research Reporting: The ARRIVE Guidelines for Reporting Animal Research.” PLoS Biol. 8 (6): e1000412.\n\n\nKilkenny, Carol, Nick Parsons, Ed Kadyszewski, Michael F W Festing, Innes C Cuthill, Derek Fry, Jane Hutton, and Douglas G Altman. 2009. “Survey of the Quality of Experimental Design, Statistical Analysis and Reporting of Research Using Animals.” PLoS One 4 (11): e7824."
+    "text": "References\n\n\n\n\nBate, Simon T., and Robin A. Clark. 2014. The Design and Statistical Analysis of Animal Experiments. Cambridge University Press.\n\n\nKilkenny, Carol, William J Browne, Innes C Cuthill, Michael Emerson, and Douglas G Altman. 2010. “Improving Bioscience Research Reporting: The ARRIVE Guidelines for Reporting Animal Research.” PLoS Biol. 8 (6): e1000412.\n\n\nKilkenny, Carol, Nick Parsons, Ed Kadyszewski, Michael F W Festing, Innes C Cuthill, Derek Fry, Jane Hutton, and Douglas G Altman. 2009. “Survey of the Quality of Experimental Design, Statistical Analysis and Reporting of Research Using Animals.” PLoS One 4 (11): e7824."
   }
 ]

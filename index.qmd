@@ -214,8 +214,12 @@ Many journals now routinely request information in the ARRIVE framework, often a
 :::: { .columns }
 
 ::: { .column width="60%" }
-::: { .callout-important }
+::: { .callout-warning }
 A key step in tackling these issues is to ensure that the next generation of scientists are aware of what makes for good practice in experimental design and animal research, and **that they are not led into poor or inappropriate practices by more senior scientists without a proper grasp of these issues**.
+:::
+
+::: { .callout-tip title="Recommended reading" }
+@Bate_Clark_2014
 :::
 :::
 
@@ -224,6 +228,79 @@ A key step in tackling these issues is to ensure that the next generation of sci
 :::
 
 ::::
+
+# Statistical Inference
+
+## Probability distributions
+
+A probability distribution of a random variable $z$ takes on some range of values
+
+::: { .callout-tip title="The mean of the distribution $z$" }
+- The _mean_ (aka _expected value_ or _expectation_) is the average of all the values in $z$
+  - Equivalently: the _mean_ is the value that is obtained **on average** from a random sample from the distribution
+- Written as $\mu_{z}$ or $E(z)$
+:::
+  
+::: { .callout-tip title="The variance of a distribution $z$" }
+- The _variance_ of the distribution of $z$ represents the mean squared difference from the mean $\mu_z$ (or $E(z)$) of any individual value in the distribution.
+  - $\textrm{variance} = E((z - \mu_z)^2)$
+:::
+
+::: { .notes }
+- A probability distribution describes the range of values that a random variable - let's call it $z$ - takes.
+  - You can think of $z$ being a single ball drawn from a bag containing an infinite number of balls, each ball with a number written on it
+- Probability distributions can describe many measures, including
+  - heights of men, incomes of women, political party preference, and so on
+- The _mean_ of a probability distribution - its _expected value_ or _expectation_ is the average of all numbers in the distribution
+  - This may be infinite, and there is an equivalent definition: the _mean_ is the value obtained _on average_ from a random sample taken from the distribution
+- The _variance_ of a probability distribution expresses how much the individual values might differ from that mean.
+  - Variance is defined as the _mean_ of the **square of the difference between each individual value in the distribution and the mean of the distribution**
+:::
+
+## Understanding variance
+
+::: { .callout-caution title="A distribution where all values of $z$ are the same" }
+- The single value in the distribution is also the mean, therefore
+
+$$z - \mu_z = 0 \implies (z - \mu_z)^2 = 0$$
+$$E((z - \mu_z)^2) = E(0^2) = 0$$
+
+:::
+
+::: { .callout-tip title="All other distributions" }
+In **every** other distribution, there are some values of $z$ that differ: _there is variation_.
+
+- Therefore, for at least some values of $z$
+
+$$z - \mu_z \neq 0 \implies (z - \mu_z)^2 \gt 0 \implies E((z - \mu_z)^2) \gt 0 $$
+
+:::
+
+::: { .notes }
+- To get some intuition about the idea of variance, imagine that you have a set of values $z$ that are all the same.
+- If they are all the same, then they all have the same value as the _mean_ of the distribution, and $z - \mu_z = 0$
+- This means that, for all $z$, $(z - \mu_z)^2$ is also zero, and the variance is zero.
+- But if any value of $z$ is different then, for at least that value, $z - \mu_z \neq 0$, so the square of that value is greater than zero. It follows that the variance must then be greater than zero: $E((z - \mu_z)^2) \gt 0$
+- In any dataset you meet, the variance is going to take a positive value
+:::
+
+## Standard deviation
+
+::: { .callout-warning title="What is standard deviation?" }
+The _standard deviation_ is the square root of the variance
+
+$$\textrm{standard deviation} = \sqrt{E((z - \mu_z)^2)}$$
+:::
+
+::: { .callout-tip title="Advantages" }
+- The _standard deviation_ (unlike variance) is on the same scale as the original distribution
+  - Standard deviation is a more "natural" interpretation of variation
+:::
+
+::: { .notes }
+- You are probably more familiar with the _standard deviation_ of a distribution.
+- The standard deviation is on the same kind of scale as the values of the distribution, which makes this an easier value to interpret than the variance
+:::
 
 # References
 
