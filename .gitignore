@@ -6,3 +6,4 @@
 
 # Exclude macOS support files
 .DS_Store
+/.quarto/
