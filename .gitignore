@@ -7,5 +7,5 @@
 # Exclude macOS support files
 .DS_Store
 
-# Exclude local site
+# Exclude local site build
 _site/
