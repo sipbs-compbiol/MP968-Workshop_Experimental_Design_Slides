@@ -9,3 +9,6 @@
 
 # Exclude local site build
 _site/
+
+# Exclude quarto support files
+.quarto/
