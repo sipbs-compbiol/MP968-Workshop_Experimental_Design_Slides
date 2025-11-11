@@ -24,6 +24,14 @@ revealjs-plugins:
 bibliography: references.bib
 ---
 
+```{r setup}
+library(dplyr)
+library(stringr)
+library(tidyr)
+library(ggpubr)
+library(ggplot2)
+```
+
 # Why do we need experimental design?
 
 ## We should not cause unnecessary suffering
@@ -31,7 +39,7 @@ bibliography: references.bib
 ::: { .callout-important title="We should always minimise suffering" }
 **This may mean not performing an experiment at all**. Not all new knowledge or understanding is _worth_ causing suffering to obtain it.
 
-Where there _is_ sufficient justification to perform an experiment, **we are ethically obliged to minimise the amount of distress or suffering that is caused**.
+Where there _is_ sufficient justification to perform an experiment, **we are ethically obliged to minimise the amount of distress or suffering that is caused**, by designing the experiment to achieve this.
 :::
 
 ::: { .callout-warning title="Why we need statistics" }
@@ -74,9 +82,9 @@ If we use the number of subjects that are available, just because it is convenie
 The appropriate number of animal subjects to use in an experiment is _always_ the smallest number that - given reasonable assumptions - will satisfactorily give the correct result to the desired level of certainty.
 
 - What assumptions are reasonable?
-- What is an appropriate level of certainty?_
+- What is an appropriate level of certainty?
 
-**By convention**[^1] the usual level of certainty is: "we have an 80% chance of getting the correct true/false answer for the hypothesis being tested"
+**By convention**[^1] the usual level of certainty for a hypothesis test is: "we have an 80% chance of getting the correct true/false answer for the hypothesis being tested"
 :::
 
 [^1]: Conventions are guidelines, not rigid standards, and you should always consider whether a convention is appropriate in your use case
@@ -93,7 +101,7 @@ Note though that the appropriate level of certainty may change depending on the 
 
 ## Design experiments to minimise suffering
 
-::: { .callout-important title="Experimental design and statistics work together" }
+::: { .callout-important title="Experimental design and statistics are intertwined" }
 Once a research hypothesis has been devised:
 
 - _Experimental design_ is the process of devising a practical way of answering the question
@@ -122,7 +130,10 @@ You should design your experiment **specifically** for your combination of popul
 :::: { .columns }
 
 ::: { .column width="60%" }
-> For scientific, ethical and economic reasons, **experiments involving animals should be appropriately designed, correctly analysed and transparently reported**. This increases the scientific validity of the results, and maximises the knowledge gained from each experiment. A minimum amount of relevant information must be included in scientific publications to ensure that the methods and results of a study can be reviewed, analysed and repeated. Omitting essential information can raise scientific and ethical concerns. (@Kilkenny2009-cn)
+> "For scientific, ethical and economic reasons, **experiments involving animals should be appropriately designed, correctly analysed and transparently reported**. This increases the scientific validity of the results, and maximises the knowledge gained from each experiment. A minimum amount of relevant information must be included in scientific publications to ensure that the methods and results of a study can be reviewed, analysed and repeated. Omitting essential information can raise scientific and ethical concerns." (@Kilkenny2009-cn)
+
+::: { .callout-important title="We rely on the reporting of the experiment to know if it was appropriate"}
+:::
 :::
 
 ::: { .column width="40%" }
@@ -146,11 +157,14 @@ In 2009, the NC3Rs published a systematic survey (Kilkenny et al. (2009)) of the
 :::: { .columns }
 
 ::: { .column width="60%" }
-> Detailed information was collected from 271 publications, about the objective or hypothesis of the study, the number, sex, age and/or weight of animals used, and experimental and statistical methods. **Only 59% of the studies stated the hypothesis** or objective of the study and the number and characteristics of the animals used. […]  **Most of the papers surveyed did not use randomisation (87%) or blinding (86%)**, to reduce bias in animal selection and outcome assessment. **Only 70% of the publications that used statistical methods described their methods and presented the results with a measure of error or variability**. (@Kilkenny2009-cn)
+> "Detailed information was collected from 271 publications, about the objective or hypothesis of the study, the number, sex, age and/or weight of animals used, and experimental and statistical methods. **Only 59% of the studies stated the hypothesis** or objective of the study and the number and characteristics of the animals used. […]  **Most of the papers surveyed did not use randomisation (87%) or blinding (86%)**, to reduce bias in animal selection and outcome assessment. **Only 70% of the publications that used statistical methods described their methods and presented the results with a measure of error or variability**." (@Kilkenny2009-cn)
 :::
 
 ::: { .column width="40%" }
 ![](assets/images/kilkenny_blinding.png)
+:::
+
+::: { .callout-warning title="We cannot rely on the literature for good examples of experimental design" }
 :::
 
 ::::
@@ -163,10 +177,14 @@ The state of the published literature around animal experiments was not good in 
 - Only 70% of publications described their statistical methods at all
 :::
 
-## Causes for concern 2
+## Causes for concern 2 { .smaller }
 
 ::: { .callout-important title="No publication explained their choice for the number of animals used" }
-![](assets/images/kilkenny_sample_size.png){width="70%"}
+![](assets/images/kilkenny_sample_size.png){width="55%" fig-align="center"}
+
+:::
+
+::: { .callout-warning title="We cannot rely on the verbal authority of 'published scientists' or 'experienced scientists'" }
 :::
 
 ::: { .notes }
@@ -177,7 +195,14 @@ We cannot therefore be assured that the number of animals used was chosen to min
 
 ## Very strong cause for concern { .smaller }
 
-> **Power analysis or other very simple calculations**, which are widely used in human clinical trials and are often **expected by regulatory authorities** in some animal studies, can help to determine an appropriate number of animals to use in an experiment in order to detect a biologically important effect if there is one. This is a **scientifically robust and efficient** way of determining animal numbers and may ultimately **help to prevent animals being used unnecessarily**. _Many of the studies that did report the number of animals used reported the numbers inconsistently between the methods and results sections. The reason for this is unclear, but this does pose a significant problem when analysing, interpreting and repeating the results._ (@Kilkenny2009-cn)
+> "**Power analysis or other very simple calculations**, which are widely used in human clinical trials and are often **expected by regulatory authorities** in some animal studies, can help to determine an appropriate number of animals to use in an experiment in order to detect a biologically important effect if there is one. This is a **scientifically robust and efficient** way of determining animal numbers and may ultimately **help to prevent animals being used unnecessarily**. _Many of the studies that did report the number of animals used reported the numbers inconsistently between the methods and results sections. The reason for this is unclear, but this does pose a significant problem when analysing, interpreting and repeating the results._" (@Kilkenny2009-cn)
+
+::: { .callout-important }
+As scientists, you - **yourselves** - need to understand the principles behind the statistical tests you use, in order to choose appropriate tests and methods, and to use appropriate measures to minimise animal suffering and obtain meaningful results.
+
+You cannot simply rely on the word of "experienced scientists" for this.
+:::
+
 
 ## The ARRIVE guidelines
 
@@ -215,7 +240,7 @@ Many journals now routinely request information in the ARRIVE framework, often a
 
 ::: { .column width="60%" }
 ::: { .callout-warning }
-A key step in tackling these issues is to ensure that the next generation of scientists are aware of what makes for good practice in experimental design and animal research, and **that they are not led into poor or inappropriate practices by more senior scientists without a proper grasp of these issues**.
+"A key step in tackling these issues is to ensure that the next generation of scientists are aware of what makes for good practice in experimental design and animal research, and **that they are not led into poor or inappropriate practices by more senior scientists without a proper grasp of these issues**."
 :::
 
 ::: { .callout-tip title="Recommended reading" }
@@ -229,20 +254,20 @@ A key step in tackling these issues is to ensure that the next generation of sci
 
 ::::
 
-# Statistical Inference
+# Some Statistical Concepts
 
 ## Probability distributions
 
-A probability distribution of a random variable $z$ takes on some range of values
+The probability distribution of a random variable $z$ (e.g. the values you measure in an experiment) takes on some range of values
 
-::: { .callout-tip title="The mean of the distribution $z$" }
+::: { .callout-tip title="The mean of the distribution of $z$" }
 - The _mean_ (aka _expected value_ or _expectation_) is the average of all the values in $z$
   - Equivalently: the _mean_ is the value that is obtained **on average** from a random sample from the distribution
 - Written as $\mu_{z}$ or $E(z)$
 :::
   
-::: { .callout-tip title="The variance of a distribution $z$" }
-- The _variance_ of the distribution of $z$ represents the mean squared difference from the mean $\mu_z$ (or $E(z)$) of any individual value in the distribution.
+::: { .callout-tip title="The variance of a distribution of $z$" }
+- The _variance_ of the distribution of $z$ represents the _expected_ mean squared difference from the mean $\mu_z$ (or $E(z)$) of a random sample from the distribution.
   - $\textrm{variance} = E((z - \mu_z)^2)$
 :::
 
@@ -260,19 +285,18 @@ A probability distribution of a random variable $z$ takes on some range of value
 ## Understanding variance
 
 ::: { .callout-caution title="A distribution where all values of $z$ are the same" }
-- The single value in the distribution is also the mean, therefore
+- Every single value in the distribution ($z$) is also the mean value ($\mu_z$), therefore
 
 $$z - \mu_z = 0 \implies (z - \mu_z)^2 = 0$$
-$$E((z - \mu_z)^2) = E(0^2) = 0$$
+$$\textrm{variance} = E((z - \mu_z)^2) = E(0^2) = 0$$
 
 :::
 
 ::: { .callout-tip title="All other distributions" }
-In **every** other distribution, there are some values of $z$ that differ: _there is variation_.
+In **every** other distribution, there are some values of $z$ that differ so, for at least some values of $z$
 
-- Therefore, for at least some values of $z$
-
-$$z - \mu_z \neq 0 \implies (z - \mu_z)^2 \gt 0 \implies E((z - \mu_z)^2) \gt 0 $$
+$$z - \mu_z \neq 0 \implies (z - \mu_z)^2 \gt 0 $$
+$$\implies \textrm{variance} = E((z - \mu_z)^2) \gt 0 $$
 
 :::
 
@@ -289,17 +313,288 @@ $$z - \mu_z \neq 0 \implies (z - \mu_z)^2 \gt 0 \implies E((z - \mu_z)^2) \gt 0 
 ::: { .callout-warning title="What is standard deviation?" }
 The _standard deviation_ is the square root of the variance
 
-$$\textrm{standard deviation} = \sqrt{E((z - \mu_z)^2)}$$
+$$\textrm{standard deviation} = \sigma_z = \sqrt{\textrm{variance}} = \sqrt{E((z - \mu_z)^2)} $$
 :::
 
 ::: { .callout-tip title="Advantages" }
 - The _standard deviation_ (unlike variance) is on the same scale as the original distribution
-  - Standard deviation is a more "natural" interpretation of variation
+  - Standard deviation is a more "natural-seeming" interpretation of variation
+:::
+
+::: { .callout-note }
+We can calculate _mean_, _variance_, and _standard deviation_ for **any** probability distribution.
 :::
 
 ::: { .notes }
 - You are probably more familiar with the _standard deviation_ of a distribution.
 - The standard deviation is on the same kind of scale as the values of the distribution, which makes this an easier value to interpret than the variance
+:::
+
+## Normal Distribution 1
+
+$$ z \sim \textrm{normal}(\mu_z, \sigma_z) $$
+
+::: { .callout-note }
+We only need to know the mean and standard deviation to define a unique normal distribution
+:::
+
+::: { .callout-tip }
+Measurements of variables whose value is the sum of many small, independent, additive factors may follow a normal distribution
+:::
+
+::: { .callout-important }
+**There is no reason to expect that a random variable representing direct measurements in the world will be normally distributed!**
+:::
+
+::: { .notes }
+- You may see the normal distribution written like this, as "z is distributed as the Normal distribution with mean $\mu_z$ and standard deviation $\sigma_z$."
+  - We only need to know the mean and standard deviation to define a unique normal distribution
+- Values we measure in the real world should follow an approximate normal distribution if each measured value is the sum of many small, independent, additive factors
+  - This is a consequence of the Central Limit Theorem
+- **But there is no reason to expect that any random variable representing direct measurement will have this property, or follow a normal distribution**
+  - This is especially the case if there is a large factor affecting variation of the variable
+:::
+
+## Normal Distribution 2
+
+```{r norm_density}
+# Plot normal curves for of height counts for men and women
+# Example from https://avehtari.github.io/ROS-Examples/CentralLimitTheorem/heightweight.html
+
+heights <- data.frame(height=54:75,
+                      female=c(80,107,296,695,1612,2680,4645,8201,9948,11733,
+                               10270,9942,6181,3990,2131,1154,245,257,0,
+                               0,0,0)*10339/74167,
+                      male=c(0,0,0,0,0,0,0,542,668,1221,2175,4213,5535,7980,
+                             9566,9578,8867,6716,5019,2745,
+                             1464,1263)*9983/67552) %>%
+  pivot_longer(c(female, male), names_to="sex", values_to="count")
+
+p1 <- ggplot(heights %>% filter(sex=="female"), aes(x=height, y=count)) +
+  geom_col() + 
+  stat_function(fun=function(x) 1e4 * dnorm(x, 63.7, 2.7),
+                color="orange", lwd=2) +
+  xlim(53, 83) + ylim(0, 1700) +
+  labs(title="Heights of female adults (US)") +
+  theme_minimal()
+
+p2 <- ggplot(heights %>% filter(sex=="male"), aes(x=height, y=count)) +
+  geom_col() + 
+  stat_function(fun=function(x) 1e4 * dnorm(x, 69.1, 2.9),
+                color="orange", lwd=2) +  
+  xlim(53, 83) + ylim(0, 1700) +
+  labs(title="Heights of male adults (US)") +
+  theme_minimal()
+
+ggarrange(p1, p2, ncol=2)
+```
+
+::: { .notes }
+- As an example, we can look at some real data, the heights of men and women in the US.
+  - Here we have counts of individuals whose heights are measured to the nearest inch
+- These are two different _random variables_: one for men, one for women
+- For both distributions, we can calculate a mean, and a standard deviation (or variance)
+  - Therefore we can calculate a normal distribution representing both men's and women's heights (orange curve)
+  - We calculate the mean heights for men and women (63.7 and 69.1 inches), and also the standard deviations (2.7 and 2.9 inches)
+- The distributions of heights for each sex, separately, follow an approximate normal distribution
+:::
+
+## Normal Distribution 3
+
+```{r all_heights}
+ggplot(heights, aes(x=height, y=count)) +
+  geom_col() + 
+  stat_function(fun=function(x) 2.1e4 * (0.52 * dnorm(x, 63.7, 2.7) +
+                                       0.48 * dnorm(x, 69.1, 2.9)),
+                color="orange", lwd=2) +
+  xlim(53, 83) + ylim(0, 2100) +
+  labs(title="Heights of all adults (US)") +
+  theme_minimal()
+```
+
+::: { .notes }
+- By contrast, the distribution of heights of _all_ adults in the US is not close to a normal curve
+- This is because there is an extraneous factor, **sex**, that represents much of the total variation in values
+  - We will come back to this idea later
+:::
+
+## Binomial Distribution 1
+
+:::: { .columns }
+
+::: { .column width="60%" }
+Suppose you're taking shots in basketball
+
+- how many shots?
+- how likely are you to score?
+- what is the distribution of the number of successful shots?
+
+::: { .callout-tip }
+This kind of process generates a random variable approximating a probability distribution called a **binomial distribution**.
+
+It is different from a normal distribution.
+:::
+
+:::
+
+::: { .column width="40%" }
+![](assets/images/basketball.png)
+:::
+
+::::
+
+::: { .notes }
+- If you take a bunch of basketball shots, each one has some probability of succeeding
+- The number of successful shots is going to depend on the number of shots you take, and how likely you are to score
+  - Michael Jordan is much more likely to score any individual attempt than I am
+- The number of successful shots is a random variable with a probability distribution
+
+- This kind of process generates a probability distribution that approximates the **binomial distribution**
+  - It's the same one you get for coin tosses (or any yes/no process)
+- It is different from a normal distribution
+  - So, if your underlying biological process resembles coin tosses or basketball shots, you need to be using an appropriate statistical test
+:::
+
+## Binomial Distribution 2
+
+:::: { .columns }
+
+::: { .column width="60%" }
+$$ z \sim \textrm{binomial}(n, p) $$
+
+::: { .callout-tip }
+- number of shots, $n = 20$
+- probability of scoring, $p = 0.3$
+
+$$z \sim \textrm{binomial}(20, 0.3) $$
+:::
+
+::: { .callout-caution title="mean and sd"}
+$$ \textrm{mean} = n \times p$$
+$$ \textrm{sd} = \sqrt{n \times p \times (1-p)}$$
+:::
+
+:::
+
+::: { .column width="40%" }
+![](assets/images/basketball.png)
+:::
+
+::::
+
+::: { .notes }
+- Imagine you took 20 shots at basketball, and had a probability of 0.3 of scoring any one shot
+- The distribution of shots you scored would follow a binomial distribution with $n=20$ and $p=0.3$
+- You'd expect to score, on average, $20 \times 0.3 = 6$ times
+- The standard deviation we'd expect would be $\sqrt{20 \times 0.3 \times (1 - 0.3)} = \sqrt{6 \times (0.7)} = \sqrt{4.2} = 2.05$
+  - So you'd expect to score about 4 to 8 shots, most of the time
+:::
+
+## Poisson distribution
+
+$$z \sim \textrm{poisson}(\lambda)$$
+
+::: { .callout-tip title="Poisson distribution" }
+- Used for count/rate data, e.g.
+  - the number of cases of cancer in a county
+  - the number of [Ca<sup>2+</sup>] spikes in a given time period
+:::
+
+::: { .callout-important title="Expectation ($\lambda$)"}
+- Only one parameter is provided, $\lambda$: the rate with which the measured event happens
+
+- Suppose a county has population 100,000, and average rate of cancer is 45.2mn people each year
+  
+
+$$z \sim \textrm{poisson}(45,200,000/100,000) = \textrm{poisson}(4.52) $$
+:::
+
+::: { .notes }
+- Count or rate data, i.e. discrete events that happen in a given duration, volume or area, generate the _Poisson distribution_
+- Examples of this kind of data include the number of cases of cancer in a county, the number of red cars you see on your journey into university, or the number of calcium concentration spikes you count in a survey period.
+
+- The distribution takes only one parameter: the **expectation**, lambda
+:::
+
+## Binomial and Poisson distributions
+
+```{r binomial_poisson}
+#| fig-align: center
+
+# A data frame of values 1:20, with some binomial and poisson distributed values
+data <- data.frame(count=1:20) %>%
+  mutate(pois1=dpois(count, 1)) %>%
+  mutate(pois4=dpois(count, 4)) %>%
+  mutate(pois10=dpois(count, 10)) %>%
+  mutate(binom1=dbinom(count, 20, 0.5)) %>%
+  mutate(binom2=dbinom(count, 20, 0.7)) %>%
+  mutate(binom3=dbinom(count, 40, 0.5)) %>%
+  pivot_longer(cols=-count, names_to="params", values_to="freq")
+
+p1 <- ggplot(data %>% filter(str_detect(params, "^pois")), aes(x=count, color=params)) +
+  geom_line(aes(y=freq), alpha=0.5) +
+  geom_point(aes(y=freq)) +
+  xlim(-3,20) +
+  ylim(0, 0.4) +
+  xlab("counts/rate") +
+  labs(title="Poisson distributions") +
+  scale_color_discrete(labels=c("lambda=1", "lambda=4", "lambda=10")) +
+  coord_fixed(ratio=50) +
+  theme_minimal()
+
+p2 <- ggplot(data %>% filter(str_detect(params, "^binom")), aes(x=count, color=params)) +
+  geom_line(aes(y=freq), alpha=0.5) +
+  geom_point(aes(y=freq)) +
+  xlim(-3,20) +
+  ylim(0, 0.2) +
+  xlab("successes") +
+  labs(title="Binomial distributions") +
+  scale_color_discrete(labels=c("n=20, p=0.3", "n=20, p=0.7", "n=40, p=0.3")) +
+  coord_fixed(ratio=100) +
+  theme_minimal()
+
+ggarrange(p2, p1, ncol=2)
+```
+
+::: { .callout-important title="All values are positive whole numbers"}
+:::
+
+::: { .notes }
+- Binomial and poisson distributions are quite closely related, and they look like this for the indicated parameter settings
+
+- For binomial distributions the expected successes shift rightwards as the probability of success increases, and as the number of attempts increases
+  - More attempts also increases the variance of the distribution
+
+- For poisson distributions, the peak of the distribution shifts rightwards as the expectation increases in value
+
+- **In both cases, all values - counts/rates or successes - are positive whole numbers**
+:::
+
+## Distributions in Practice
+
+::: { .callout-caution title="Distributions are starting points" }
+- Distributions arise from and represent distinct _generation processes_
+  - Normal distributions are good for sums, differences, and averages
+  - Poisson distributions are good for counts
+  - Binomial distributions are good for success/failure outcomes
+:::
+
+::: { .callout-warning }
+- All statistical distributions are **idealisations that ignore many features of real data**
+- No real world data should be expected to exactly match _any_ statistical distribution
+- Poisson models tend to need adjustment for _overdispersion_
+:::
+
+::: { .notes }
+- The different distributions we've looked at arise from distinct generation processes that have parallels in the real world
+  - Normal distributions arise when independent values are summed, or we take differences or averages of them
+  - Poisson distributions arise from counts, or rates (i.e. counts per unit)
+  - Binomial distributions arise from success/failure outcomes like tossing a coin
+  
+- We need to take care though, as these distributions are idealised outcomes from those processes
+- In the real world there are many other influences that cause collected data to deviate from these idealisations
+  - There is **no reason** to expect real world data to exactly match _any_ statistical distribution
+  - Though there are some principles: we ought not to use a normal distribution to model count data (as the normal distribution can drop below zero where counts cannot)
 :::
 
 # References
