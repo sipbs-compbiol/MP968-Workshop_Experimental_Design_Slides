@@ -1665,6 +1665,8 @@ ggplot() +
          y=0, yend=0.05) +
   xlim(-20, 60) +
   ylim(-0.001, 0.05) +
+  xlab("effect estimate") + 
+  ylab("density") +
   theme_minimal()
 ```
 
@@ -1747,6 +1749,8 @@ ggplot() +
          y=0, yend=0.05) +
   xlim(-20, 60) +
   ylim(-0.001, 0.05) +
+  xlab("effect estimate") + 
+  ylab("density") +
   theme_minimal()
 ```
 
@@ -1754,6 +1758,15 @@ ggplot() +
 - However, the effect sizes estimated by the two studies are not different from each other at a "statistical significance" of 95%
   - In both cases, the central mass of each distribution includes the mean of the other
 :::
+
+# Experimental design and sample size decisions
+
+::: { .notes }
+- The goal of experimental design is not to attain some level of statistical significance with high probability
+- The purpose of experimental design is to ensure we have a sense, **before and after data have been collected**, of what can realistically be learned from the experiment
+:::
+
+## Sample size 
 
 # References
 
