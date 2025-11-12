@@ -1573,6 +1573,186 @@ ggplot() +
 - This means that we're concerned with whether the estimate lies _outside_ the left-most 95% of the distribution mass
   - This means that results in the right-most 5% of the mass are "significant"
   - Any estimate lying in the left-most 95% of the distribution is "not significant"
+  
+- It's possible to dishonestly switch a result between "significant" and "not significant" by choosing to use a one-tailed or two-tailed test
+:::
+
+## Problems with statistical significance 1
+
+::: { .callout-warning }
+It is a common error to summarise comparisons by statistical significance into "significant" and "non-significant" results
+:::
+
+::: { .callout-important title="Statistical significance is not the same as practical importance" }
+- Suppose a treatment increased earnings by £10 per year with a standard error of £2.
+  - This would be statistically, but not practically, significant
+  
+- Suppose a different treatment increased earnings by £10,000 per year with a standard error of £10,000
+  - This would not be statistically significant, but could be important in practice
+:::
+
+## Problems with statistical significance 2
+
+::: { .callout-warning }
+It is a common error to summarise comparisons by statistical significance into "significant" and "non-significant" results
+:::
+
+::: { .callout-important title="Non-significance is not the same as zero" }
+- Suppose an arterial stent treatment group outperforms the control
+  - mean difference in treadmill time: 16.6s (standard error 9.8)
+  - the 95% confidence interval for the effect includes zero, $p ≈ 0.20$
+- It's not clear whether the net treatment effect is positive or negative
+  - but we can't say that stents have no effect
+:::
+
+## Problems with statistical significance 3
+
+::: { .callout-important title="The difference between 'significant' and 'not significant' is not statistically significant" }
+1. Only a small change is required to move from $P < 0.051$ to $P < 0.049$
+2. Large changes in significance can correspond to non-significant differences in the underlying variables
+:::
+
+```{r nonsigdiff1}
+#| fig-align: center
+
+# Generate data to shade a normal curve
+
+shade_curve = function(mu, std, zstart, zend, fill, alpha=0.5) {
+    xmin = mu - 4 * std
+    xmax = mu + 4 * std
+
+    data = data.frame(x=seq(xmin, xmax, by=0.01)) %>%
+      mutate(y=dnorm(x, mu, std))
+
+    geom_area(data=subset(data, x >= zstart & x < zend ),
+              aes(x=x, y=y),
+              fill=fill, color=NA, alpha=alpha)
+}
+
+# mu=10, std=10, zstart=qnorm(0, 10, 10), zend=qnorm(0.95, 10, 10), fill="orange")
+# Plot figurative null hypothesis distribution
+ggplot() +
+  stat_function(fun=dnorm, args=list(mean=10, sd=10), geom="line", colour="orange") +
+  shade_curve(mu=10, std=10, zstart=qnorm(0.1, 10, 10), zend=qnorm(1, 10, 10), fill="orange") + 
+  annotate("segment", colour="orange",
+         x=qnorm(0.1, 10, 10), xend=qnorm(0.1, 10, 10),
+         y=0, yend=dnorm(qnorm(0.1, 10, 10), 10, 10)) +
+  annotate("text", colour="orange",
+           x=qnorm(0.1, 10, 10), y=-0.001,
+           label="10%") +  
+  annotate("segment", colour="orange",
+         x=qnorm(0.5, 10, 10), xend=qnorm(0.5, 10, 10),
+         y=0, yend=dnorm(qnorm(0.5, 10, 10), 10, 10)) +
+  annotate("text", colour="orange",
+           x=qnorm(0.5, 10, 10), y=0.042,
+           label="mean=10, sd=10") +  
+  stat_function(fun=dnorm, args=list(mean=25, sd=10), geom="line", colour="purple") +
+  shade_curve(mu=25, std=10, zstart=qnorm(0.01, 25, 10), zend=qnorm(1, 25, 10), fill="purple") + 
+  annotate("segment", colour="purple",
+         x=qnorm(0.01, 25, 10), xend=qnorm(0.01, 25, 10),
+         y=0, yend=dnorm(qnorm(0.01, 25, 10), 25, 10)) +
+  annotate("text", colour="purple",
+           x=qnorm(0.01, 25, 10), y=-0.001,
+           label="1%") +  
+  annotate("segment", colour="purple",
+         x=qnorm(0.5, 25, 10), xend=qnorm(0.5, 25, 10),
+         y=0, yend=dnorm(qnorm(0.5, 25, 10), 25, 10)) +
+  annotate("text", colour="purple",
+           x=qnorm(0.5, 25, 10), y=0.042,
+           label="mean=25, sd=10") +  
+  annotate("segment", colour="black", lty="dashed",
+         x=0, xend=0,
+         y=0, yend=0.05) +
+  xlim(-20, 60) +
+  ylim(-0.001, 0.05) +
+  theme_minimal()
+```
+
+::: { .notes }
+- It should hopefully be obvious that any significance threshold is arbitrary, and the difference between a value being on one side of the threshold or the other may be arbitrarily small
+- Less obviously, consider two independent studies - orange and purple here
+  - The purple study estimates an effect size of 25 with standard error of 10 units and is "statistically significant" in that it does not include zero at the 1% significance level 
+  - The orange study estimates an effect size of 10 with standard error of 10 units and is "statistically not significant" as it includes zero even at the 10% significance level
+:::
+
+## Problems with statistical significance 4
+
+::: { .callout-important title="The difference between 'significant' and 'not significant' is not statistically significant" }
+1. Only a small change is required to move from $P < 0.051$ to $P < 0.049$
+2. Large changes in significance can correspond to non-significant differences in the underlying variables
+:::
+
+```{r nonsigdiff2}
+#| fig-align: center
+
+# Generate data to shade a normal curve
+
+shade_curve = function(mu, std, zstart, zend, fill, alpha=0.5) {
+    xmin = mu - 4 * std
+    xmax = mu + 4 * std
+
+    data = data.frame(x=seq(xmin, xmax, by=0.01)) %>%
+      mutate(y=dnorm(x, mu, std))
+
+    geom_area(data=subset(data, x >= zstart & x < zend ),
+              aes(x=x, y=y),
+              fill=fill, color=NA, alpha=alpha)
+}
+
+# mu=10, std=10, zstart=qnorm(0, 10, 10), zend=qnorm(0.95, 10, 10), fill="orange")
+# Plot figurative null hypothesis distribution
+ggplot() +
+  stat_function(fun=dnorm, args=list(mean=10, sd=10), geom="line", colour="orange") +
+  shade_curve(mu=10, std=10, zstart=qnorm(0.025, 10, 10), zend=qnorm(0.975, 10, 10), fill="orange") + 
+  annotate("segment", colour="orange",
+         x=qnorm(0.025, 10, 10), xend=qnorm(0.025, 10, 10),
+         y=0, yend=dnorm(qnorm(0.025, 10, 10), 10, 10)) +
+  annotate("text", colour="orange",
+           x=qnorm(0.025, 10, 10), y=-0.001,
+           label="2.5%") +  
+  annotate("segment", colour="orange",
+         x=qnorm(0.975, 10, 10), xend=qnorm(0.975, 10, 10),
+         y=0, yend=dnorm(qnorm(0.975, 10, 10), 10, 10)) +
+  annotate("text", colour="orange",
+           x=qnorm(0.975, 10, 10), y=-0.001,
+           label="97.5%") +  
+  annotate("segment", colour="orange",
+         x=qnorm(0.5, 10, 10), xend=qnorm(0.5, 10, 10),
+         y=0, yend=dnorm(qnorm(0.5, 10, 10), 10, 10)) +
+  annotate("text", colour="orange",
+           x=qnorm(0.5, 10, 10), y=0.042,
+           label="mean=10, sd=10") +  
+  stat_function(fun=dnorm, args=list(mean=25, sd=10), geom="line", colour="purple") +
+  shade_curve(mu=25, std=10, zstart=qnorm(0.025, 25, 10), zend=qnorm(0.975, 25, 10), fill="purple") + 
+  annotate("segment", colour="purple",
+         x=qnorm(0.025, 25, 10), xend=qnorm(0.025, 25, 10),
+         y=0, yend=dnorm(qnorm(0.025, 25, 10), 25, 10)) +
+  annotate("text", colour="purple",
+           x=qnorm(0.025, 25, 10), y=-0.001,
+           label="2.5%") +  
+  annotate("segment", colour="purple",
+         x=qnorm(0.975, 25, 10), xend=qnorm(0.975, 25, 10),
+         y=0, yend=dnorm(qnorm(0.975, 25, 10), 25, 10)) +
+  annotate("text", colour="purple",
+           x=qnorm(0.975, 25, 10), y=-0.001,
+           label="97.5%") +  
+  annotate("segment", colour="purple",
+         x=qnorm(0.5, 25, 10), xend=qnorm(0.5, 25, 10),
+         y=0, yend=dnorm(qnorm(0.5, 25, 10), 25, 10)) +
+  annotate("text", colour="purple",
+           x=qnorm(0.5, 25, 10), y=0.042,
+           label="mean=25, sd=10") +  
+  annotate("segment", colour="black", lty="dashed",
+         x=0, xend=0,
+         y=0, yend=0.05) +
+  xlim(-20, 60) +
+  ylim(-0.001, 0.05) +
+  theme_minimal()
+```
+
+::: { .notes }
+- However, the effect sizes estimated by the two studies are not different from each other at a "statistical significance" of 95%
+  - In both cases, the central mass of each distribution includes the mean of the other
 :::
 
 # References
