@@ -34,6 +34,12 @@ library(ggplot2)
 
 # Why do we need experimental design?
 
+::: { .notes }
+- Indeed, why _do_ we need experimental design?
+- Well, in general it's because if your experiment is designed poorly you may not get the answer you're trying to find or - even worse - might get entirely the wrong answer to that question
+- But in this workshop we're going to focus on why we need experimental design - _and its conjoined sibling, statistics_ - in the context of experiments that involve animals
+:::
+
 ## We should not cause unnecessary suffering
 
 ::: { .callout-important title="We should always minimise suffering" }
@@ -184,13 +190,14 @@ The state of the published literature around animal experiments was not good in 
 
 :::
 
-::: { .callout-warning title="We cannot rely on the verbal authority of 'published scientists' or 'experienced scientists'" }
+::: { .callout-warning title="We cannot rely on the verbal authority of 'published scientists' or 'experienced scientists' for good experimental design" }
 :::
 
 ::: { .notes }
-One of the most shocking pieces of information is that, of the 48 papers surveyed, **not a single one explained why they used the number of animals that they did**.
-
-We cannot therefore be assured that the number of animals used was chosen to minimise suffering, or to obtain a statistically justifiable result.
+- One of the most shocking pieces of information is that, of the 48 papers surveyed, **not a single one explained why they used the number of animals that they did**.
+- We cannot therefore be assured that the number of animals used was chosen to minimise suffering, or to obtain a statistically justifiable result.
+- These papers are published. They are written, and the experiments conducted, by "experienced scientists"
+- Being an "experienced" or "published" scientist is clearly not a benchmark for good experimental design
 :::
 
 ## Very strong cause for concern { .smaller }
@@ -200,16 +207,21 @@ We cannot therefore be assured that the number of animals used was chosen to min
 ::: { .callout-important }
 As scientists, you - **yourselves** - need to understand the principles behind the statistical tests you use, in order to choose appropriate tests and methods, and to use appropriate measures to minimise animal suffering and obtain meaningful results.
 
-You cannot simply rely on the word of "experienced scientists" for this.
+**You cannot simply rely on the word of "experienced scientists" for this.**
 :::
 
+::: { .notes }
+- The Kilkenny paper does propose solutions to this problem
+- They require the use and reporting of straightforward statistical calculations
+- It is up to **you** as scientists to maintain your integrity and that of the experiment, in abiding by good practice and choosing appropriate tests and methods.
+:::
 
 ## The ARRIVE guidelines
 
 :::: { .columns }
 
 ::: { .column width="70%" }
-The next year (@Kilkenny2010-cp) proposed the [ARRIVE guidelines](https://nc3rs.org.uk/our-portfolio/arrive-animal-research-reporting-vivo-experiments): a checklist to help researchers report their animal research transparently and reproducibly.
+The following year (@Kilkenny2010-cp) proposed the [ARRIVE guidelines](https://nc3rs.org.uk/our-portfolio/arrive-animal-research-reporting-vivo-experiments): a checklist to help researchers report their animal research transparently and reproducibly.
 
 - Good reporting is essential for peer review and to inform future research
 - Reporting guidelines measurably improve reporting quality
@@ -256,6 +268,35 @@ Many journals now routinely request information in the ARRIVE framework, often a
 
 # Some Statistical Concepts
 
+::: { .notes }
+Before we get into the detail and fun of calculating appropriate group sizes for your experiments, we're going to refresh some relevant statistical concepts.
+:::
+
+## Random variables
+
+Your experimental measurements are _random variables_
+
+::: { .callout-important }
+**This does not mean that your measurements are entirely random numbers**
+:::
+
+::: { .callout-caution }
+Random variables are values whose range is _subject to some element of chance_, e.g. variation between individuals
+
+- Tail length (e.g. timing of developmental signals, distribution of nutrients)
+- Blood concentrations (e.g. circulatory heterogeneity, transient measurement differences)
+- Survival time (e.g. determining point of death)
+:::
+
+::: { .notes }
+- When you take a measurement - tail length, concentration of something in blood, survival time, whatever - you are recording the value of a _random variable_
+  - **This doesn't mean that the number is chosen randomly**
+- What it means is that the number is subject to the influence of some kind of random variation
+  - So tail length might be under the influence of overall growth, genetic propensity, and some random redistribution of nutrients or random timing of developmental signals
+  - Blood concentration might not be entirely uniform, so the measurement is subject to random variations throughout the circulatory system, or transient effects on how you measure the concentration
+  - Survival time might not be measured 100% accurately - it can difficult to measure the point of death exactly, so there may be some random variation around the actual time
+:::
+
 ## Probability distributions
 
 The probability distribution of a random variable $z$ (e.g. the values you measure in an experiment) takes on some range of values
@@ -287,7 +328,7 @@ The probability distribution of a random variable $z$ (e.g. the values you measu
 ::: { .callout-caution title="A distribution where all values of $z$ are the same" }
 - Every single value in the distribution ($z$) is also the mean value ($\mu_z$), therefore
 
-$$z - \mu_z = 0 \implies (z - \mu_z)^2 = 0$$
+$$z = \mu_z \implies z - \mu_z = 0 \implies (z - \mu_z)^2 = 0$$
 $$\textrm{variance} = E((z - \mu_z)^2) = E(0^2) = 0$$
 
 :::
@@ -295,17 +336,18 @@ $$\textrm{variance} = E((z - \mu_z)^2) = E(0^2) = 0$$
 ::: { .callout-tip title="All other distributions" }
 In **every** other distribution, there are some values of $z$ that differ so, for at least some values of $z$
 
-$$z - \mu_z \neq 0 \implies (z - \mu_z)^2 \gt 0 $$
+$$z \neq \mu_z \implies  z - \mu_z \neq 0 \implies (z - \mu_z)^2 \gt 0 $$
 $$\implies \textrm{variance} = E((z - \mu_z)^2) \gt 0 $$
 
 :::
 
 ::: { .notes }
-- To get some intuition about the idea of variance, imagine that you have a set of values $z$ that are all the same.
-- If they are all the same, then they all have the same value as the _mean_ of the distribution, and $z - \mu_z = 0$
+- To get some intuition about the idea of variance, imagine that you have a set of values $z$ that are all the same, so there's no randomness
+- If the value are all the same, then they all have the same value as the _mean_ of the distribution, and $z - \mu_z = 0$
 - This means that, for all $z$, $(z - \mu_z)^2$ is also zero, and the variance is zero.
 - But if any value of $z$ is different then, for at least that value, $z - \mu_z \neq 0$, so the square of that value is greater than zero. It follows that the variance must then be greater than zero: $E((z - \mu_z)^2) \gt 0$
-- In any dataset you meet, the variance is going to take a positive value
+
+- In any dataset you meet, you are unlikely to have all values be identical, and so the variance is going to take a positive value
 :::
 
 ## Standard deviation
@@ -328,6 +370,9 @@ We can calculate _mean_, _variance_, and _standard deviation_ for **any** probab
 ::: { .notes }
 - You are probably more familiar with the _standard deviation_ of a distribution.
 - The standard deviation is on the same kind of scale as the values of the distribution, which makes this an easier value to interpret than the variance
+
+- While we can calculate the mean, variance and standard deviation for _any_ distribution, this does **not** mean that they are equally informative for all distributions
+- Let's look at some examples
 :::
 
 ## Normal Distribution 1
@@ -355,9 +400,11 @@ Measurements of variables whose value is the sum of many small, independent, add
   - This is especially the case if there is a large factor affecting variation of the variable
 :::
 
-## Normal Distribution 2
+## Normal Distribution 2 { .smaller }
 
 ```{r norm_density}
+#| fig-align: center
+
 # Plot normal curves for of height counts for men and women
 # Example from https://avehtari.github.io/ROS-Examples/CentralLimitTheorem/heightweight.html
 
@@ -389,6 +436,11 @@ p2 <- ggplot(heights %>% filter(sex=="male"), aes(x=height, y=count)) +
 ggarrange(p1, p2, ncol=2)
 ```
 
+::: { .callout-tip }
+- For a normal distribution, the mean value is the value at the peak of the curve
+- The curve is symmetrical, so standard deviation describes variability equally well on both sides of the mean
+:::
+
 ::: { .notes }
 - As an example, we can look at some real data, the heights of men and women in the US.
   - Here we have counts of individuals whose heights are measured to the nearest inch
@@ -397,11 +449,16 @@ ggarrange(p1, p2, ncol=2)
   - Therefore we can calculate a normal distribution representing both men's and women's heights (orange curve)
   - We calculate the mean heights for men and women (63.7 and 69.1 inches), and also the standard deviations (2.7 and 2.9 inches)
 - The distributions of heights for each sex, separately, follow an approximate normal distribution
+
+- For a normal distribution, the mean value is the value at the peak of the curve
+- The curve is symmetrical, so the standard deviation describes variability equally well on both sides of the mean
 :::
 
-## Normal Distribution 3
+## (Non-)Normal Distribution 3 { .smaller }
 
 ```{r all_heights}
+#| fig-align: center
+
 ggplot(heights, aes(x=height, y=count)) +
   geom_col() + 
   stat_function(fun=function(x) 2.1e4 * (0.52 * dnorm(x, 63.7, 2.7) +
@@ -412,10 +469,20 @@ ggplot(heights, aes(x=height, y=count)) +
   theme_minimal()
 ```
 
+::: { .callout-tip }
+- Here, the mean may not be the same value as the peak of the curve (i.e. the _mode_)
+- The curve is asymmetrical, so standard deviation does not describe variation equally well on either side of the mean
+:::
+
 ::: { .notes }
 - By contrast, the distribution of heights of _all_ adults in the US is not close to a normal curve
 - This is because there is an extraneous factor, **sex**, that represents much of the total variation in values
   - We will come back to this idea later
+  
+- Here, the mean may not be the same value as the peak of the curve (i.e. the _mode_)
+- The curve is asymmetrical, so standard deviation does not describe variation equally well on either side of the mean
+
+- Most data you receive will not be normally distributed
 :::
 
 ## Binomial Distribution 1
@@ -444,7 +511,10 @@ It is different from a normal distribution.
 ::::
 
 ::: { .notes }
-- If you take a bunch of basketball shots, each one has some probability of succeeding
+- Suppose that instead of measuring height, weight, concentration or something like that, you're measuring _event outcomes_
+  - These do not follow a normal distribution
+
+- If you take a bunch of basketball shots (equivalent to our experimental events), each one has some probability of succeeding
 - The number of successful shots is going to depend on the number of shots you take, and how likely you are to score
   - Michael Jordan is much more likely to score any individual attempt than I am
 - The number of successful shots is a random variable with a probability distribution
@@ -452,10 +522,10 @@ It is different from a normal distribution.
 - This kind of process generates a probability distribution that approximates the **binomial distribution**
   - It's the same one you get for coin tosses (or any yes/no process)
 - It is different from a normal distribution
-  - So, if your underlying biological process resembles coin tosses or basketball shots, you need to be using an appropriate statistical test
+  - If your underlying biological process resembles coin tosses or basketball shots, you need to design your experiment and analysis to be using an appropriate statistical test, such as one based on the binomial distribution
 :::
 
-## Binomial Distribution 2
+## Binomial Distribution 2 { .smaller }
 
 :::: { .columns }
 
@@ -470,8 +540,14 @@ $$z \sim \textrm{binomial}(20, 0.3) $$
 :::
 
 ::: { .callout-caution title="mean and sd"}
-$$ \textrm{mean} = n \times p$$
+$$ \textrm{mean} = n \times p $$
 $$ \textrm{sd} = \sqrt{n \times p \times (1-p)}$$
+:::
+
+::: { .callout-important title="Design note"}
+You need to design your experiments and analyses to reflect the appropriate process/probability distributions of your data
+
+- E.g., does $p$ differ between two conditions?
 :::
 
 :::
@@ -490,17 +566,47 @@ $$ \textrm{sd} = \sqrt{n \times p \times (1-p)}$$
   - So you'd expect to score about 4 to 8 shots, most of the time
 :::
 
-## Poisson distribution
+## Poisson distribution 1
+
+:::: { .columns }
+
+::: { .column width="60%" }
+> In prior experiments the frequency of calcium events in WKY was 3.8 $\pm$ 1.1 events/field/min compared to 18.9 $\pm$ 7.1 in SHR
+
+::: { .callout-warning title="This is not normal (or binomial)" }
+Something that happens a certain number of times in a fixed interval generates a _Poisson distribution_. 
+
+This is different from a normal or binomial distribution.
+:::
+
+:::
+
+::: { .column width="40%" }
+![](assets/images/calcium_events.png)
+:::
+
+::::
+
+::: { .notes }
+- Suppose you run an experiment to measure calcium spiking events in tissue for two different mouse lines, WKY and SHR
+  - You count the number of times the calcium spikes in a minute, in your field of view
+- This data is _rate_ data
+  - A count of events per unit (here, unit time and unit area) _interval_
+  
+- The idealised representation of data generated by this process is a **Poisson distribution**
+  - This differs from a normal or binomial distribution
+:::
+
+## Poisson distribution 2 { .smaller }
 
 $$z \sim \textrm{poisson}(\lambda)$$
 
 ::: { .callout-tip title="Poisson distribution" }
-- Used for count/rate data, e.g.
-  - the number of cases of cancer in a county
-  - the number of [Ca<sup>2+</sup>] spikes in a given time period
+$$ \textrm{mean} = \lambda $$
+$$ \textrm{sd} = \sqrt{\lambda} $$
 :::
 
-::: { .callout-important title="Expectation ($\lambda$)"}
+::: { .callout-warning title="Expectation ($\lambda$)"}
 - Only one parameter is provided, $\lambda$: the rate with which the measured event happens
 
 - Suppose a county has population 100,000, and average rate of cancer is 45.2mn people each year
@@ -509,25 +615,35 @@ $$z \sim \textrm{poisson}(\lambda)$$
 $$z \sim \textrm{poisson}(45,200,000/100,000) = \textrm{poisson}(4.52) $$
 :::
 
+::: { .callout-important title="Design note"}
+You need to design your experiments and analyses to reflect the appropriate process/probability distributions of your data
+
+- E.g., does $\lambda$ differ between two conditions?
+:::
+
+
 ::: { .notes }
 - Count or rate data, i.e. discrete events that happen in a given duration, volume or area, generate the _Poisson distribution_
 - Examples of this kind of data include the number of cases of cancer in a county, the number of red cars you see on your journey into university, or the number of calcium concentration spikes you count in a survey period.
 
 - The distribution takes only one parameter: the **expectation**, lambda
+
+- If your experiment generates data of this kind, you need to use a test that distinguishes between the value of lambda between the two conditions
 :::
 
-## Binomial and Poisson distributions
+## Binomial and Poisson distributions { .smaller }
 
 ```{r binomial_poisson}
 #| fig-align: center
 
 # A data frame of values 1:20, with some binomial and poisson distributed values
-data <- data.frame(count=1:20) %>%
+data <- data.frame(count=0:20) %>%
   mutate(pois1=dpois(count, 1)) %>%
   mutate(pois4=dpois(count, 4)) %>%
   mutate(pois10=dpois(count, 10)) %>%
-  mutate(binom1=dbinom(count, 20, 0.5)) %>%
-  mutate(binom2=dbinom(count, 20, 0.7)) %>%
+  mutate(binom0=dbinom(count, 20, 0.05)) %>%
+  mutate(binom1=dbinom(count, 20, 0.3)) %>%
+  mutate(binom2=dbinom(count, 20, 0.5)) %>%
   mutate(binom3=dbinom(count, 40, 0.5)) %>%
   pivot_longer(cols=-count, names_to="params", values_to="freq")
 
@@ -546,17 +662,21 @@ p2 <- ggplot(data %>% filter(str_detect(params, "^binom")), aes(x=count, color=p
   geom_line(aes(y=freq), alpha=0.5) +
   geom_point(aes(y=freq)) +
   xlim(-3,20) +
-  ylim(0, 0.2) +
+  ylim(0, 0.4) +
   xlab("successes") +
   labs(title="Binomial distributions") +
-  scale_color_discrete(labels=c("n=20, p=0.3", "n=20, p=0.7", "n=40, p=0.3")) +
-  coord_fixed(ratio=100) +
+  scale_color_discrete(labels=c("n=20, p=0.01", "n=20, p=0.3", "n=20, p=0.7", "n=40, p=0.3")) +
+  coord_fixed(ratio=50) +
   theme_minimal()
 
 ggarrange(p2, p1, ncol=2)
 ```
 
-::: { .callout-important title="All values are positive whole numbers"}
+::: { .callout-important title="Some important features"}
+- All measured values are positive whole numbers or zero; means may be positive _real numbers_ or zero
+- The distributions are unimodal
+- The mean is not always the peak value (_mode_)
+- The distributions are not always symmetrical (so sd may not describe variation equally either side of the mean)
 :::
 
 ::: { .notes }
@@ -721,7 +841,7 @@ However, the concept is widespread and we need to discuss it
 - Statistical significance is conventionally defined as a threshold (commonly a $p$-value less than 0.05) relative to some _null hypothesis_ or _prespecified value_, which would indicate no effect present.
 
 - E.g., an estimate may be considered "statistically significant at $P < 0.05$" if it:
-  - lies at least two standard errors[^1] from the mean
+  - lies at least two standard errors[^2] from the mean
   - or is a difference that lies at least two standard errors from zero
   
 - More generally, an estimate is "**not** statistically significant" if, e.g.
@@ -733,7 +853,7 @@ However, the concept is widespread and we need to discuss it
 - We need to relate the measured values in the real world to an appropriate distribution
 :::
 
-[^1]: Remember the probability mass of the normal distribution?
+[^2]: Remember the probability mass of the normal distribution?
 
 ::: { .notes }
 - The way you're likely to see statistical significance presented is that some threshold - usually a p-value of less than 0.05 - is applied in a statistical test, relative to some _null hypothesis_ or _prespecified value_ that indicates the absence of an effect
@@ -746,7 +866,7 @@ However, the concept is widespread and we need to discuss it
 ## A simple example { .smaller }
 
 ::: { .callout-tip title="The experiment" }
-- Two drugs, $C$ and $T$ lower cholesterol[^1], and we want to compare their effectiveness
+- Two drugs, $C$ and $T$ lower cholesterol[^3], and we want to compare their effectiveness
 - We randomise assignment of $C$ and $T$ to members of a single cohort of comparable individuals, whose pre-treatment cholesterol level is assumed to be drawn from the same distribution
 - We measure the average post-treatment cholesterol levels $\bar{y}_T$ and $\bar{y}_C$ for the _treatment_ and _control_ groups as **estimates** for the true post-treatment levels $\theta_T$ and $\theta_C$.
 :::
@@ -763,7 +883,7 @@ However, the concept is widespread and we need to discuss it
 - The distribution should be a reasonable representation of the process that generates the null hypothesis value
 :::
 
-[^1]: $C$ for _control_, the current best-in class; $T$ for _treatment_, the new compound
+[^3]: $C$ for _control_, the current best-in class; $T$ for _treatment_, the new compound
 
 ::: { .notes }
 - Let's consider a 
