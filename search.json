@@ -18,7 +18,7 @@
     "href": "index.html#how-many-individuals",
     "title": "MP968 Experimental Design Workshop",
     "section": "How many individuals?",
-    "text": "How many individuals?\n\n\n\n\n\n\n\nThe appropriate number of subjects\n\n\nThe appropriate number of animal subjects to use in an experiment is always the smallest number that - given reasonable assumptions - will satisfactorily give the correct result to the desired level of certainty.\n\nWhat assumptions are reasonable?\nWhat is an appropriate level of certainty?\n\nBy convention1 the usual level of certainty for a hypothesis test is: “we have an 80% chance of getting the correct true/false answer for the hypothesis being tested”\n\n\n\n\n\nThe appropriate number of animal subjects to use in an experiment is always the smallest number that - given reasonable assumptions - will satisfactorily give the correct result to the desired level of certainty.\nThis may sound like a very flexible statement. What assumptions are reasonable? What is an appropriate level of certainty?\nWe’ll consider these questions again later but, for now, just know that by convention the usual level of certainty is: “we have an 80% chance of getting the correct true/false answer for the hypothesis being tested”._\nNote though that the appropriate level of certainty may change depending on the nature of the question being asked.\n\nConventions are guidelines, not rigid standards, and you should always consider whether a convention is appropriate in your use case"
+    "text": "How many individuals?\n\n\n\n\n\n\n\nThe appropriate number of subjects\n\n\nThe appropriate number of animal subjects to use in an experiment is always the smallest number that - given reasonable assumptions - will satisfactorily give the correct result to the desired level of certainty.\n\nWhat assumptions are reasonable?\nWhat is an appropriate level of certainty?\n\nBy convention1 the usual level of certainty for a hypothesis test is: “we have an 80% chance of getting the correct true/false answer for the hypothesis being tested”\n\n\n\n\n\nThe appropriate number of animal subjects to use in an experiment is always the smallest number that - given reasonable assumptions - will satisfactorily give the correct result to the desired level of certainty.\nThis may sound like a very flexible statement. What assumptions are reasonable? What is an appropriate level of certainty?\nWe’ll consider these questions again later but, for now, just know that by convention the usual level of certainty is: “we have an 80% chance of getting the correct true/false answer for the hypothesis being tested”._\nNote though that the appropriate level of certainty may change depending on the nature of the question being asked.\n\n\\(C\\) for control, the current best-in class; \\(T\\) for treatment, the new compound"
   },
   {
     "objectID": "index.html#design-experiments-to-minimise-suffering",
@@ -159,6 +159,48 @@
     "title": "MP968 Experimental Design Workshop",
     "section": "Normal Distribution Redux",
     "text": "Normal Distribution Redux\n\n\n\n\n\n\n\n\nProbability mass\n\n\n\napproximately 50% of the distribution lies in the range \\(\\mu \\pm 0.68\\sigma\\)\napproximately 68% of the distribution lies in the range \\(\\mu \\pm \\sigma\\)\napproximately 95% of the distribution lies in the range \\(\\mu \\pm 2\\sigma\\)\napproximately 99.7% of the distribution lies in the range \\(\\mu \\pm 3\\sigma\\)\n\n\n\n\n\n\n\nAn intuition worth developing is how much of a (normal) distribution lies within some range of the mean\nHere we have a normal distribution with a mean of zero and a standard deviation of 1, so the values on the x-axis represent standard deviations from the mean.\n\nThe area contained within the +1 and -1 standard deviation limits account for ≈68% of the total area of the distribution\nThe area contained within the +2 and -2 standard deviation limits account for ≈95% of the total area of the distribution\n\nIt will be useful to have this intuition for the next section"
+  },
+  {
+    "objectID": "index.html#parameters",
+    "href": "index.html#parameters",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "Parameters",
+    "text": "Parameters\nParameters are unknown numbers that determine a statistical model\n\n\n\n\n\n\n\nA linear regression\n\n\n\nSuppose you’re fitting a linear regression\n\nErrors \\(\\epsilon_i\\) are normally distributed with mean 0 and standard deviation \\(\\sigma\\)\n\n\n\\[ y_i = a + b x_i + \\epsilon_i \\]\n\nParameters are:\n\n\\(a\\) (the intercept)\n\\(b\\) (the gradient)\n\\(\\sigma\\) (the error standard deviation)"
+  },
+  {
+    "objectID": "index.html#estimands",
+    "href": "index.html#estimands",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "Estimands",
+    "text": "Estimands\nAn estimand (or quantity of interest) is some summary of parameters that we are interested in estimating\n\n\n\n\n\n\n\nA linear regression\n\n\n\nFor the same linear regression\n\n\\[ y_i = a + b x_i + \\epsilon_i \\]\n\nWe want to estimate values for:\n\n\\(a\\) (the intercept)\n\\(b\\) (the gradient)\npredicted outcomes at important values of \\(x_i\\)\n\n\nThese are all estimands, and estimates are represented using the “hat” symbol: \\(\\hat{a}\\), \\(\\hat{b}\\), etc."
+  },
+  {
+    "objectID": "index.html#standard-errors-and-confidence-intervals",
+    "href": "index.html#standard-errors-and-confidence-intervals",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "Standard Errors and Confidence Intervals",
+    "text": "Standard Errors and Confidence Intervals\n\nThe standard error is the estimated standard deviation of an estimate\n\nIt is a measure of our uncertainty about the quaantity of interest\n\n\n\n\n\n\n\n\nNote\n\n\n\nStandard error gets smaller as sample size gets larger\n\nStandard error tends to zero as sample size gets large enough\n\n\n\n\n\n\nThe confidence interval (or CI) represents a range of values of a parameter or estimand that are roughly consistent with the data\n\n\n\n\n\n\n\nNote\n\n\n\nThe usual 95% confidence interval for large samples (assuming a normal distribution) is to take the estimate \\(\\pm\\) two standard errors"
+  },
+  {
+    "objectID": "index.html#statistical-significance-1",
+    "href": "index.html#statistical-significance-1",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "Statistical significance 1",
+    "text": "Statistical significance 1\n\nSome scientists choose to consider a result to be “stable” or “real” if it is statistically significant\nThey may also consider “non-signifcant” results to be noisy or less reliable\n\n\n\n\n\n\n\nWarning\n\n\nI, and many other statisticians, do not recommend this approach.\nHowever, the concept is widespread and we need to discuss it\n\n\n\n\n\nEven if you’re not very familiar with what it means precisely, I’m sure you’ve come across “statistical” significance in at least one scientific context.\n“Statistical significance” is a decision rule used by some scientists to consider whether a result is “stable” or “real”\n\nThey may also use “statistical significance” to exclude some results as noisy or unreliable\n\nI and many other statisticians do not recommend this approach, and we’ll see why"
+  },
+  {
+    "objectID": "index.html#statistical-significance-2",
+    "href": "index.html#statistical-significance-2",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "Statistical significance 2",
+    "text": "Statistical significance 2\n\n\n\n\n\n\n\nA common definition\n\n\n\nStatistical significance is conventionally defined as a threshold (commonly a \\(p\\)-value less than 0.05) relative to some null hypothesis or prespecified value, which would indicate no effect present.\nE.g., an estimate may be considered “statistically significant at \\(P &lt; 0.05\\)” if it:\n\nlies at least two standard errors1 from the mean\nor is a difference that lies at least two standard errors from zero\n\nMore generally, an estimate is “not statistically significant” if, e.g.\n\nthe observed value can reasonably be explained by chance variation\nis a difference that lies less than two standard errors from zero\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis process relies on probability distributions\n\n\n\nWe need to relate the measured values in the real world to an appropriate distribution\n\n\n\n\n\n\n\nThe way you’re likely to see statistical significance presented is that some threshold - usually a p-value of less than 0.05 - is applied in a statistical test, relative to some null hypothesis or prespecified value that indicates the absence of an effect\nSo you are likely to see an estimate be considered “statistically significant at P&lt;0.05” if it lies at least two SEs from the mean, or is a difference that lies at least two SEs from zero\nConversely, you will see estimates be considered “not statistically significant at P&lt;0.05” if they lie less than two SEs from the mean, or the observed value can reasonably be explained by chance variation alone\nAs you might have guessed from the talk of standard errors and distances from means, we map our measured values in the real world to statistical probability distributions to calculate these values.\n\n\n\\(C\\) for control, the current best-in class; \\(T\\) for treatment, the new compound"
+  },
+  {
+    "objectID": "index.html#a-simple-example",
+    "href": "index.html#a-simple-example",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "A simple example",
+    "text": "A simple example\n\n\n\n\n\n\n\nThe experiment\n\n\n\nTwo drugs, \\(C\\) and \\(T\\) lower cholesterol1, and we want to compare their effectiveness\nWe randomise assignment of \\(C\\) and \\(T\\) to members of a single cohort of comparable individuals, whose pre-treatment cholesterol level is assumed to be drawn from the same distribution\nWe measure the average post-treatment cholesterol levels \\(\\bar{y}_T\\) and \\(\\bar{y}_C\\) for the treatment and control groups as estimates for the true post-treatment levels \\(\\theta_T\\) and \\(\\theta_C\\).\n\n\n\n\n\n\n\n\n\n\n\n\nThe hypotheses\n\n\n\nWe are interested in \\(\\theta = \\theta_T - \\theta_C\\), the expected post-test difference in cholesterol between the two groups \\(T\\) and \\(C\\).\nOur null hypothesis is that \\(\\theta = 0\\), i.e. there is no difference (\\(\\theta_C = \\theta_T\\))\nOur alternative hypothesis is that there is a difference, so \\(\\theta \\neq 0\\), (i.e. \\(\\theta_C \\neq \\theta_T\\))\n\n\n\n\n\n\n\n\n\n\n\n\nThe distribution\n\n\n\nWe need to define a distribution for the null hypothesis\n\nThis allows us to define a test statistic (e.g. \\(T\\) for a t-test)\n\nThe distribution should be a reasonable representation of the process that generates the null hypothesis value\n\n\n\n\n\n\n\nLet’s consider a\n\n\n\\(C\\) for control, the current best-in class; \\(T\\) for treatment, the new compound"
   },
   {
     "objectID": "index.html#references-1",
