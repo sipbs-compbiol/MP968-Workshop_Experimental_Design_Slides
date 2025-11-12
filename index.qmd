@@ -634,6 +634,140 @@ text(1.5, .3*dnorm(1.5), "13.5%", cex=1.3)
 - It will be useful to have this intuition for the next section
 :::
 
+# Estimates, standard errors, and confidence intervals
+
+## Parameters
+
+_Parameters_ are unknown numbers that determine a statistical model
+
+::: { .callout-tip title="A linear regression" }
+- Suppose you're fitting a linear regression
+  - Errors $\epsilon_i$ are normally distributed with mean 0 and standard deviation $\sigma$
+
+$$ y_i = a + b x_i + \epsilon_i $$
+
+- Parameters are:
+  - $a$ (the intercept)
+  - $b$ (the gradient)
+  - $\sigma$ (the error standard deviation)
+
+:::
+
+## Estimands
+
+An _estimand_ (or _quantity of interest_) is some summary of parameters that we are interested in estimating
+
+::: { .callout-tip title="A linear regression" }
+- For the same linear regression
+
+$$ y_i = a + b x_i + \epsilon_i $$
+
+- We want to estimate values for:
+  - $a$ (the intercept)
+  - $b$ (the gradient)
+  - predicted outcomes at important values of $x_i$
+
+These are all **estimands**, and **estimates** are represented using the "hat" symbol: $\hat{a}$, $\hat{b}$, etc.
+:::
+
+## Standard Errors and Confidence Intervals { .smaller }
+
+- The _standard error_ is the _estimated standard deviation of an estimate_
+  - It is a measure of our uncertainty about the quaantity of interest
+
+
+::: { .callout-note }
+- Standard error gets smaller as sample size gets larger
+  - Standard error tends to zero as sample size gets large enough
+:::
+
+- The _confidence interval_ (or CI) represents a range of values of a parameter or estimand that are roughly consistent with the data
+
+::: { .callout-note }
+- The usual 95% confidence interval for large samples (assuming a normal distribution) is to take the estimate $\pm$ two standard errors
+:::
+
+
+# Statistical significance and hypothesis testing
+
+::: { .notes }
+- A major concern when performing data analysis in general, which is heightened when animal suffering is a possibility, is that we might _mistakenly) come to strong conclusions that do not replicate or that do not reflect real patterns in the underlying population.
+- Statistical theories of hypothesis testing and error analysis have been developed to quantify these possibilities, **to help with decision making**
+:::
+
+## Statistical significance 1
+
+- Some scientists choose to consider a result to be "stable" or "real" if it is _statistically significant_
+- They may also consider "non-signifcant" results to be noisy or less reliable
+
+::: { .callout-warning }
+I, and many other statisticians, do not recommend this approach.
+
+However, the concept is widespread and we need to discuss it
+:::
+
+::: { .notes }
+- Even if you're not very familiar with what it means precisely, I'm sure you've come across "statistical" significance in at least one scientific context.
+
+- "Statistical significance" is a **decision rule** used by some scientists to consider whether a result is "stable" or "real"
+  - They may also use "statistical significance" to exclude some results as noisy or unreliable
+  
+- I and many other statisticians do not recommend this approach, and we'll see why
+:::
+
+## Statistical significance 2 { .smaller }
+
+::: { .callout-caution title="A common definition" }
+- Statistical significance is conventionally defined as a threshold (commonly a $p$-value less than 0.05) relative to some _null hypothesis_ or _prespecified value_, which would indicate no effect present.
+
+- E.g., an estimate may be considered "statistically significant at $P < 0.05$" if it:
+  - lies at least two standard errors[^1] from the mean
+  - or is a difference that lies at least two standard errors from zero
+  
+- More generally, an estimate is "**not** statistically significant" if, e.g.
+  - the observed value can reasonably be explained by chance variation
+  - is a difference that lies less than two standard errors from zero
+:::
+
+::: { .callout-important title="This process relies on probability distributions" }
+- We need to relate the measured values in the real world to an appropriate distribution
+:::
+
+[^1]: Remember the probability mass of the normal distribution?
+
+::: { .notes }
+- The way you're likely to see statistical significance presented is that some threshold - usually a p-value of less than 0.05 - is applied in a statistical test, relative to some _null hypothesis_ or _prespecified value_ that indicates the absence of an effect
+- So you are likely to see an estimate be considered "statistically significant at P<0.05" if it lies at least two SEs from the mean, or is a difference that lies at least two SEs from zero
+- Conversely, you will see estimates be considered "not statistically significant at P<0.05" if they lie less than two SEs from the mean, or the observed value can reasonably be explained by chance variation alone
+
+- As you might have guessed from the talk of standard errors and distances from means, we map our measured values in the real world to statistical probability distributions to calculate these values.
+:::
+
+## A simple example { .smaller }
+
+::: { .callout-tip title="The experiment" }
+- Two drugs, $C$ and $T$ lower cholesterol[^1], and we want to compare their effectiveness
+- We randomise assignment of $C$ and $T$ to members of a single cohort of comparable individuals, whose pre-treatment cholesterol level is assumed to be drawn from the same distribution
+- We measure the average post-treatment cholesterol levels $\bar{y}_T$ and $\bar{y}_C$ for the _treatment_ and _control_ groups as **estimates** for the true post-treatment levels $\theta_T$ and $\theta_C$.
+:::
+
+::: { .callout-warning title="The hypotheses" }
+- We are interested in $\theta = \theta_T - \theta_C$, the expected post-test difference in cholesterol between the two groups $T$ and $C$.
+- Our **null hypothesis** is that $\theta = 0$, i.e. **there is no difference** ($\theta_C = \theta_T$)
+- Our **alternative hypothesis** is that **there is a difference**, so $\theta \neq 0$,  (i.e. $\theta_C \neq \theta_T$)
+:::
+
+::: { .callout-note title="The distribution" }
+- We need to define a distribution for the null hypothesis
+  - This allows us to define a test statistic (e.g. $T$ for a _t_-test)
+- The distribution should be a reasonable representation of the process that generates the null hypothesis value
+:::
+
+[^1]: $C$ for _control_, the current best-in class; $T$ for _treatment_, the new compound
+
+::: { .notes }
+- Let's consider a 
+:::
 
 # References
 

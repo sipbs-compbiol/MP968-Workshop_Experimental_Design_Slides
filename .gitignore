@@ -12,3 +12,5 @@ _site/
 
 # Exclude quarto support files
 .quarto/
+
+/.quarto/
