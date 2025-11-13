@@ -31,6 +31,153 @@ library(tidyr)
 library(ggpubr)
 library(ggplot2)
 library(latex2exp)
+
+# Plot normal curves for of height counts for men and women separately and together
+# Example from https://avehtari.github.io/ROS-Examples/CentralLimitTheorem/heightweight.html
+
+heights <- data.frame(height=54:75,
+                      female=c(80,107,296,695,1612,2680,4645,8201,9948,11733,
+                               10270,9942,6181,3990,2131,1154,245,257,0,
+                               0,0,0)*10339/74167,
+                      male=c(0,0,0,0,0,0,0,542,668,1221,2175,4213,5535,7980,
+                             9566,9578,8867,6716,5019,2745,
+                             1464,1263)*9983/67552) %>%
+  pivot_longer(c(female, male), names_to="sex", values_to="count")
+
+heights_f <- ggplot(heights %>% filter(sex=="female"), aes(x=height, y=count)) +
+  geom_col() + 
+  stat_function(fun=function(x) 1e4 * dnorm(x, 63.7, 2.7),
+                color="orange", lwd=2) +
+  xlim(53, 83) + ylim(0, 1700) +
+  labs(title="Heights of female adults (US)") +
+  theme_minimal()
+
+heights_m <- ggplot(heights %>% filter(sex=="male"), aes(x=height, y=count)) +
+  geom_col() + 
+  stat_function(fun=function(x) 1e4 * dnorm(x, 69.1, 2.9),
+                color="orange", lwd=2) +  
+  xlim(53, 83) + ylim(0, 1700) +
+  labs(title="Heights of male adults (US)") +
+  theme_minimal()
+
+heights_adults <- ggplot(heights, aes(x=height, y=count)) +
+  geom_col() + 
+  stat_function(fun=function(x) 2.1e4 * (0.52 * dnorm(x, 63.7, 2.7) +
+                                       0.48 * dnorm(x, 69.1, 2.9)),
+                color="orange", lwd=2) +
+  xlim(53, 83) + ylim(0, 2100) +
+  labs(title="Heights of all adults (US)") +
+  theme_minimal()
+
+# Example binomial and poisson distributions
+# A data frame of values 1:20, with some binomial and poisson distributed values
+bin_pois_data <- data.frame(count=0:20) %>%
+  mutate(pois1=dpois(count, 1)) %>%
+  mutate(pois4=dpois(count, 4)) %>%
+  mutate(pois10=dpois(count, 10)) %>%
+  mutate(binom0=dbinom(count, 20, 0.05)) %>%
+  mutate(binom1=dbinom(count, 20, 0.3)) %>%
+  mutate(binom2=dbinom(count, 20, 0.5)) %>%
+  mutate(binom3=dbinom(count, 40, 0.5)) %>%
+  pivot_longer(cols=-count, names_to="params", values_to="freq")
+
+# Informative labels for legends
+poisson_labels <- c("lambda=1", "lambda=4", "lambda=10")
+binomial_labels <- c("n=20, p=0.01", "n=20, p=0.3", "n=20, p=0.7", "n=40, p=0.3")
+
+poisson_dist <- ggplot(bin_pois_data %>% filter(str_detect(params, "^pois")), aes(x=count, color=params)) +
+  geom_line(aes(y=freq), alpha=0.5) +
+  geom_point(aes(y=freq)) +
+  xlim(-3,20) +
+  ylim(0, 0.4) +
+  xlab("counts/rate") +
+  labs(title="Poisson distributions") +
+  scale_color_discrete(labels=poisson_labels) +
+  coord_fixed(ratio=50) +
+  theme_minimal()
+
+binomial_dist <- ggplot(bin_pois_data %>% filter(str_detect(params, "^binom")), aes(x=count, color=params)) +
+  geom_line(aes(y=freq), alpha=0.5) +
+  geom_point(aes(y=freq)) +
+  xlim(-3,20) +
+  ylim(0, 0.4) +
+  xlab("successes") +
+  labs(title="Binomial distributions") +
+  scale_color_discrete(labels=binomial_labels) +
+  coord_fixed(ratio=50) +
+  theme_minimal()
+
+# Normal distribution demonstration plots
+normal_distplot <- function(mu, sd) {
+  # Plot figurative null hypothesis distribution
+  ggplot() +
+    stat_function(fun = dnorm,
+                  args = list(mean = mu, sd = sd),
+                  geom = "line") +
+    xlim(-4 * sd, 4 * sd) +
+    xlab(TeX("true difference, $\\theta$")) +
+    ylab("density") +
+    theme_minimal()
+}
+
+# Shade a normal curve between zstart and zend
+shade_normal <- function(mu, sd, zstart, zend, fill="#00998a", alpha=0.5, textoffset=0.01) {
+  xmin <- qnorm(zstart, mu, sd)
+  xmax <- qnorm(zend, mu, sd)
+  
+  # Mesh of distribution points
+  data = data.frame(x=seq(mu - 4 * sd, mu + 4 * sd, by=0.01)) %>%
+    mutate(y=dnorm(x, mu, sd))
+  
+  # Return ggplot2 shaded area as list of <ggproto> objects
+  list(
+    geom_area(data=subset(data, x >= xmin & x <= xmax),
+              aes(x=x, y=y), fill=fill, color=NA, alpha=0.5),
+    annotate("segment", color=fill,
+             x=xmin, xend=xmin,
+             y=0, yend=dnorm(xmin, mu, sd)),
+    annotate("text", color=fill,
+            x=xmin, y=-textoffset,
+            label=ifelse(zstart == 0, "", paste(100 * zstart, "%", sep=""))),
+    annotate("segment", color=fill,
+             x=xmax, xend=xmax,
+             y=0, yend=dnorm(xmax, mu, sd)),
+    annotate("text", color=fill,
+             x=xmax, y=-textoffset,
+             label=ifelse(zend == 1, "", paste(100 * zend, "%", sep="")))
+  )
+  
+}
+
+# Add a CI bar to a normal curve
+ci_normal <- function(mu, sd, ci, alpha=0.4) {
+  xmin <- qnorm(0.5 * (1 - ci), mu, sd)
+  xmax <- qnorm(1 - 0.5 * (1 - ci), mu, sd)
+  
+  # Return ggplot2 annotation as list of<ggproto>s
+  list(
+    annotate("pointrange",
+             xmin=xmin, xmax=xmax,
+             x=mu, y=dnorm(xmax, mu, sd), alpha=alpha),
+    annotate("text",
+             x=mu, y=dnorm(xmax, mu, sd)-0.01,
+             label=paste(100 * ci, "%CI", sep=""))
+  )
+}
+
+# Add a dashed line marker at a given x position
+add_x_marker <- function(x, y, label, linecolor, textcolor) {
+  list(
+    annotate("segment", # show the observed difference as a dashed line
+      x = x, xend = x,
+      y = 0, yend = y,
+      colour = linecolor,
+      size = 1, linetype = "dashed"
+    ),
+    annotate("text", x = x, y = y + 0.01, label = label, color = textcolor)
+  )
+}
+
 ```
 
 # Why do we need experimental design?
@@ -408,33 +555,7 @@ Measurements of variables whose value is the sum of many small, independent, add
 
 # Plot normal curves for of height counts for men and women
 # Example from https://avehtari.github.io/ROS-Examples/CentralLimitTheorem/heightweight.html
-
-heights <- data.frame(height=54:75,
-                      female=c(80,107,296,695,1612,2680,4645,8201,9948,11733,
-                               10270,9942,6181,3990,2131,1154,245,257,0,
-                               0,0,0)*10339/74167,
-                      male=c(0,0,0,0,0,0,0,542,668,1221,2175,4213,5535,7980,
-                             9566,9578,8867,6716,5019,2745,
-                             1464,1263)*9983/67552) %>%
-  pivot_longer(c(female, male), names_to="sex", values_to="count")
-
-p1 <- ggplot(heights %>% filter(sex=="female"), aes(x=height, y=count)) +
-  geom_col() + 
-  stat_function(fun=function(x) 1e4 * dnorm(x, 63.7, 2.7),
-                color="orange", lwd=2) +
-  xlim(53, 83) + ylim(0, 1700) +
-  labs(title="Heights of female adults (US)") +
-  theme_minimal()
-
-p2 <- ggplot(heights %>% filter(sex=="male"), aes(x=height, y=count)) +
-  geom_col() + 
-  stat_function(fun=function(x) 1e4 * dnorm(x, 69.1, 2.9),
-                color="orange", lwd=2) +  
-  xlim(53, 83) + ylim(0, 1700) +
-  labs(title="Heights of male adults (US)") +
-  theme_minimal()
-
-ggarrange(p1, p2, ncol=2)
+ggarrange(heights_f, heights_m, ncol=2)
 ```
 
 ::: { .callout-tip }
@@ -460,14 +581,10 @@ ggarrange(p1, p2, ncol=2)
 ```{r all_heights}
 #| fig-align: center
 
-ggplot(heights, aes(x=height, y=count)) +
-  geom_col() + 
-  stat_function(fun=function(x) 2.1e4 * (0.52 * dnorm(x, 63.7, 2.7) +
-                                       0.48 * dnorm(x, 69.1, 2.9)),
-                color="orange", lwd=2) +
-  xlim(53, 83) + ylim(0, 2100) +
-  labs(title="Heights of all adults (US)") +
-  theme_minimal()
+# Plot normal curves for of height counts for all us_adults
+# Example from https://avehtari.github.io/ROS-Examples/CentralLimitTheorem/heightweight.html
+
+heights_adults
 ```
 
 ::: { .callout-tip }
@@ -637,40 +754,7 @@ You need to design your experiments and analyses to reflect the appropriate proc
 ```{r binomial_poisson}
 #| fig-align: center
 
-# A data frame of values 1:20, with some binomial and poisson distributed values
-data <- data.frame(count=0:20) %>%
-  mutate(pois1=dpois(count, 1)) %>%
-  mutate(pois4=dpois(count, 4)) %>%
-  mutate(pois10=dpois(count, 10)) %>%
-  mutate(binom0=dbinom(count, 20, 0.05)) %>%
-  mutate(binom1=dbinom(count, 20, 0.3)) %>%
-  mutate(binom2=dbinom(count, 20, 0.5)) %>%
-  mutate(binom3=dbinom(count, 40, 0.5)) %>%
-  pivot_longer(cols=-count, names_to="params", values_to="freq")
-
-p1 <- ggplot(data %>% filter(str_detect(params, "^pois")), aes(x=count, color=params)) +
-  geom_line(aes(y=freq), alpha=0.5) +
-  geom_point(aes(y=freq)) +
-  xlim(-3,20) +
-  ylim(0, 0.4) +
-  xlab("counts/rate") +
-  labs(title="Poisson distributions") +
-  scale_color_discrete(labels=c("lambda=1", "lambda=4", "lambda=10")) +
-  coord_fixed(ratio=50) +
-  theme_minimal()
-
-p2 <- ggplot(data %>% filter(str_detect(params, "^binom")), aes(x=count, color=params)) +
-  geom_line(aes(y=freq), alpha=0.5) +
-  geom_point(aes(y=freq)) +
-  xlim(-3,20) +
-  ylim(0, 0.4) +
-  xlab("successes") +
-  labs(title="Binomial distributions") +
-  scale_color_discrete(labels=c("n=20, p=0.01", "n=20, p=0.3", "n=20, p=0.7", "n=40, p=0.3")) +
-  coord_fixed(ratio=50) +
-  theme_minimal()
-
-ggarrange(p2, p1, ncol=2)
+ggarrange(binomial_dist, poisson_dist, ncol=2)
 ```
 
 ::: { .callout-important title="Some important features"}
@@ -725,6 +809,7 @@ ggarrange(p2, p1, ncol=2)
 ```{r normal}
 #| fig-align: center
 
+# Normal distribution with standard deviation masses indicated
 # Example from https://avehtari.github.io/ROS-Examples/CentralLimitTheorem/heightweight.html
 
 par(mar=c(2,0,2,0), tck=-.01)
@@ -981,17 +1066,7 @@ However, the concept is widespread and we need to discuss it
 ```{r h0_dist}
 #| fig-align: center
 
-# Zero mean, standard deviation of 1
-mu = 0
-std = 1
-
-# Plot figurative null hypothesis distribution
-ggplot() +
-  stat_function(fun=dnorm, args=list(mean=mu, sd=std), geom="line") +
-  xlim(-4, 4) +
-  xlab(TeX("true difference, $\\theta$")) +
-  ylab("density") +
-  theme_minimal()
+normal_distplot(mu=0, sd=1)
 ```
 
 ::: { .notes }
@@ -1008,23 +1083,9 @@ ggplot() +
 ```{r estimate}
 #| fig-align: center
 
-# Zero mean, standard deviation of 1
-mu = 0
-std = 1
+normal_distplot(mu=0, sd=1) +
+  add_x_marker(-1.7, 0.3, "estimate = -1.7", "darkorange1", "darkorange3")
 
-# Plot figurative null hypothesis distribution
-ggplot() +
-  stat_function(fun=dnorm, args=list(mean=mu, sd=std), geom="line") +
-  xlim(-4, 4) +
-  xlab(TeX("true difference, $\\theta$")) +
-  ylab("density") +
-  annotate("segment",                                          # show the observed difference as a dashed line
-            x=-1.7, xend=-1.7, y=0, yend=0.3,
-            colour="darkorange1", size=1, linetype="dashed") +
-  annotate("text",
-           x=-1.7, y=0.31,
-           label="estimate = -1.7", color="darkorange3") +
-  theme_minimal()
 ```
 
 ::: { .notes }
@@ -1046,49 +1107,9 @@ ggplot() +
 ```{r h0_90ci}
 #| fig-align: center
 
-# Zero mean, standard deviation of 1
-mu = 0
-std = 1
-
-# Generate data to shade a normal curve
-xmin = mu - 4 * std
-xmax = mu + 4 * std
-
-data = data.frame(x=seq(xmin, xmax, by=0.01)) %>%
-   mutate(y=dnorm(x, mu, std))
-
-shade_curve = function(data, zstart, zend, fill="#00998a", alpha=0.5) {
-  geom_area(data=subset(data,
-                        x >= mu + zstart * std & x < mu + zend * std),
-            aes(x=x, y=y), fill=fill, color=NA, alpha=alpha)
-}
-
-# Plot figurative null hypothesis distribution
-ggplot() +
-  stat_function(fun=dnorm, args=list(mean=mu, sd=std), geom="line") +
-  shade_curve(data, zstart=qnorm(0.05, mu, std), zend=qnorm(0.95, mu, std)) + 
-  annotate("pointrange",
-           xmin=qnorm(0.05, mu, std), xmax=qnorm(0.95, mu, std),
-           x=qnorm(0.5, mu, std), y=dnorm(qnorm(0.95, mu, std), mu, std), alpha=0.4) + 
-  annotate("text",
-           x=mu, y=dnorm(qnorm(0.95, mu, std), mu, std)-0.01,
-           label="90% CI") +
-  annotate("segment",
-           x=qnorm(0.05, mu, std), xend=qnorm(0.05, mu, std),
-           y=0, yend=dnorm(qnorm(0.05, mu, std), mu, std)) +
-  annotate("text",
-           x=qnorm(0.05, mu, std), y=-0.01,
-           label="5%") +
-  annotate("segment",
-           x=qnorm(0.95, mu, std), xend=qnorm(0.95, mu, std),
-           y=0, yend=dnorm(qnorm(0.95, mu, std), mu, std)) +
-  annotate("text",
-           x=qnorm(0.95, mu, std), y=-0.01,
-           label="95%") +  
-  xlim(-4, 4) +
-  xlab(TeX("true difference, $\\theta$")) +
-  ylab("density") +
-  theme_minimal()
+normal_distplot(mu=0, sd=1) + 
+  shade_normal(mu=0, sd=1, zstart=0.05, zend=0.95) +
+  ci_normal(mu=0, sd=1, ci=0.90)
 ```
 
 ::: { .notes }
@@ -1108,55 +1129,11 @@ ggplot() +
 ```{r h0_90ci_est}
 #| fig-align: center
 
-# Zero mean, standard deviation of 1
-mu = 0
-std = 1
+normal_distplot(mu=0, sd=1) + 
+  shade_normal(mu=0, sd=1, zstart=0.05, zend=0.95) +
+  ci_normal(mu=0, sd=1, ci=0.90) +
+  add_x_marker(-1.7, 0.3, "estimate = -1.7", "darkorange1", "darkorange3")
 
-# Generate data to shade a normal curve
-xmin = mu - 4 * std
-xmax = mu + 4 * std
-
-data = data.frame(x=seq(xmin, xmax, by=0.01)) %>%
-   mutate(y=dnorm(x, mu, std))
-
-shade_curve = function(data, zstart, zend, fill="#00998a", alpha=0.5) {
-  geom_area(data=subset(data,
-                        x >= mu + zstart * std & x < mu + zend * std),
-            aes(x=x, y=y), fill=fill, color=NA, alpha=alpha)
-}
-
-# Plot figurative null hypothesis distribution
-ggplot() +
-  stat_function(fun=dnorm, args=list(mean=mu, sd=std), geom="line") +
-  shade_curve(data, zstart=qnorm(0.05, mu, std), zend=qnorm(0.95, mu, std)) + 
-  annotate("pointrange",
-           xmin=qnorm(0.05, mu, std), xmax=qnorm(0.95, mu, std),
-           x=qnorm(0.5, mu, std), y=dnorm(qnorm(0.95, mu, std), mu, std), alpha=0.4) + 
-  annotate("text",
-           x=mu, y=dnorm(qnorm(0.95, mu, std), mu, std)-0.01,
-           label="90% CI") +
-  annotate("segment",
-           x=qnorm(0.05, mu, std), xend=qnorm(0.05, mu, std),
-           y=0, yend=dnorm(qnorm(0.05, mu, std), mu, std)) +
-  annotate("text",
-           x=qnorm(0.05, mu, std), y=-0.01,
-           label="5%") +
-  annotate("segment",
-           x=qnorm(0.95, mu, std), xend=qnorm(0.95, mu, std),
-           y=0, yend=dnorm(qnorm(0.95, mu, std), mu, std)) +
-  annotate("text",
-           x=qnorm(0.95, mu, std), y=-0.01,
-           label="95%") +  
-  annotate("segment",                                          # show the observed difference as a dashed line
-            x=-1.7, xend=-1.7, y=0, yend=0.3,
-            colour="darkorange1", size=1, linetype="dashed") +
-  annotate("text",
-           x=-1.7, y=0.31,
-           label="estimate = -1.7", color="darkorange3") +
-  xlim(-4, 4) +
-  xlab(TeX("true difference, $\\theta$")) +
-  ylab("density") +
-  theme_minimal()
 ```
 
 ::: { .notes }
@@ -1173,55 +1150,11 @@ ggplot() +
 ```{r h0_95ci}
 #| fig-align: center
 
-# Zero mean, standard deviation of 1
-mu = 0
-std = 1
-
-# Generate data to shade a normal curve
-xmin = mu - 4 * std
-xmax = mu + 4 * std
-
-data = data.frame(x=seq(xmin, xmax, by=0.01)) %>%
-   mutate(y=dnorm(x, mu, std))
-
-shade_curve = function(data, zstart, zend, fill="#00998a", alpha=0.5) {
-  geom_area(data=subset(data,
-                        x >= mu + zstart * std & x < mu + zend * std),
-            aes(x=x, y=y), fill=fill, color=NA, alpha=alpha)
-}
-
-# Plot figurative null hypothesis distribution
-ggplot() +
-  stat_function(fun=dnorm, args=list(mean=mu, sd=std), geom="line") +
-  shade_curve(data, zstart=qnorm(0.025, mu, std), zend=qnorm(0.975, mu, std)) + 
-  annotate("pointrange",
-           xmin=qnorm(0.05, mu, std), xmax=qnorm(0.95, mu, std),
-           x=qnorm(0.5, mu, std), y=dnorm(qnorm(0.95, mu, std), mu, std), alpha=0.4) + 
-  annotate("text",
-           x=mu, y=dnorm(qnorm(0.95, mu, std), mu, std)-0.01,
-           label="90% CI") +
-  annotate("pointrange",
-           xmin=qnorm(0.025, mu, std), xmax=qnorm(0.975, mu, std),
-           x=qnorm(0.5, mu, std), y=dnorm(qnorm(0.975, mu, std), mu, std), alpha=0.4) + 
-  annotate("text",
-           x=mu, y=dnorm(qnorm(0.975, mu, std), mu, std)-0.01,
-           label="95% CI") +
-  annotate("segment",
-           x=qnorm(0.025, mu, std), xend=qnorm(0.025, mu, std),
-           y=0, yend=dnorm(qnorm(0.025, mu, std), mu, std)) +
-  annotate("text",
-           x=qnorm(0.025, mu, std), y=-0.01,
-           label="2.5%") +
-  annotate("segment",
-           x=qnorm(0.975, mu, std), xend=qnorm(0.975, mu, std),
-           y=0, yend=dnorm(qnorm(0.975, mu, std), mu, std)) +
-  annotate("text",
-           x=qnorm(0.975, mu, std), y=-0.01,
-           label="97.5%") +  
-  xlim(-4, 4) +
-  xlab(TeX("true difference, $\\theta$")) +
-  ylab("density") +
-  theme_minimal()
+normal_distplot(mu=0, sd=1) + 
+  shade_normal(mu=0, sd=1, zstart=0.025, zend=0.975) +
+  ci_normal(mu=0, sd=1, ci=0.90) +
+  ci_normal(mu=0, sd=1, ci=0.95)
+  
 ```
 
 ::: { .notes }
@@ -1238,55 +1171,11 @@ ggplot() +
 ```{r h0_95ci_est}
 #| fig-align: center
 
-# Zero mean, standard deviation of 1
-mu = 0
-std = 1
+normal_distplot(mu=0, sd=1) + 
+  shade_normal(mu=0, sd=1, zstart=0.025, zend=0.975) +
+  ci_normal(mu=0, sd=1, ci=0.95) +
+  add_x_marker(-1.7, 0.3, "estimate = -1.7", "purple", "purple")
 
-# Generate data to shade a normal curve
-xmin = mu - 4 * std
-xmax = mu + 4 * std
-
-data = data.frame(x=seq(xmin, xmax, by=0.01)) %>%
-   mutate(y=dnorm(x, mu, std))
-
-shade_curve = function(data, zstart, zend, fill="#00998a", alpha=0.5) {
-  geom_area(data=subset(data,
-                        x >= mu + zstart * std & x < mu + zend * std),
-            aes(x=x, y=y), fill=fill, color=NA, alpha=alpha)
-}
-
-# Plot figurative null hypothesis distribution
-ggplot() +
-  stat_function(fun=dnorm, args=list(mean=mu, sd=std), geom="line") +
-  shade_curve(data, zstart=qnorm(0.025, mu, std), zend=qnorm(0.975, mu, std)) + 
-  annotate("pointrange",
-           xmin=qnorm(0.025, mu, std), xmax=qnorm(0.975, mu, std),
-           x=qnorm(0.5, mu, std), y=dnorm(qnorm(0.975, mu, std), mu, std), alpha=0.4) + 
-  annotate("text",
-           x=mu, y=dnorm(qnorm(0.975, mu, std), mu, std)-0.01,
-           label="95% CI") +
-  annotate("segment",
-           x=qnorm(0.025, mu, std), xend=qnorm(0.025, mu, std),
-           y=0, yend=dnorm(qnorm(0.025, mu, std), mu, std)) +
-  annotate("text",
-           x=qnorm(0.025, mu, std), y=-0.01,
-           label="2.5%") +
-  annotate("segment",
-           x=qnorm(0.975, mu, std), xend=qnorm(0.975, mu, std),
-           y=0, yend=dnorm(qnorm(0.975, mu, std), mu, std)) +
-  annotate("text",
-           x=qnorm(0.975, mu, std), y=-0.01,
-           label="97.5%") +  
-  annotate("segment",                                          # show the observed difference as a dashed line
-            x=-1.7, xend=-1.7, y=0, yend=0.3,
-            colour="darkorange1", size=1, linetype="dashed") +
-  annotate("text",
-           x=-1.7, y=0.31,
-           label="estimate = -1.7", color="darkorange3") +
-  xlim(-4, 4) +
-  xlab(TeX("true difference, $\\theta$")) +
-  ylab("density") +
-  theme_minimal()
 ```
 
 ::: { .notes }
@@ -1314,80 +1203,20 @@ ggplot() +
 ## Tailed tests: two-tailed
 
 ::: { .callout-tip title="Use two tails if direction of change doesn't matter"}
-- With a two-tailed hypothesis test, we do not care about the direction of change
+- With a two-tailed hypothesis test, we do not care which direction of change is significant
 :::
 
 ```{r two_tails}
 #| fig-align: center
 
-# Zero mean, standard deviation of 1
-mu = 0
-std = 1
+normal_distplot(mu=0, sd=1) + 
+  shade_normal(mu=0, sd=1, zstart=0.025, zend=0.975) +
+  ci_normal(mu=0, sd=1, ci=0.95) +
+  add_x_marker(-2.1, 0.35, "estimate = -2.1, significant", "darkorange1", "darkorange3") +
+  add_x_marker(-1.7, 0.3, "estimate = -1.7, not significant", "purple", "purple") +
+  add_x_marker(1.2, 0.3, "estimate = 1.2, not significant", "purple", "purple") +
+  add_x_marker(3, 0.35, "estimate = 3, significant", "darkorange1", "darkorange3")
 
-# Generate data to shade a normal curve
-xmin = mu - 4 * std
-xmax = mu + 4 * std
-
-data = data.frame(x=seq(xmin, xmax, by=0.01)) %>%
-   mutate(y=dnorm(x, mu, std))
-
-shade_curve = function(data, zstart, zend, fill="#00998a", alpha=0.5) {
-  geom_area(data=subset(data,
-                        x >= mu + zstart * std & x < mu + zend * std),
-            aes(x=x, y=y), fill=fill, color=NA, alpha=alpha)
-}
-
-# Plot figurative null hypothesis distribution
-ggplot() +
-  stat_function(fun=dnorm, args=list(mean=mu, sd=std), geom="line") +
-  shade_curve(data, zstart=qnorm(0.025, mu, std), zend=qnorm(0.975, mu, std)) + 
-  annotate("pointrange",
-           xmin=qnorm(0.025, mu, std), xmax=qnorm(0.975, mu, std),
-           x=qnorm(0.5, mu, std), y=dnorm(qnorm(0.975, mu, std), mu, std), alpha=0.4) + 
-  annotate("text",
-           x=mu, y=dnorm(qnorm(0.975, mu, std), mu, std)-0.01,
-           label="95% CI") +
-  annotate("segment",
-           x=qnorm(0.025, mu, std), xend=qnorm(0.025, mu, std),
-           y=0, yend=dnorm(qnorm(0.025, mu, std), mu, std)) +
-  annotate("text",
-           x=qnorm(0.025, mu, std), y=-0.01,
-           label="2.5%") +
-  annotate("segment",
-           x=qnorm(0.975, mu, std), xend=qnorm(0.975, mu, std),
-           y=0, yend=dnorm(qnorm(0.975, mu, std), mu, std)) +
-  annotate("text",
-           x=qnorm(0.975, mu, std), y=-0.01,
-           label="97.5%") +  
-  annotate("segment",                                          # show the observed difference as a dashed line
-            x=-1.7, xend=-1.7, y=0, yend=0.3,
-            colour="darkorange1", size=1, linetype="dashed") +
-  annotate("text",
-           x=-1.7, y=0.31,
-           label="estimate = -1.7, not significant", color="darkorange3") +
-  annotate("segment",                                          # show the observed difference as a dashed line
-            x=1.2, xend=1.2, y=0, yend=0.3,
-            colour="darkorange1", size=1, linetype="dashed") +
-  annotate("text",
-           x=1.2, y=0.31,
-           label="estimate = 1.2, not significant", color="darkorange3") +
-    xlim(-4, 4) +
-  annotate("segment",                                          # show the observed difference as a dashed line
-            x=-2.1, xend=-2.1, y=0, yend=0.35,
-            colour="purple", size=1, linetype="dashed") +
-  annotate("text",
-           x=-2.1, y=0.36,
-           label="estimate = -2.1, significant", color="purple") +
-  annotate("segment",                                          # show the observed difference as a dashed line
-            x=3, xend=3, y=0, yend=0.35,
-            colour="purple", size=1, linetype="dashed") +
-  annotate("text",
-           x=3, y=0.36,
-           label="estimate = 3,  significant", color="purple") +
-    xlim(-4, 4) +
-  xlab(TeX("true difference, $\\theta$")) +
-  ylab("density") +
-  theme_minimal()
 ```
 
 ::: { .notes }
@@ -1401,81 +1230,20 @@ ggplot() +
 ## Tailed tests: one-tailed (left)
 
 ::: { .callout-tip title="Use one-tailed tests when direction matters"}
-- If we're testing specifically for a negative difference/reduction, use a left-tailed test
+- If we're testing specifically for a significant negative difference/reduction, use a left-tailed test
 - e.g. if we wanted to know if $T$ reduced post-test levels with respect to $C$ at a threshold of $P < 0.05$
 :::
 
 ```{r left_tail}
 #| fig-align: center
 
-# Zero mean, standard deviation of 1
-mu = 0
-std = 1
+normal_distplot(mu=0, sd=1) + 
+  shade_normal(mu=0, sd=1, zstart=0.05, zend=1) +
+  add_x_marker(-2.1, 0.35, "estimate = -2.1, significant", "purple", "purple") +
+  add_x_marker(-1.7, 0.3, "estimate = -1.7, significant", "purple", "purple") +
+  add_x_marker(1.2, 0.3, "estimate = 1.2, not significant", "darkorange1", "darkorange3") +
+  add_x_marker(3, 0.35, "estimate = 3, not significant", "darkorange1", "darkorange3")
 
-# Generate data to shade a normal curve
-xmin = mu - 4 * std
-xmax = mu + 4 * std
-
-data = data.frame(x=seq(xmin, xmax, by=0.01)) %>%
-   mutate(y=dnorm(x, mu, std))
-
-shade_curve = function(data, zstart, zend, fill="#00998a", alpha=0.5) {
-  geom_area(data=subset(data,
-                        x >= mu + zstart * std & x < mu + zend * std),
-            aes(x=x, y=y), fill=fill, color=NA, alpha=alpha)
-}
-
-# Plot figurative null hypothesis distribution
-ggplot() +
-  stat_function(fun=dnorm, args=list(mean=mu, sd=std), geom="line") +
-  shade_curve(data, zstart=qnorm(0.05, mu, std), zend=qnorm(1, mu, std)) + 
-#  annotate("pointrange",
-#           xmin=qnorm(0.025, mu, std), xmax=qnorm(0.975, mu, std),
-#           x=qnorm(0.5, mu, std), y=dnorm(qnorm(0.975, mu, std), mu, std), alpha=0.4) + 
-#  annotate("text",
-#           x=mu, y=dnorm(qnorm(0.975, mu, std), mu, std)-0.01,
-#           label="95% CI") +
-  annotate("segment",                                          # left limit
-           x=qnorm(0.05, mu, std), xend=qnorm(0.05, mu, std),
-           y=0, yend=dnorm(qnorm(0.05, mu, std), mu, std)) +
-  annotate("text",
-           x=qnorm(0.05, mu, std), y=-0.01,
-           label="5%") +
-#  annotate("segment",                                          # right limit
-#           y=0, yend=dnorm(qnorm(0.975, mu, std), mu, std)) +
-#           x=qnorm(0.975, mu, std), xend=qnorm(0.975, mu, std),
-#  annotate("text",
-#           x=qnorm(0.975, mu, std), y=-0.01,
-#           label="97.5%") +  
-  annotate("segment",                                          # show the observed difference as a dashed line
-            x=-1.7, xend=-1.7, y=0, yend=0.3,
-            colour="purple", size=1, linetype="dashed") +
-  annotate("text",
-           x=-1.7, y=0.31,
-           label="estimate = -1.7, significant", color="purple") +
-  annotate("segment",                                          # show the observed difference as a dashed line
-            x=1.2, xend=1.2, y=0, yend=0.3,
-            colour="darkorange1", size=1, linetype="dashed") +
-  annotate("text",
-           x=1.2, y=0.31,
-           label="estimate = 1.2, not significant", color="darkorange3") +
-    xlim(-4, 4) +
-  annotate("segment",                                          # show the observed difference as a dashed line
-            x=-2.1, xend=-2.1, y=0, yend=0.35,
-            colour="purple", size=1, linetype="dashed") +
-  annotate("text",
-           x=-2.1, y=0.36,
-           label="estimate = -2.1, significant", color="purple") +
-  annotate("segment",                                          # show the observed difference as a dashed line
-            x=3, xend=3, y=0, yend=0.35,
-            colour="darkorange1", size=1, linetype="dashed") +
-  annotate("text",
-           x=3, y=0.36,
-           label="estimate = 3, not significant", color="darkorange3") +
-    xlim(-4, 4) +
-  xlab(TeX("true difference, $\\theta$")) +
-  ylab("density") +
-  theme_minimal()
 ```
 
 ::: { .notes }
@@ -1497,74 +1265,13 @@ ggplot() +
 ```{r right_tail}
 #| fig-align: center
 
-# Zero mean, standard deviation of 1
-mu = 0
-std = 1
+normal_distplot(mu=0, sd=1) + 
+  shade_normal(mu=0, sd=1, zstart=0, zend=0.95) +
+  add_x_marker(-2.1, 0.35, "estimate = -2.1, not significant", "darkorange1", "darkorange3") +
+  add_x_marker(-1.7, 0.3, "estimate = -1.7, not significant", "darkorange1", "darkorange3") +
+  add_x_marker(1.2, 0.3, "estimate = 1.2, not significant", "darkorange1", "darkorange3") +
+  add_x_marker(3, 0.35, "estimate = 3, significant", "purple", "purple")
 
-# Generate data to shade a normal curve
-xmin = mu - 4 * std
-xmax = mu + 4 * std
-
-data = data.frame(x=seq(xmin, xmax, by=0.01)) %>%
-   mutate(y=dnorm(x, mu, std))
-
-shade_curve = function(data, zstart, zend, fill="#00998a", alpha=0.5) {
-  geom_area(data=subset(data,
-                        x >= mu + zstart * std & x < mu + zend * std),
-            aes(x=x, y=y), fill=fill, color=NA, alpha=alpha)
-}
-
-# Plot figurative null hypothesis distribution
-ggplot() +
-  stat_function(fun=dnorm, args=list(mean=mu, sd=std), geom="line") +
-  shade_curve(data, zstart=qnorm(0, mu, std), zend=qnorm(0.95, mu, std)) + 
-#  annotate("pointrange",
-#           xmin=qnorm(0.025, mu, std), xmax=qnorm(0.975, mu, std),
-#           x=qnorm(0.5, mu, std), y=dnorm(qnorm(0.975, mu, std), mu, std), alpha=0.4) + 
-#  annotate("text",
-#           x=mu, y=dnorm(qnorm(0.975, mu, std), mu, std)-0.01,
-#           label="95% CI") +
-#  annotate("segment",                                          # left limit
-#           x=qnorm(0.05, mu, std), xend=qnorm(0.05, mu, std),
-#           y=0, yend=dnorm(qnorm(0.05, mu, std), mu, std)) +
-#  annotate("text",
-#           x=qnorm(0.05, mu, std), y=-0.01,
-#           label="5%") +
-  annotate("segment",
-           x=qnorm(0.95, mu, std), xend=qnorm(0.95, mu, std),
-           y=0, yend=dnorm(qnorm(0.95, mu, std), mu, std)) +
-  annotate("text",
-           x=qnorm(0.95, mu, std), y=-0.01,
-           label="95%") +  
-  annotate("segment",                                          # show the observed difference as a dashed line
-            x=-1.7, xend=-1.7, y=0, yend=0.3,
-            colour="darkorange1", size=1, linetype="dashed") +
-  annotate("text",
-           x=-1.7, y=0.31,
-           label="estimate = -1.7, not significant", color="darkorange3") +
-  annotate("segment",                                          # show the observed difference as a dashed line
-            x=1.2, xend=1.2, y=0, yend=0.3,
-            colour="darkorange1", size=1, linetype="dashed") +
-  annotate("text",
-           x=1.2, y=0.31,
-           label="estimate = 1.2, not significant", color="darkorange3") +
-    xlim(-4, 4) +
-  annotate("segment",                                          # show the observed difference as a dashed line
-            x=-2.1, xend=-2.1, y=0, yend=0.35,
-            colour="darkorange1", size=1, linetype="dashed") +
-  annotate("text",
-           x=-2.1, y=0.36,
-           label="estimate = -2.1, not significant", color="darkorange3") +
-  annotate("segment",                                          # show the observed difference as a dashed line
-            x=3, xend=3, y=0, yend=0.35,
-            colour="purple", size=1, linetype="dashed") +
-  annotate("text",
-           x=3, y=0.36,
-           label="estimate = 3, significant", color="purple") +
-    xlim(-4, 4) +
-  xlab(TeX("true difference, $\\theta$")) +
-  ylab("density") +
-  theme_minimal()
 ```
 
 ::: { .notes }
@@ -1615,54 +1322,18 @@ It is a common error to summarise comparisons by statistical significance into "
 ```{r nonsigdiff1}
 #| fig-align: center
 
-# Generate data to shade a normal curve
-
-shade_curve = function(mu, std, zstart, zend, fill, alpha=0.5) {
-    xmin = mu - 4 * std
-    xmax = mu + 4 * std
-
-    data = data.frame(x=seq(xmin, xmax, by=0.01)) %>%
-      mutate(y=dnorm(x, mu, std))
-
-    geom_area(data=subset(data, x >= zstart & x < zend ),
-              aes(x=x, y=y),
-              fill=fill, color=NA, alpha=alpha)
+shaded_normal <- function(mu, sd, zstart, zend, fill="orange", color="orange", label="", alpha=0.5, textoffset=0.01) {
+  list(
+    stat_function(fun=dnorm, args=list(mean=mu, sd=sd), geom="line", colour=color),
+    shade_normal(mu=mu, sd=sd, zstart=zstart, zend=zend, fill=fill, alpha=alpha, textoffset=textoffset),
+    annotate("text", colour=color, x=mu, y=dnorm(mu, mu, sd) + 2 * textoffset, label=label)
+  )
 }
 
-# mu=10, std=10, zstart=qnorm(0, 10, 10), zend=qnorm(0.95, 10, 10), fill="orange")
-# Plot figurative null hypothesis distribution
 ggplot() +
-  stat_function(fun=dnorm, args=list(mean=10, sd=10), geom="line", colour="orange") +
-  shade_curve(mu=10, std=10, zstart=qnorm(0.1, 10, 10), zend=qnorm(1, 10, 10), fill="orange") + 
-  annotate("segment", colour="orange",
-         x=qnorm(0.1, 10, 10), xend=qnorm(0.1, 10, 10),
-         y=0, yend=dnorm(qnorm(0.1, 10, 10), 10, 10)) +
-  annotate("text", colour="orange",
-           x=qnorm(0.1, 10, 10), y=-0.001,
-           label="10%") +  
-  annotate("segment", colour="orange",
-         x=qnorm(0.5, 10, 10), xend=qnorm(0.5, 10, 10),
-         y=0, yend=dnorm(qnorm(0.5, 10, 10), 10, 10)) +
-  annotate("text", colour="orange",
-           x=qnorm(0.5, 10, 10), y=0.042,
-           label="mean=10, sd=10") +  
-  stat_function(fun=dnorm, args=list(mean=25, sd=10), geom="line", colour="purple") +
-  shade_curve(mu=25, std=10, zstart=qnorm(0.01, 25, 10), zend=qnorm(1, 25, 10), fill="purple") + 
-  annotate("segment", colour="purple",
-         x=qnorm(0.01, 25, 10), xend=qnorm(0.01, 25, 10),
-         y=0, yend=dnorm(qnorm(0.01, 25, 10), 25, 10)) +
-  annotate("text", colour="purple",
-           x=qnorm(0.01, 25, 10), y=-0.001,
-           label="1%") +  
-  annotate("segment", colour="purple",
-         x=qnorm(0.5, 25, 10), xend=qnorm(0.5, 25, 10),
-         y=0, yend=dnorm(qnorm(0.5, 25, 10), 25, 10)) +
-  annotate("text", colour="purple",
-           x=qnorm(0.5, 25, 10), y=0.042,
-           label="mean=25, sd=10") +  
-  annotate("segment", colour="black", lty="dashed",
-         x=0, xend=0,
-         y=0, yend=0.05) +
+  shaded_normal(10, 10, 0.1, 1, fill="orange", color="orange", label="mean=10, sd=10", textoffset=0.001) +
+  shaded_normal(25, 10, 0.01, 1, fill="purple", color="purple", label="mean=25, sd=10", textoffset=0.001) +
+  annotate("segment", colour="black", lty="dashed", x=0, xend=0, y=0, yend=0.05) +
   xlim(-20, 60) +
   ylim(-0.001, 0.05) +
   xlab("effect estimate") + 
@@ -1687,66 +1358,18 @@ ggplot() +
 ```{r nonsigdiff2}
 #| fig-align: center
 
-# Generate data to shade a normal curve
-
-shade_curve = function(mu, std, zstart, zend, fill, alpha=0.5) {
-    xmin = mu - 4 * std
-    xmax = mu + 4 * std
-
-    data = data.frame(x=seq(xmin, xmax, by=0.01)) %>%
-      mutate(y=dnorm(x, mu, std))
-
-    geom_area(data=subset(data, x >= zstart & x < zend ),
-              aes(x=x, y=y),
-              fill=fill, color=NA, alpha=alpha)
+shaded_normal <- function(mu, sd, zstart, zend, fill="orange", color="orange", label="", alpha=0.5, textoffset=0.01) {
+  list(
+    stat_function(fun=dnorm, args=list(mean=mu, sd=sd), geom="line", colour=color),
+    shade_normal(mu=mu, sd=sd, zstart=zstart, zend=zend, fill=fill, alpha=alpha, textoffset=textoffset),
+    annotate("text", colour=color, x=mu, y=dnorm(mu, mu, sd) + 2 * textoffset, label=label)
+  )
 }
 
-# mu=10, std=10, zstart=qnorm(0, 10, 10), zend=qnorm(0.95, 10, 10), fill="orange")
-# Plot figurative null hypothesis distribution
 ggplot() +
-  stat_function(fun=dnorm, args=list(mean=10, sd=10), geom="line", colour="orange") +
-  shade_curve(mu=10, std=10, zstart=qnorm(0.025, 10, 10), zend=qnorm(0.975, 10, 10), fill="orange") + 
-  annotate("segment", colour="orange",
-         x=qnorm(0.025, 10, 10), xend=qnorm(0.025, 10, 10),
-         y=0, yend=dnorm(qnorm(0.025, 10, 10), 10, 10)) +
-  annotate("text", colour="orange",
-           x=qnorm(0.025, 10, 10), y=-0.001,
-           label="2.5%") +  
-  annotate("segment", colour="orange",
-         x=qnorm(0.975, 10, 10), xend=qnorm(0.975, 10, 10),
-         y=0, yend=dnorm(qnorm(0.975, 10, 10), 10, 10)) +
-  annotate("text", colour="orange",
-           x=qnorm(0.975, 10, 10), y=-0.001,
-           label="97.5%") +  
-  annotate("segment", colour="orange",
-         x=qnorm(0.5, 10, 10), xend=qnorm(0.5, 10, 10),
-         y=0, yend=dnorm(qnorm(0.5, 10, 10), 10, 10)) +
-  annotate("text", colour="orange",
-           x=qnorm(0.5, 10, 10), y=0.042,
-           label="mean=10, sd=10") +  
-  stat_function(fun=dnorm, args=list(mean=25, sd=10), geom="line", colour="purple") +
-  shade_curve(mu=25, std=10, zstart=qnorm(0.025, 25, 10), zend=qnorm(0.975, 25, 10), fill="purple") + 
-  annotate("segment", colour="purple",
-         x=qnorm(0.025, 25, 10), xend=qnorm(0.025, 25, 10),
-         y=0, yend=dnorm(qnorm(0.025, 25, 10), 25, 10)) +
-  annotate("text", colour="purple",
-           x=qnorm(0.025, 25, 10), y=-0.001,
-           label="2.5%") +  
-  annotate("segment", colour="purple",
-         x=qnorm(0.975, 25, 10), xend=qnorm(0.975, 25, 10),
-         y=0, yend=dnorm(qnorm(0.975, 25, 10), 25, 10)) +
-  annotate("text", colour="purple",
-           x=qnorm(0.975, 25, 10), y=-0.001,
-           label="97.5%") +  
-  annotate("segment", colour="purple",
-         x=qnorm(0.5, 25, 10), xend=qnorm(0.5, 25, 10),
-         y=0, yend=dnorm(qnorm(0.5, 25, 10), 25, 10)) +
-  annotate("text", colour="purple",
-           x=qnorm(0.5, 25, 10), y=0.042,
-           label="mean=25, sd=10") +  
-  annotate("segment", colour="black", lty="dashed",
-         x=0, xend=0,
-         y=0, yend=0.05) +
+  shaded_normal(10, 10, 0.025, 0.975, fill="orange", color="orange", label="mean=10, sd=10", textoffset=0.001) +
+  shaded_normal(25, 10, 0.025, 0.975, fill="purple", color="purple", label="mean=25, sd=10", textoffset=0.001) +
+  annotate("segment", colour="black", lty="dashed", x=0, xend=0, y=0, yend=0.05) +
   xlim(-20, 60) +
   ylim(-0.001, 0.05) +
   xlab("effect estimate") + 
