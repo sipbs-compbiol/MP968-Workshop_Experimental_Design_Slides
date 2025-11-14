@@ -1384,7 +1384,33 @@ ggplot() +
 - The purpose of experimental design is to ensure we have a sense, **before and after data have been collected**, of what can realistically be learned from the experiment
 :::
 
-## Sample size 
+## Sampling and variance
+
+We defined variance earlier for a distribution of random variable $z$ as:
+
+$$ \textrm{variance} = E((z - \mu_z)^2) $$
+
+::: { .callout-warning title="But this was for an infinite number of measurements of $z$" }
+:::
+
+::: { .callout-important }
+We cannot make an infinite number of measurements of $z$. We can only _take a **sample**_.
+
+The variance we _estimate_ in an experiment **will not match** that of the infinitely large population[^bias].
+:::
+
+[^bias]: The variance we calculate for our small experimental sample uses an estimate of the mean also calculated from the sample, and so is biased.
+
+## (Unbiased) sample variance
+
+::: { .callout-note title="We do not know the true population-level variance" }
+So we calculate the **unbiased sample variance** with a correction for the sample size:
+
+$$ \textrm{variance} = \frac{\sum^{n}_{i=1} (z_i - \mu_z)^2}{n - 1} \implies \textrm{standard deviation} = \sqrt{\frac{\sum^{n}_{i=1} (z_i - \mu_z)^2}{n - 1}} $$
+
+:::
+
+
 
 # References
 
