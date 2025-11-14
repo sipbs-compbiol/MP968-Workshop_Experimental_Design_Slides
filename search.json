@@ -329,11 +329,18 @@
     "text": "Problems with statistical significance 4\n\n\n\n\n\n\n\nThe difference between ‘significant’ and ‘not significant’ is not statistically significant\n\n\n\nAt a \\(P&lt;0.05\\) threshold, only a small change is required to move from \\(P &lt; 0.051\\) to \\(P &lt; 0.049\\)\nLarge changes in significance can correspond to non-significant differences in the underlying variables\n\n\n\n\n\n\n\n\nHowever, the effect sizes estimated by the two studies are not different from each other at a “statistical significance” of 95%\n\nIn both cases, the central mass of each distribution includes the mean of the other"
   },
   {
-    "objectID": "index.html#sample-size",
-    "href": "index.html#sample-size",
+    "objectID": "index.html#sampling-and-variance",
+    "href": "index.html#sampling-and-variance",
     "title": "MP968 Experimental Design Workshop",
-    "section": "Sample size",
-    "text": "Sample size"
+    "section": "Sampling and variance",
+    "text": "Sampling and variance\nWe defined variance earlier for a distribution of random variable \\(z\\) as:\n\\[ \\textrm{variance} = E((z - \\mu_z)^2) \\]\n\n\n\n\n\n\n\nBut this was for an infinite number of measurements of \\(z\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\nWe cannot make an infinite number of measurements of \\(z\\). We can only take a sample.\nThe variance we estimate in an experiment will not match that of the infinitely large population1.\n\n\n\nThe variance we calculate for our small experimental sample uses an estimate of the mean also calculated from the sample, and so is biased."
+  },
+  {
+    "objectID": "index.html#unbiased-sample-variance",
+    "href": "index.html#unbiased-sample-variance",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "(Unbiased) sample variance",
+    "text": "(Unbiased) sample variance\n\n\n\n\n\n\n\nWe do not know the true population-level variance\n\n\nSo we calculate the unbiased sample variance with a correction for the sample size:\n\\[ \\textrm{variance} = \\frac{\\sum^{n}_{i=1} (z_i - \\mu_z)^2}{n - 1} \\implies \\textrm{standard deviation} = \\sqrt{\\frac{\\sum^{n}_{i=1} (z_i - \\mu_z)^2}{n - 1}} \\]"
   },
   {
     "objectID": "index.html#references-1",
