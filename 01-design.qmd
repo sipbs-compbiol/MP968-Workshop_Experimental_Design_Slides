@@ -1,0 +1,96 @@
+# Why do we need experimental design?
+
+::: { .notes }
+- Indeed, why _do_ we need experimental design?
+- Well, in general it's because if your experiment is designed poorly you may not get the answer you're trying to find or - even worse - might get entirely the wrong answer to that question
+- But in this workshop we're going to focus on why we need experimental design - _and its conjoined sibling, statistics_ - in the context of experiments that involve animals
+:::
+
+## We should not cause unnecessary suffering
+
+::: { .callout-important title="We should always minimise suffering" }
+**This may mean not performing an experiment at all**. Not all new knowledge or understanding is _worth_ causing suffering to obtain it.
+
+Where there _is_ sufficient justification to perform an experiment, **we are ethically obliged to minimise the amount of distress or suffering that is caused**, by designing the experiment to achieve this.
+:::
+
+::: { .callout-warning title="Why we need statistics" }
+It may be easy to tell whether an animal is well-treated, or whether an experiment is necessary.
+
+But what is an _acceptable_ (i.e. the _least possible_) amount of suffering necessary to obtain an informative result?
+:::
+
+::: { .notes }
+- No-one likes talking about animal experiments.
+- It's a difficult, emotive topic that crosses people's moral red lines.
+- Animal experiments may be the only practical way to gain essential scientific knowledge
+- Whatever you believe "suffering" means for an animal, our _ethical premise_ is that this suffering should not be in vain
+:::
+
+## Challenge { .quiz-question }
+
+::: { .callout-warning title="Quiz question" }
+Suppose you are running a necessary and useful experiment with animal subjects, where the use of animals is morally justified. You are comparing a treatment group to a control group. **Which of the following choices will cause the least amount of suffering?**
+:::
+
+- [Use three subjects per group so a standard deviation can be calculated]{data-explanation="In many cases this is likely to be too few individuals for the result to be reliable"}
+- [Use just enough subjects to establish that the outcome is likely to be correct]{.correct}
+- [Use just enough subjects to be certain that the outcome is correct]{data-explanation="It is often impossible to determine whether the outcome of an experiment is 'correct'."}
+- [Use as many subjects as you have available, to avoid wastage]{data-explanation="There may be too few individuals available, or more than are required, to obtain a reliable result."}
+
+::: { .notes }
+We carry out experiments to obtain answers to our scientific hypotheses, but the answers we obtain are rarely if ever 100% certain. We usually aim to obtain answers that are very likely to be correct (think about what a statistical hypothesis test means: that the explanation is _more likely_ or _less likely_ to be the null hypothesis than some alternative), rather than 100% certain.
+
+If we use too few subjects we may still be able to perform a statistical test, but the results of the experiment will be more uncertain and may be more likely to be incorrect than correct. **The use of animal subjects in an experiment that is unlikely to give a correct answer (e.g. because too few animals are used) causes unnecessary suffering**.
+
+If we attempt to obtain a 100% certain - or nearly so - result we may need to use many more subjects - possibly tens or hundreds more - than are required to obtain a result about which we are (say) 80% certain. **The use of animal subjects to obtain a level of certainty greater than is needed to answer the question reasonably causes unnecessary suffering**.
+
+If we use the number of subjects that are available, just because it is convenient, then we may not know how likely the experiment is to give us a correct answer. **The use of animal subjects in an experiment where you do not know how likely you are to get a correct answer is likely to cause unnecessary suffering**.
+:::
+
+## How many individuals?
+
+::: { .callout-tip title="The appropriate number of subjects" }
+The appropriate number of animal subjects to use in an experiment is _always_ the smallest number that - given reasonable assumptions - will satisfactorily give the correct result to the desired level of certainty.
+
+- What assumptions are reasonable?
+- What is an appropriate level of certainty?
+
+**By convention**[^1] the usual level of certainty for a hypothesis test is: "we have an 80% chance of getting the correct true/false answer for the hypothesis being tested"
+:::
+
+[^1]: Conventions are guidelines, not rigid standards, and you should always consider whether a convention is appropriate in your use case
+
+::: { .notes }
+The appropriate number of animal subjects to use in an experiment is _always_ the smallest number that - given reasonable assumptions - will satisfactorily give the correct result to the desired level of certainty.
+
+This may sound like a very flexible statement. _What assumptions are reasonable? What is an appropriate level of certainty?_
+
+We'll consider these questions again later but, for now, just know that **_by convention_ the usual level of certainty is: "we have an 80% chance of getting the correct true/false answer for the hypothesis being tested"._**
+
+Note though that the appropriate level of certainty may change depending on the nature of the question being asked.
+:::
+
+## Design experiments to minimise suffering
+
+::: { .callout-important title="Experimental design and statistics are intertwined" }
+Once a research hypothesis has been devised:
+
+- _Experimental design_ is the process of devising a practical way of answering the question
+- _Statistics_ informs the choices of variables, controls, numbers of individuals and groups, and the appropriate analysis of results
+:::
+
+::: { .callout-warning title="Design your experiment for…" }
+- your **population** or subject group (e.g. sex, age, prior history, etc.)
+- your **intervention** (e.g. drug treatment)
+- your **contrast** or comparison between groups (e.g. lung capacity, drug concentration, etc.)
+- your **outcome** (i.e. is there a _measurable_ or _clinically relevant_ effect)
+:::
+
+::: { .notes }
+Once a research hypothesis has been devised, Experimental Design is the process by which the practical means of answering that question is constructed. The design should aim to exclude extraneous or confounding influences on the experiment such that the causal factors are isolated and measurable, and any difference in outcome as a result of changing those factors (the “signals”) can also be measured cleanly.
+
+Statistics is the branch of applied science that allows us to make probabilistic inferences about our certainty in the “signal” - measurements, comparisons and experimental outcomes - even in the face of natural variations in processes and “noise,” and the way we choose small groups to represent populations.
+
+You should design your experiment **specifically** for your combination of population/subject group, the intervention you're applying, the contrast or comparison you're making, and the outcome you're expecting to see - specifically a measurable or clinically relevant effect.
+:::

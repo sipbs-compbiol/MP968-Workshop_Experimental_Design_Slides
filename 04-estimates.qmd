@@ -1,0 +1,83 @@
+# Estimates, standard errors, and confidence intervals
+
+::: { .notes }
+We're going to review some statistical terms, to get ready for discussing hypothesis tests
+:::
+
+## Parameters
+
+_Parameters_ are unknown numbers that determine a statistical model
+
+::: { .callout-tip title="A linear regression" }
+$$ y_i = a + b x_i $$
+
+- Parameters are:
+  - $a$ (the intercept)
+  - $b$ (the gradient)
+:::
+
+::: { .callout-warning title="A normal distribution representing your data" }
+$$ z \sim \textrm{normal}(\mu_z, \sigma) $$
+
+- Parameters are: $\mu_z$ and $\sigma$
+:::
+
+::: { .notes }
+- Parameters are numbers that you _don't know_ in a statistical model
+  - You estimate parameter values from the data you collect
+  
+- So, if you have a linear regression and are estimating the intercept and gradient in the equation $y_i = a + b x_i$
+  - The intercept $a$, and gradient $b$, are the parameters you are estimating
+  
+- You may be representing the data you collect by a normal distribution
+  - This is described by the parameters $\mu_z$ and $\sigma$, which you are estimating from your data
+:::
+
+## Estimands { .smaller }
+
+An _estimand_ (or _quantity of interest_) is a value that we are interested in estimating
+
+::: { .callout-tip title="A linear regression" }
+$$ y_i = a + b x_i$$
+
+- We want to estimate values for:
+  - $a$ (the intercept)
+  - $b$ (the gradient)
+  - **predicted outcomes at important values of $x_i$**
+
+These are all **estimands**, and **estimates** are represented using the "hat" symbol: $\hat{a}$, $\hat{b}$, etc.
+:::
+
+::: { .callout-warning title="A normal distribution representing your data" }
+$$ z \sim \textrm{normal}(\mu_z, \sigma) $$
+
+- Estimands are: $\mu_z$ and $\sigma$
+  - Maybe you want to determine the 95% confidence interval - **this is also an estimand**
+:::
+
+## Standard Errors and Confidence Intervals { .smaller }
+
+- The _standard error_ is the _estimated standard deviation of an estimate_
+  - It is a measure of our uncertainty about the quantity of interest
+
+
+::: { .callout-note }
+- Standard error gets smaller as sample size gets larger
+  - You know more about the most likely value, the more data/information you collect
+  - Standard error tends to zero as sample size gets large enough
+:::
+
+- The _confidence interval_ (or CI) represents a range of values of a parameter or estimand that are roughly consistent with the data
+
+::: { .callout-important }
+- In repeated applications, the 50% confidence interval will include the true value 50% of the time
+  - A 95% confidence interval will include the true value 95% of the time
+:::
+
+::: { .callout-tip }
+- The usual 95% confidence interval rule of thumb for large samples (_assuming a normal distribution_) is to take the estimate $\pm$ two standard errors
+:::
+
+::: { .notes }
+- Now I've mentioned confidence intervals we'll need to talk about them
+:::

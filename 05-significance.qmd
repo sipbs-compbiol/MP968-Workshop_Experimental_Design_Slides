@@ -1,0 +1,437 @@
+# Statistical significance and hypothesis testing
+
+::: { .notes }
+- A major concern when performing data analysis in general, which is heightened when animal suffering is a possibility, is that we might _mistakenly) come to strong conclusions that do not replicate or that do not reflect real patterns in the underlying population.
+- Statistical theories of hypothesis testing and error analysis have been developed to quantify these possibilities, **to help with decision making**
+:::
+
+## Statistical significance 1
+
+- Some scientists choose to consider a result to be "stable" or "real" if it is "_statistically significant_"
+- They may also consider "non-signifcant" results to be noisy or less reliable
+
+::: { .callout-warning }
+I, and many other statisticians, do not recommend this approach.
+
+However, the concept is widespread and we need to discuss it
+:::
+
+::: { .notes }
+- Even if you're not very familiar with what it means precisely, I'm sure you've come across "statistical" significance in at least one scientific context.
+
+- "Statistical significance" is a **decision rule** used by some scientists to consider whether a result is "stable" or "real"
+  - They may also use "statistical significance" to exclude some results as noisy or unreliable
+  
+- I and many other statisticians do not recommend this approach, and we'll see why
+:::
+
+## Statistical significance 2
+
+::: { .callout-caution title="A common definition" }
+- Statistical significance is conventionally defined as a threshold (commonly, a $p$-value less than 0.05) relative to some _null hypothesis_ or _prespecified value_ that indicates no effect is present.
+
+- E.g., an estimate may be considered "statistically significant at $P < 0.05$" if it:
+  - lies at least two standard errors from the mean
+  - is a difference that lies at least two standard errors from zero
+  
+- More generally, an estimate is "**not** statistically significant" if, e.g.
+  - the observed value can reasonably be explained by chance variation
+  - it is a difference that lies less than two standard errors from zero
+:::
+
+::: { .callout-important title="Most tests rely on probability distributions" }
+- We need to relate the measured values in the real world to an appropriate distribution that _approximates_ them
+:::
+
+::: { .notes }
+- The way you're likely to see statistical significance presented is that some threshold - usually a p-value of less than 0.05 - is applied in a statistical test, relative to some _null hypothesis_ or _prespecified value_ that indicates the absence of an effect
+- So you are likely to see an estimate be considered "statistically significant at P<0.05" if it lies at least two SEs from the mean, or is a difference that lies at least two SEs from zero
+- Conversely, you will see estimates be considered "not statistically significant at P<0.05" if they lie less than two SEs from the mean, or the observed value can reasonably be explained by chance variation alone
+
+- As you might have guessed from the talk of standard errors and distances from means, we map our measured values in the real world to statistical probability distributions to calculate these values.
+:::
+
+## A simple example: The experiment
+
+::: { .callout-tip title="The experiment" }
+- Two drugs, $C$ and $T$ lower cholesterol[^3], and we want to compare their effectiveness
+- We randomise assignment of $C$ and $T$ to members of a single cohort of comparable individuals, whose pre-treatment cholesterol level is assumed to be drawn from the same distribution (i.e. be approximately the same)
+- We measure the post-treatment cholesterol levels $y_T$ and $y_C$ for each individual in the two groups.
+- We calculate the average measured $\bar{y}_T$ and $\bar{y}_C$ for the _treatment_ and _control_ groups as **estimates** for the true post-treatment levels $\theta_T$ and $\theta_C$.
+  - We also calculate standard deviation for the two groups, $\sigma_T$ and $\sigma_C$
+:::
+
+::: { .notes }
+- Let's consider a simple experiment
+- We want to compare the efficacy of two drugs, C and T, in their ability to lower cholesterol
+  - We assume a uniform pool of individuals, and randomly assign C and T to two equally-sized groups drawn from that cohort
+  - **This implies that the starting cholesterol level of all individuals is drawn from the same distribution**
+  
+- We administer the drugs in the same way, for the same period of time, and measure the post-treatment cholesterol level in each individual
+  - We calculate the mean and standard deviation for the two groups
+  - These allow us to estimate the underlying normal distribution of post-treatment cholesterol levels in each group
+- We can use the estimated means, $\bar{y}_T$ and $\bar{y}_C$ for the _treatment_ and _control_ groups as **estimates** for the true post-treatment levels $\theta_T$ and $\theta_C$.
+:::
+
+## A simple example: The hypotheses
+
+- We want to know if the treatments have different sizes of effect
+  - If they do, there should be a difference between the (average) post-treatment cholesterol level in each group
+  - The _true_ post-treatment levels are $\theta_T$ and $\theta_C$ 
+  - We have estimated means, $\bar{y}_T$ and $\bar{y}_C$ for post-treatment levels
+
+::: { .callout-warning title="The hypotheses" }
+- We are interested in $\theta = \theta_T - \theta_C$, the expected post-test difference in cholesterol between the two groups $T$ and $C$.
+- Our **null hypothesis** ($H_0$) is that $\theta = 0$, i.e. **there is no difference** ($\theta_C = \theta_T$)
+- Our **alternative hypothesis** ($H_1$) is that **there is a difference**, so $\theta \neq 0$,  (i.e. $\theta_C \neq \theta_T$)
+:::
+
+::: { .notes }
+- Our goal in this experiment is to determine whether the treatments have different effects on lowering cholesterol
+  - If they do, then there should be a difference between the (average) post-treatment cholesterol levels of groups T and C
+  
+- There are _true_ post treatment levels for each group: $\theta_T$ and $\theta_C$
+  - But we have only estimated them as $\bar{y}_T$ and $\bar{y}_C$
+  - So we turn to a hypothesis test to determine how likely it is our estimates support there being a difference in the true levels between the two groups
+  
+- We set up a **null hypothesis** that there is no difference between the groups: $\theta = 0$
+  - In this hypothesis, any deviation from zero we see is considered the result of chance variation in the data, or error we cannot eliminate from measurements
+- We also define an **alternative hypothesis** that there _is_ a difference between the groups: $\theta \neq 0$
+  - We're not insisting that $\theta$ is greater than or less than zero, just that it's not zero
+  - And also that any deviation from zero is not accounted for by the null hypothesis
+:::
+
+## A simple example: The distribution 1
+
+- To perform a statistical test, we may assume a distribution and parameters for the _null hypothesis_
+  - We can then test the observed estimate against that distribution to see how likely it is that the _null hypothesis_ would have generated it
+
+::: { .callout-note title="The distribution" }
+- We use a probability distribution reflecting generation of the null hypothesis: $\theta_C = \theta_T$
+  - This allows us to define a test statistic $T$ (i.e. _a threshold probability of "significance"_) **in advance**
+- We test the estimated value from the experiment ($\bar{y}_T - \bar{y}_C$) to calculate a $p$-value for our estimate: $p = \textrm{Pr}(T(y^{\textrm{null}}) > T(\bar{y}_T - \bar{y}_C))$
+:::
+
+[^3]: $C$ for _control_, the current best-in class; $T$ for _treatment_, the new compound
+
+::: { .notes }
+- At this point we haven't defined what our null hypothesis distribution should be, but we need to do so
+  - Once we have this, we can test our observed estimate of $\hat{\theta} = \bar{y}_T - \bar{y}_C$ against the distribution to see how likely it is to be explained by the null hypothesis
+  
+- We need to choose a probability distribution that reflects the process generating the null hypothesis
+  - In this case, we could shoose a normal distribution, which is typically appropriate for this kind of measurement
+- Then we can define a test statistic $T$ **in advance**
+  - $T$ represents a threshold value in the null distribution - one where we would consider a larger difference to be meaningful
+  - You may be familiar with setting P<0.05, where the probability of seeing some value in the null distribution is 0.05 or less, and we might choose to set a value of $T$ that corresponds to this
+- We then calculate the test statistic corresponding to our actual estimate, and calculate the $p$-value
+  - This is the probability of observing our estimate, or a more extreme value, under the assumptions of the null model distribution
+:::
+
+## A simple example: The null hypothesis
+
+::: { .callout-important title="The null hypothesis" }
+- Assume that the true difference $\theta$ is normally-distributed with $\mu_\theta=0$, $\sigma_\theta=1$
+:::
+
+```{r h0_dist}
+#| fig-align: center
+
+normal_distplot(mu=0, sd=1)
+```
+
+::: { .notes }
+- Suppose that the true difference between means is zero units, with standard error one unit, and that it is normally distributed
+- The probability distribution would look like this
+:::
+
+## A simple example: The estimated difference
+
+::: { .callout-important title="Observed between post-treatment levels: $\bar{y}_T - \bar{y}_C = -1.4$" }
+- Is this an unlikely outcome given the null hypothesis?
+:::
+
+```{r estimate}
+#| fig-align: center
+
+normal_distplot(mu=0, sd=1) +
+  add_x_marker(-1.7, 0.3, "estimate = -1.7", "darkorange1", "darkorange3")
+
+```
+
+::: { .notes }
+- Suppose that we measured the post treatment levels in each group, and found the difference between the means to be -1.4 units
+  - That is, the $T$ drug group had 1.4 units lower cholesterol than the $C$ group
+- Is that unlikely, given the null hypothesis?
+
+- Well, we don't know if it's unlikely because **we haven't decided what "unlikely" means**
+  - To do that we need to set a significance threshold
+:::
+
+## A simple example: A significance threshold
+
+::: { .callout-important title="We choose a significance threshold _in advance_" }
+- Suppose we set a threshold $T$ corresponding to the 90% confidence interval (i.e. $P<0.1$)
+  - If the estimate is not in the central 90% of the distribution, we'll say it's "significant"
+:::
+
+```{r h0_90ci}
+#| fig-align: center
+
+normal_distplot(mu=0, sd=1) + 
+  shade_normal(mu=0, sd=1, zstart=0.05, zend=0.95) +
+  ci_normal(mu=0, sd=1, ci=0.90)
+```
+
+::: { .notes }
+- We must always decide what our significance threshold is **in advance**
+- Suppose that we decide the central 90% of the distribution/null hypothesis is "not significant"
+  - This is the 90% confidence interval around the mean
+  - We can shade this in to see it better
+:::
+
+## A simple example: Compare the estimate
+
+::: { .callout-important title="Compare the estimate to the threshold" }
+- The estimate lies outwith the threshold, so we call the difference "significant"
+:::
+
+
+```{r h0_90ci_est}
+#| fig-align: center
+
+normal_distplot(mu=0, sd=1) + 
+  shade_normal(mu=0, sd=1, zstart=0.05, zend=0.95) +
+  ci_normal(mu=0, sd=1, ci=0.90) +
+  add_x_marker(-1.7, 0.3, "estimate = -1.7", "darkorange1", "darkorange3")
+
+```
+
+::: { .notes }
+- We can overlay the observed difference on the distribution here, and see that the estimate lies outside the 90% confidence interval
+  - With our stated assumption of a $P < 0.1$ significance threshold, we would call this difference "significant"
+:::
+
+## A simple example: Another threshold
+
+::: { .callout-important title="We choose a significance threshold _in advance_" }
+- Suppose we set the threshold $T$ corresponding to the 95% confidence interval (i.e. $P<0.05$) instead?
+:::
+
+```{r h0_95ci}
+#| fig-align: center
+
+normal_distplot(mu=0, sd=1) + 
+  shade_normal(mu=0, sd=1, zstart=0.025, zend=0.975) +
+  ci_normal(mu=0, sd=1, ci=0.90) +
+  ci_normal(mu=0, sd=1, ci=0.95)
+  
+```
+
+::: { .notes }
+- Suppose that we had decided in advance that the central 95% of the distribution/null hypothesis was "not significant" instead
+  - This is the 95% confidence interval around the mean
+:::
+
+## A simple example: Another outcome
+
+::: { .callout-important title="Compare the estimate to the threshold" }
+- The estimate lies _within_ the threshold, so the difference is "not significant"
+:::
+
+```{r h0_95ci_est}
+#| fig-align: center
+
+normal_distplot(mu=0, sd=1) + 
+  shade_normal(mu=0, sd=1, zstart=0.025, zend=0.975) +
+  ci_normal(mu=0, sd=1, ci=0.95) +
+  add_x_marker(-1.7, 0.3, "estimate = -1.7", "purple", "purple")
+
+```
+
+::: { .notes }
+- Suppose that we had decided in advance that the central 95% of the distribution/null hypothesis was "not significant" instead
+  - This is the 95% confidence interval around the mean
+:::
+
+## A simple example: What changed?
+
+::: { .callout-tip title="What did not change" }
+- The null hypothesis was the same
+- The observed estimate of difference was the same
+:::
+
+::: { .callout-warning title="What changed" }
+- Our choice of significance threshold changed
+:::
+
+::: { .callout-important title="Significance threshold choice" }
+- Once the estimate is known, it is _always_ possible to find a threshold that makes it "significant" or "not significant"
+- It is dishonest to select a threshold deliberately to make your result "significant" or "not significant"
+- **Always choose _and record_ (preregister) your threshold for significance ahead of the experiment**
+:::
+
+## Tailed tests: two-tailed
+
+::: { .callout-tip title="Use two tails if direction of change doesn't matter"}
+- With a two-tailed hypothesis test, we do not care which direction of change is significant
+:::
+
+```{r two_tails}
+#| fig-align: center
+
+normal_distplot(mu=0, sd=1) + 
+  shade_normal(mu=0, sd=1, zstart=0.025, zend=0.975) +
+  ci_normal(mu=0, sd=1, ci=0.95) +
+  add_x_marker(-2.1, 0.35, "estimate = -2.1, significant", "darkorange1", "darkorange3") +
+  add_x_marker(-1.7, 0.3, "estimate = -1.7, not significant", "purple", "purple") +
+  add_x_marker(1.2, 0.3, "estimate = 1.2, not significant", "purple", "purple") +
+  add_x_marker(3, 0.35, "estimate = 3, significant", "darkorange1", "darkorange3")
+
+```
+
+::: { .notes }
+- The example we've been looking at is a two-tailed test
+- This means that we're concerned with whether the estimate lies within the _central mass_ of the null distribution
+  - The central 95% of the distribution has 2.5% of the distribution to the left, and 2.5% of the distribution to the right
+  - If the estimate lies in either of those extreme regions, it's in the "extreme 5%" from the mean, and we call it "significant"
+  - Any estimate lying within the central 95% of the distribution is "not significant"
+:::
+
+## Tailed tests: one-tailed (left)
+
+::: { .callout-tip title="Use one-tailed tests when direction matters"}
+- If we're testing specifically for a significant negative difference/reduction, use a left-tailed test
+- e.g. if we wanted to know if $T$ reduced post-test levels with respect to $C$ at a threshold of $P < 0.05$
+:::
+
+```{r left_tail}
+#| fig-align: center
+
+normal_distplot(mu=0, sd=1) + 
+  shade_normal(mu=0, sd=1, zstart=0.05, zend=1) +
+  add_x_marker(-2.1, 0.35, "estimate = -2.1, significant", "purple", "purple") +
+  add_x_marker(-1.7, 0.3, "estimate = -1.7, significant", "purple", "purple") +
+  add_x_marker(1.2, 0.3, "estimate = 1.2, not significant", "darkorange1", "darkorange3") +
+  add_x_marker(3, 0.35, "estimate = 3, not significant", "darkorange1", "darkorange3")
+
+```
+
+::: { .notes }
+- When we know we want to test for change in a specific direction, we should use a one-tailed test
+- When checking specifically for a negative change where $P < 0.05$, say that $T$ reduces cholesterol level by more than $C$, we would use a left-tailed test
+
+- This means that we're concerned with whether the estimate lies _outside_ the right-most 95% of the distribution mass
+  - This means that results in the left-most 5% of the mass are "significant"
+  - Any estimate lying in the right-most 95% of the distribution is "not significant"
+:::
+
+## Tailed tests: one-tailed (right)
+
+::: { .callout-tip title="Use one-tailed tests when direction matters"}
+- If we're testing specifically for a positive difference/increase, use a right-tailed test
+- e.g. if we wanted to know if $T$ _increased_ post-test levels with respect to $C$ at a threshold of $P < 0.05$
+:::
+
+```{r right_tail}
+#| fig-align: center
+
+normal_distplot(mu=0, sd=1) + 
+  shade_normal(mu=0, sd=1, zstart=0, zend=0.95) +
+  add_x_marker(-2.1, 0.35, "estimate = -2.1, not significant", "darkorange1", "darkorange3") +
+  add_x_marker(-1.7, 0.3, "estimate = -1.7, not significant", "darkorange1", "darkorange3") +
+  add_x_marker(1.2, 0.3, "estimate = 1.2, not significant", "darkorange1", "darkorange3") +
+  add_x_marker(3, 0.35, "estimate = 3, significant", "purple", "purple")
+
+```
+
+::: { .notes }
+- Similarly, if checking specifically for a postitive change where $P < 0.05$, say that $C$ reduces cholesterol level by more than $T$, we would use a left-tailed test
+
+- This means that we're concerned with whether the estimate lies _outside_ the left-most 95% of the distribution mass
+  - This means that results in the right-most 5% of the mass are "significant"
+  - Any estimate lying in the left-most 95% of the distribution is "not significant"
+  
+- It's possible to dishonestly switch a result between "significant" and "not significant" by choosing to use a one-tailed or two-tailed test
+:::
+
+## Problems with statistical significance 1
+
+::: { .callout-warning }
+It is a common error to summarise comparisons by statistical significance into "significant" and "non-significant" results
+:::
+
+::: { .callout-important title="Statistical significance is not the same as practical importance" }
+- Suppose a treatment increased earnings by £10 per year with a standard error of £2 (average salary £25,000).
+  - This would be statistically, but not practically, significant
+  
+- Suppose a different treatment increased earnings by £10,000 per year with a standard error of £10,000
+  - This would not be statistically significant, but could be important in practice
+:::
+
+## Problems with statistical significance 2
+
+::: { .callout-warning }
+It is a common error to summarise comparisons by statistical significance into "significant" and "non-significant" results
+:::
+
+::: { .callout-important title="Non-significance is not the same as zero" }
+- Suppose an arterial stent treatment group outperforms the control
+  - mean difference in treadmill time: 16.6s (standard error 9.8)
+  - the 95% confidence interval for the effect includes zero, $p ≈ 0.20$
+- It's not clear whether the net treatment effect is positive or negative
+  - but we can't say that stents have no effect
+:::
+
+## Problems with statistical significance 3
+
+::: { .callout-important title="The difference between 'significant' and 'not significant' is not statistically significant" }
+1. At a $P<0.05$ threshold, only a small change is required to move from $P < 0.051$ to $P < 0.049$
+2. Large changes in significance can correspond to non-significant differences in the underlying variables
+:::
+
+```{r nonsigdiff1}
+#| fig-align: center
+
+ggplot() +
+  shaded_normal(10, 10, 0.1, 1, fill="orange", color="darkorange3", label="mean=10, sd=10", textoffset=0.001) +
+  shaded_normal(25, 10, 0.01, 1, fill="purple", color="purple", label="mean=25, sd=10", textoffset=0.001) +
+  annotate("segment", colour="black", lty="dashed", x=0, xend=0, y=0, yend=0.05) +
+  xlim(-20, 60) +
+  ylim(-0.001, 0.05) +
+  xlab("effect estimate") + 
+  ylab("density") +
+  theme_minimal()
+```
+
+::: { .notes }
+- It should hopefully be obvious that any significance threshold is arbitrary, and the difference between a value being on one side of the threshold or the other may be arbitrarily small
+- Less obviously, consider two independent studies - orange and purple here
+  - The purple study estimates an effect size of 25 with standard error of 10 units and is "statistically significant" in that it does not include zero at the 1% significance level 
+  - The orange study estimates an effect size of 10 with standard error of 10 units and is "statistically not significant" as it includes zero even at the 10% significance level
+:::
+
+## Problems with statistical significance 4
+
+::: { .callout-important title="The difference between 'significant' and 'not significant' is not statistically significant" }
+1. At a $P<0.05$ threshold, only a small change is required to move from $P < 0.051$ to $P < 0.049$
+2. Large changes in significance can correspond to non-significant differences in the underlying variables
+:::
+
+```{r nonsigdiff2}
+#| fig-align: center
+
+ggplot() +
+  shaded_normal(10, 10, 0.025, 0.975, fill="orange", color="darkorange3", label="mean=10, sd=10", textoffset=0.001) +
+  shaded_normal(25, 10, 0.025, 0.975, fill="purple", color="purple", label="mean=25, sd=10", textoffset=0.001) +
+  annotate("segment", colour="black", lty="dashed", x=0, xend=0, y=0, yend=0.05) +
+  xlim(-20, 60) +
+  ylim(-0.001, 0.05) +
+  xlab("effect estimate") + 
+  ylab("density") +
+  theme_minimal()
+```
+
+::: { .notes }
+- However, the effect sizes estimated by the two studies are not different from each other at a "statistical significance" of 95%
+  - In both cases, the central mass of each distribution includes the mean of the other
+:::
