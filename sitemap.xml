@@ -2,34 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/index.html</loc>
-    <lastmod>2025-11-18T18:27:54.553Z</lastmod>
+    <lastmod>2025-11-18T18:52:44.523Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/08-gpower.html</loc>
+    <lastmod>2025-11-18T18:52:44.451Z</lastmod>
   </url>
   <url>
     <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/06-standard_errors.html</loc>
-    <lastmod>2025-11-18T18:27:54.483Z</lastmod>
+    <lastmod>2025-11-18T18:52:44.451Z</lastmod>
   </url>
   <url>
     <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/04-estimates.html</loc>
-    <lastmod>2025-11-18T18:27:54.483Z</lastmod>
+    <lastmod>2025-11-18T18:52:44.451Z</lastmod>
   </url>
   <url>
     <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/02-nc3rs_arrive.html</loc>
-    <lastmod>2025-11-18T18:27:54.482Z</lastmod>
+    <lastmod>2025-11-18T18:52:44.451Z</lastmod>
   </url>
   <url>
     <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/01-design.html</loc>
-    <lastmod>2025-11-18T18:27:54.482Z</lastmod>
+    <lastmod>2025-11-18T18:52:44.451Z</lastmod>
   </url>
   <url>
     <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/03-distributions.html</loc>
-    <lastmod>2025-11-18T18:27:54.483Z</lastmod>
+    <lastmod>2025-11-18T18:52:44.451Z</lastmod>
   </url>
   <url>
     <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/05-significance.html</loc>
-    <lastmod>2025-11-18T18:27:54.483Z</lastmod>
+    <lastmod>2025-11-18T18:52:44.451Z</lastmod>
   </url>
   <url>
     <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/07-power.html</loc>
-    <lastmod>2025-11-18T18:27:54.483Z</lastmod>
+    <lastmod>2025-11-18T18:52:44.451Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/09-references.html</loc>
+    <lastmod>2025-11-18T18:52:44.451Z</lastmod>
   </url>
 </urlset>

@@ -462,11 +462,116 @@
     "text": "Statistical power and sample size 2\n\n\n\n\n\n\n\nTypical funders’ requirements\n\n\n\nFalse positive rate \\(\\alpha = 0.05\\)\nPower \\(1 - \\beta = 0.8\\) (80% power)\nThese are only a starting point - other values may be more appropriate depending on circumstance\n\n\n\n\n\n\n\n\n\n\n\n\nUnder experimenter control\n\n\n\nEffect size and variance\nThe appropriate statistical approach"
   },
   {
+    "objectID": "index.html#gpower",
+    "href": "index.html#gpower",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "G*Power",
+    "text": "G*Power\n\nG*Power is a powerful software tool that can compute several types of power calculations for a very wide range of statistical analyses (Faul et al. (2007))\n\n\n\n\n\n\n\nNote\n\n\nIt is beyond the workshop scope to consider all the possible uses of G*Power.\nWe will only be introducing you to basic operation of the program."
+  },
+  {
+    "objectID": "index.html#the-experiment-1",
+    "href": "index.html#the-experiment-1",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "The Experiment 1",
+    "text": "The Experiment 1\n\nIs the average weight of ten mice statistically different from 25g?\n\n\n\n\n\n\n\n\nWhich statistical test?\n\n\n\nMeans of real value measurements like height, weight, tend to follow a normal distribution. A \\(t\\)-test may be appropriate\nWe are testing the mean of a sample against a single hypothesised (null) value, so a one-sample \\(t\\)-test would be the appropriate variant\nWe want to know if the sample mean is different from the single hypothesised (null) value and are not concerned with direction, so we would use a two-tailed test"
+  },
+  {
+    "objectID": "index.html#the-experiment-2",
+    "href": "index.html#the-experiment-2",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "The Experiment 2",
+    "text": "The Experiment 2\n\nIs the average weight of ten mice statistically different from 25g?\n\n\n\n\n\n\n\n\nWhat do we want to know from the power calculation?\n\n\nWe want to determine an appropriate sample size for our experiment, given an expected effect size, variance, and choices of power and statistical significance threshold"
+  },
+  {
+    "objectID": "index.html#the-experiment-3",
+    "href": "index.html#the-experiment-3",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "The Experiment 3",
+    "text": "The Experiment 3\n\nIs the average weight of ten mice statistically different from 25g?\n\n\n\n\n\n\n\n\nWhat kind of power calculation should we perform?\n\n\nWe want to calculate an appropriate sample size for our experiment before we perform it, so we require an a priori power calculation"
+  },
+  {
+    "objectID": "index.html#the-experiment-4",
+    "href": "index.html#the-experiment-4",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "The Experiment 4",
+    "text": "The Experiment 4\n\nIs the average weight of ten mice statistically different from 25g?\n\n\n\n\n\n\n\n\nWhat statistical power should we use?\n\n\nWe will use standard funders’ requirements of 80% power at \\(P &lt; 0.05\\)\n\\[\\alpha=0.05, \\beta=0.2, 1-\\beta=0.8 \\]"
+  },
+  {
+    "objectID": "index.html#the-experiment-5",
+    "href": "index.html#the-experiment-5",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "The Experiment 5",
+    "text": "The Experiment 5\n\nIs the average weight of ten mice statistically different from 25g?\n\n\n\n\n\n\n\n\nWhat is the expected effect size and variation in the sample?\n\n\nThere are no absolute values, but we will make the following assumptions\n\nA 10% difference in weight from the expected 25g null would be meaningful, for an effect size of 2.5g\nWe assume that the weight of individuals in the sample has a standard deviation of 1.25g, so \\(\\sigma = 1.25\\)"
+  },
+  {
+    "objectID": "index.html#lets-start",
+    "href": "index.html#lets-start",
+    "title": "MP968 Experimental Design Workshop",
+    "section": "Let’s start!",
+    "text": "Let’s start!\n\n\n\n\n\n\n\n\nNote\n\n\nWe now have enough information to calculate an appropriate sample size\n\n\n\n\n\n\n\n\n\n\nparameters\n\n\n\ntwo-tailed, one sample \\(t\\)-test\na priori power calculation to compute required sample size\n\\(\\alpha = 0.05\\)\nPower \\(1 - \\beta = 0.8\\)\nEffect size = 2.5\nStandard deviation, \\(\\sigma = 1.25\\)\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: G*Power start screen"
+  },
+  {
     "objectID": "index.html#references-1",
     "href": "index.html#references-1",
     "title": "MP968 Experimental Design Workshop",
     "section": "References",
-    "text": "References\n\n\n\n\nBate, Simon T., and Robin A. Clark. 2014. The Design and Statistical Analysis of Animal Experiments. Cambridge University Press.\n\n\nKarp, Natasha A, and Derek Fry. 2021. “What Is the Optimum Design for My Animal Experiment?” BMJ Open Sci. 5 (1): e100126.\n\n\nKilkenny, Carol, William J Browne, Innes C Cuthill, Michael Emerson, and Douglas G Altman. 2010. “Improving Bioscience Research Reporting: The ARRIVE Guidelines for Reporting Animal Research.” PLoS Biol. 8 (6): e1000412.\n\n\nKilkenny, Carol, Nick Parsons, Ed Kadyszewski, Michael F W Festing, Innes C Cuthill, Derek Fry, Jane Hutton, and Douglas G Altman. 2009. “Survey of the Quality of Experimental Design, Statistical Analysis and Reporting of Research Using Animals.” PLoS One 4 (11): e7824."
+    "text": "References\n\n\n\n\nBate, Simon T., and Robin A. Clark. 2014. The Design and Statistical Analysis of Animal Experiments. Cambridge University Press.\n\n\nFaul, Franz, Edgar Erdfelder, Albert-Georg Lang, and Axel Buchner. 2007. “G*Power 3: A Flexible Statistical Power Analysis Program for the Social, Behavioral, and Biomedical Sciences.” Behav. Res. Methods 39 (2): 175–91.\n\n\nKarp, Natasha A, and Derek Fry. 2021. “What Is the Optimum Design for My Animal Experiment?” BMJ Open Sci. 5 (1): e100126.\n\n\nKilkenny, Carol, William J Browne, Innes C Cuthill, Michael Emerson, and Douglas G Altman. 2010. “Improving Bioscience Research Reporting: The ARRIVE Guidelines for Reporting Animal Research.” PLoS Biol. 8 (6): e1000412.\n\n\nKilkenny, Carol, Nick Parsons, Ed Kadyszewski, Michael F W Festing, Innes C Cuthill, Derek Fry, Jane Hutton, and Douglas G Altman. 2009. “Survey of the Quality of Experimental Design, Statistical Analysis and Reporting of Research Using Animals.” PLoS One 4 (11): e7824."
+  },
+  {
+    "objectID": "08-gpower.html",
+    "href": "08-gpower.html",
+    "title": "G*Power Walkthrough",
+    "section": "",
+    "text": "G*Power is a powerful software tool that can compute several types of power calculations for a very wide range of statistical analyses (@Faul2007-le)\n\n\n\n\n\n\n\nNote\n\n\n\nIt is beyond the workshop scope to consider all the possible uses of G*Power.\nWe will only be introducing you to basic operation of the program.\n\n\n\n\n\n\nIs the average weight of ten mice statistically different from 25g?\n\n\n\n\n\n\n\nTipWhich statistical test?\n\n\n\n\nMeans of real value measurements like height, weight, tend to follow a normal distribution. A \\(t\\)-test may be appropriate\nWe are testing the mean of a sample against a single hypothesised (null) value, so a one-sample \\(t\\)-test would be the appropriate variant\nWe want to know if the sample mean is different from the single hypothesised (null) value and are not concerned with direction, so we would use a two-tailed test\n\n\n\n\n\n\n\nIs the average weight of ten mice statistically different from 25g?\n\n\n\n\n\n\n\nTipWhat do we want to know from the power calculation?\n\n\n\nWe want to determine an appropriate sample size for our experiment, given an expected effect size, variance, and choices of power and statistical significance threshold\n\n\n\n\n\n\nIs the average weight of ten mice statistically different from 25g?\n\n\n\n\n\n\n\nTipWhat kind of power calculation should we perform?\n\n\n\nWe want to calculate an appropriate sample size for our experiment before we perform it, so we require an a priori power calculation\n\n\n\n\n\n\nIs the average weight of ten mice statistically different from 25g?\n\n\n\n\n\n\n\nTipWhat statistical power should we use?\n\n\n\nWe will use standard funders’ requirements of 80% power at \\(P &lt; 0.05\\)\n\\[\\alpha=0.05, \\beta=0.2, 1-\\beta=0.8 \\]\n\n\n\n\n\n\nIs the average weight of ten mice statistically different from 25g?\n\n\n\n\n\n\n\nTipWhat is the expected effect size and variation in the sample?\n\n\n\nThere are no absolute values, but we will make the following assumptions\n\nA 10% difference in weight from the expected 25g null would be meaningful, for an effect size of 2.5g\nWe assume that the weight of individuals in the sample has a standard deviation of 1.25g, so \\(\\sigma = 1.25\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nWe now have enough information to calculate an appropriate sample size\n\n\n\n\n\n\n\n\nTipparameters\n\n\n\n\ntwo-tailed, one sample \\(t\\)-test\na priori power calculation to compute required sample size\n\\(\\alpha = 0.05\\)\nPower \\(1 - \\beta = 0.8\\)\nEffect size = 2.5\nStandard deviation, \\(\\sigma = 1.25\\)\n\n\n\n\n\n\n\n\n\n\nFigure 1: G*Power start screen"
+  },
+  {
+    "objectID": "08-gpower.html#gpower",
+    "href": "08-gpower.html#gpower",
+    "title": "G*Power Walkthrough",
+    "section": "",
+    "text": "G*Power is a powerful software tool that can compute several types of power calculations for a very wide range of statistical analyses (@Faul2007-le)\n\n\n\n\n\n\n\nNote\n\n\n\nIt is beyond the workshop scope to consider all the possible uses of G*Power.\nWe will only be introducing you to basic operation of the program."
+  },
+  {
+    "objectID": "08-gpower.html#the-experiment-1",
+    "href": "08-gpower.html#the-experiment-1",
+    "title": "G*Power Walkthrough",
+    "section": "",
+    "text": "Is the average weight of ten mice statistically different from 25g?\n\n\n\n\n\n\n\nTipWhich statistical test?\n\n\n\n\nMeans of real value measurements like height, weight, tend to follow a normal distribution. A \\(t\\)-test may be appropriate\nWe are testing the mean of a sample against a single hypothesised (null) value, so a one-sample \\(t\\)-test would be the appropriate variant\nWe want to know if the sample mean is different from the single hypothesised (null) value and are not concerned with direction, so we would use a two-tailed test"
+  },
+  {
+    "objectID": "08-gpower.html#the-experiment-2",
+    "href": "08-gpower.html#the-experiment-2",
+    "title": "G*Power Walkthrough",
+    "section": "",
+    "text": "Is the average weight of ten mice statistically different from 25g?\n\n\n\n\n\n\n\nTipWhat do we want to know from the power calculation?\n\n\n\nWe want to determine an appropriate sample size for our experiment, given an expected effect size, variance, and choices of power and statistical significance threshold"
+  },
+  {
+    "objectID": "08-gpower.html#the-experiment-3",
+    "href": "08-gpower.html#the-experiment-3",
+    "title": "G*Power Walkthrough",
+    "section": "",
+    "text": "Is the average weight of ten mice statistically different from 25g?\n\n\n\n\n\n\n\nTipWhat kind of power calculation should we perform?\n\n\n\nWe want to calculate an appropriate sample size for our experiment before we perform it, so we require an a priori power calculation"
+  },
+  {
+    "objectID": "08-gpower.html#the-experiment-4",
+    "href": "08-gpower.html#the-experiment-4",
+    "title": "G*Power Walkthrough",
+    "section": "",
+    "text": "Is the average weight of ten mice statistically different from 25g?\n\n\n\n\n\n\n\nTipWhat statistical power should we use?\n\n\n\nWe will use standard funders’ requirements of 80% power at \\(P &lt; 0.05\\)\n\\[\\alpha=0.05, \\beta=0.2, 1-\\beta=0.8 \\]"
+  },
+  {
+    "objectID": "08-gpower.html#the-experiment-5",
+    "href": "08-gpower.html#the-experiment-5",
+    "title": "G*Power Walkthrough",
+    "section": "",
+    "text": "Is the average weight of ten mice statistically different from 25g?\n\n\n\n\n\n\n\nTipWhat is the expected effect size and variation in the sample?\n\n\n\nThere are no absolute values, but we will make the following assumptions\n\nA 10% difference in weight from the expected 25g null would be meaningful, for an effect size of 2.5g\nWe assume that the weight of individuals in the sample has a standard deviation of 1.25g, so \\(\\sigma = 1.25\\)"
+  },
+  {
+    "objectID": "08-gpower.html#lets-start",
+    "href": "08-gpower.html#lets-start",
+    "title": "G*Power Walkthrough",
+    "section": "",
+    "text": "Note\n\n\n\nWe now have enough information to calculate an appropriate sample size\n\n\n\n\n\n\n\n\nTipparameters\n\n\n\n\ntwo-tailed, one sample \\(t\\)-test\na priori power calculation to compute required sample size\n\\(\\alpha = 0.05\\)\nPower \\(1 - \\beta = 0.8\\)\nEffect size = 2.5\nStandard deviation, \\(\\sigma = 1.25\\)\n\n\n\n\n\n\n\n\n\n\nFigure 1: G*Power start screen"
   },
   {
     "objectID": "06-standard_errors.html",
