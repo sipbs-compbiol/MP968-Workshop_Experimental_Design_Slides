@@ -19,18 +19,21 @@ normal_distplot <- function(mu, sd) {
 }
 
 # Shade a normal curve between zstart and zend
-shade_normal <- function(mu, sd, zstart, zend, fill="#00998a", alpha=0.5, textoffset=0.01) {
+shade_normal <- function(mu, sd, zstart, zend, fill="#00998a", alpha=0.5,
+                         xlabels=TRUE, textoffset=0.01) {
   xmin <- qnorm(zstart, mu, sd)
   xmax <- qnorm(zend, mu, sd)
   
   # Mesh of distribution points
-  data = data.frame(x=seq(mu - 4 * sd, mu + 4 * sd, by=0.01)) %>%
+  data <- data.frame(x=seq(mu - 4 * sd, mu + 4 * sd, by=0.01)) %>%
     mutate(y=dnorm(x, mu, sd))
   
   # Return ggplot2 shaded area as list of <ggproto> objects
-  list(
+  area <- list(
     geom_area(data=subset(data, x >= xmin & x <= xmax),
-              aes(x=x, y=y), fill=fill, color=NA, alpha=0.5),
+              aes(x=x, y=y), fill=fill, color=NA, alpha=0.5)
+  )
+  labels <- list(
     annotate("segment", color=fill,
              x=xmin, xend=xmin,
              y=0, yend=dnorm(xmin, mu, sd)),
@@ -44,6 +47,12 @@ shade_normal <- function(mu, sd, zstart, zend, fill="#00998a", alpha=0.5, textof
              x=xmax, y=-textoffset,
              label=ifelse(zend == 1, "", paste(100 * zend, "%", sep="")))
   )
+  
+  if (xlabels) {
+    c(area, labels)
+  } else {
+    area
+  }
   
 }
 
@@ -64,7 +73,7 @@ ci_normal <- function(mu, sd, ci, alpha=0.4) {
 }
 
 # Add a dashed line marker at a given x position
-add_x_marker <- function(x, y, label, linecolor, textcolor) {
+add_x_marker <- function(x, y, label, linecolor, textcolor, textoffset=0.01) {
   list(
     annotate("segment", # show the observed difference as a dashed line
       x = x, xend = x,
@@ -72,15 +81,18 @@ add_x_marker <- function(x, y, label, linecolor, textcolor) {
       colour = linecolor,
       size = 1, linetype = "dashed"
     ),
-    annotate("text", x = x, y = y + 0.01, label = label, color = textcolor)
+    annotate("text", x = x, y = y + textoffset, label = label, color = textcolor)
   )
 }
 
 # Add shaded normal curve in specific colour with labels
-shaded_normal <- function(mu, sd, zstart, zend, fill="orange", color="orange", label="", alpha=0.5, textoffset=0.01, textyoffset=0) {
+shaded_normal <- function(mu, sd, zstart=0.05, zend=0.95,
+                          fill="orange", color="orange", label="",
+                          xlabels=TRUE,
+                          alpha=0.5, textoffset=0.01, textyoffset=0) {
   list(
     stat_function(fun=dnorm, args=list(mean=mu, sd=sd), geom="line", colour=color),
-    shade_normal(mu=mu, sd=sd, zstart=zstart, zend=zend, fill=fill, alpha=alpha, textoffset=textoffset),
+    shade_normal(mu=mu, sd=sd, zstart=zstart, zend=zend, fill=fill, alpha=alpha, textoffset=textoffset, xlabels=xlabels),
     annotate("text", colour=color, x=mu + textyoffset, y=dnorm(mu, mu, sd) + 2 * textoffset, label=label),
     annotate("segment", colour=color, x=mu, xend=mu, y=0, yend=dnorm(mu, mu, sd))
   )

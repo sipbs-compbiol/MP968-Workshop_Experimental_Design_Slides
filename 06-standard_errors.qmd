@@ -230,3 +230,20 @@ ggplot(dfm, aes(x=z, y=t_statistic, color=sample_size)) +
 
 - **Changing the sample size changes how sensitive our hypothesis test is**
 :::
+
+## Statistical significance and effect size
+
+::: { .callout-important title="Statistical significance is not the point" }
+- We can meet any statistical significance threshold for a difference by sufficiently increasing the sample size
+:::
+
+::: { .callout-warning title="Statistical significance is not the same as practical importance" }
+- Suppose a treatment increased earnings by £10 per year with a standard error of £2 (average salary £25,000).
+  - This would be statistically, but not practically, significant
+:::
+
+::: { .callout-tip title="What matters is _effect size_" }
+In all our experiments we should be concerned _not_ with "statistical significance," but with **how likely it is that, if there is a meaningful effect of the treatment, our experiment will be able to detect it?**
+
+- We need to be concerned with _statistical power_
+:::

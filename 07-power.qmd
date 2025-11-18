@@ -1,0 +1,212 @@
+```{r}
+#| echo: false
+#| eval: true 
+#| file: normal_curves.R
+```
+
+# Statistical power
+
+## Statistical power
+
+::: { .callout-important }
+Statistical _power_ is defined as the probability, **before a study is performed**, that a particular comparison will achieve "statistical significance" at some predetermined level (e.g. $P < 0.05$) **given an assumed true effect size**.
+:::
+
+::: { .callout-warning title="The process"}
+1. Hypothesise an appropriate effect size (e.g. what effect will improve health?)
+2. Determine the $p$-value threshold you consider "statistically significant"
+2. Make reasoned assumptions about the variation in the data (e.g. what distribution? what variance?)
+3. Choose a sample size
+4. Use probability calculations to determine the chance that your observed $p$-value will be below the threshold (accept the null hypothesis) for the hypothesised effect size
+:::
+
+## Effect sizes
+
+::: { .callout-warning title="Power analysis depends on an assumed effect size" }
+- The true effect size is almost never known ahead of time
+  - Determining the effect size is usually why we're doing the study
+:::
+
+::: { .callout-tip title="How to choose effect sizes" }
+- Try a range of values consistent with relevant literature
+- Determine what value would be of practical interest (e.g. improvement in outcomes of 10%)
+:::
+
+::: { .callout-important title="How _not_ to choose effect size" }
+- **DO NOT USE AN ESTIMATE FROM A SINGLE NOISY STUDY!**
+  - Noisy studies suffer from _The Winner's Curse_
+:::
+
+## The Winner's Curse 1
+
+::: { .callout-caution title="A low-powered pilot study" }
+- Suppose we ran a small pilot study with only a few individuals
+- The study, by design, has _low statistical power_
+  - The variance of the data is relatively large, compared to the true effect size
+:::
+
+```{r winner_1}
+#| fig-align: center
+
+# Shaded normal curve for the Winner's curse - a low-powered pilot study
+# True effect size is 2%, SE=8
+ggplot() + 
+  shaded_normal(mu=2, sd=8, zstart=0.025, zend=0.93, xlabels=FALSE) +
+  add_x_marker(x=2, y=0.06, linecolor="purple", textcolor="purple", label="true effect size", textoffset=0.002) +
+  add_x_marker(x=0, y=0.05, linecolor="darkorange", textcolor="darkorange", label="null effect size", textoffset=0.002) +
+  xlim(-30, 30) +
+  xlab("Estimated effect size (percent)") +
+  theme_minimal()
+```
+
+::: { .notes }
+To see what I mean, suppose that we ran a pilot study for a treatment where the true effect size was only a two percentage point increase in the outcome, but this effect is estimated with a standard error of about eight percentage points.
+
+- We test this against the null hypothesis that the effect size is zero
+- We set up the null hypothesis so that the result of the study is "positive"/"statistically significant" if the measured difference is more than two standard errors away from zero - i.e. outwith the orange shading of the curve
+
+- **Even though the actual true mean effect is 2%, the larger standard error means that there is the possibility of the measured result falling outside that central shaded area**
+:::
+
+## The Winner's Curse 2
+
+::: { .callout-caution title="You get a statistically significant result!" }
+- You think you won, but you lost! (The Winner's Curse)
+  - The estimate is either eight times **too large** (at least 16% instead of 2%) _or_
+  - The estimate **has the wrong sign** (a negative change instead of positive)
+:::
+
+```{r winner_2}
+#| fig-align: center
+
+# Shaded normal curve for the Winner's curse - a low-powered pilot study
+# True effect size is 2%, SE=8
+ggplot() + 
+  shaded_normal(mu=2, sd=8, zstart=0.025, zend=0.93, xlabels=FALSE) +
+  add_x_marker(x=2, y=0.06, linecolor="purple", textcolor="purple", label="true effect size", textoffset=0.002) +
+  add_x_marker(x=0, y=0.05, linecolor="darkorange", textcolor="darkorange", label="null effect size", textoffset=0.002) +
+  shade_normal(mu=2, sd=8, zstart=0.93, zend=1, xlabels=FALSE, fill="plum4") +
+  shade_normal(mu=2, sd=8, zstart=0.0, zend=0.025, xlabels=FALSE, fill="plum4") +
+  annotate("text", x=20, y=0.02, color="purple",
+           label=c("You think you won \n but your estimate \n is over eight times \n too high! \n (≈7%) ")) + 
+  annotate("text", x=-18, y=0.02, color="purple",
+           label=c("You think you won \n but your estimate \n has the wrong sign! \n (≈2.5%)")) + 
+  xlim(-30, 30) +
+  xlab("Estimated effect size (percent)") +
+  theme_minimal()
+```
+
+::: { .notes }
+- In this low-powered experiment, any "statistically significant" result must fall into one of the dark purple sections of the curve at the extremes
+  - The left-most 2.5% of outcomes or
+  - The right-most 7% of outcomes
+  
+- The problem is this:
+  - "Statistically significant" results on the right hand side overestimate the size of the true effect by at least eight times (minimum value 16%)
+  - "Statistically significant" results on the right hand side indicate that the effect is _negative_ - a reduction in effect, when the true effect is small but positive
+:::
+
+## The Winner's Curse 3
+
+::: { .callout-important title="The trap" }
+**Any apparent success of low-powered studies masks larger failure**
+
+When _signal_ (effect size) is low and _noise_ (standard error) is high, "statistically significant" results are likely to be wrong.
+
+**Low-power studies tend not to replicate well**
+:::
+
+::: { .callout-warning }
+**Low-power studies have essentially no chance of providing useful information**
+
+We can say this even before data are collected
+:::
+
+::: { .callout-caution title="Published results tend to be overestimates" }
+:::
+
+## Statistical power and ethics
+
+::: { .callout-important title="It is unethical to under-power animal studies" }
+> Under-powered in vivo experiments waste time and resources, lead to unnecessary animal suffering and result in erroneous biological conclusions (NC3Rs Experimental Design Assistant guide)
+:::
+
+::: { .callout-caution title="It is unethical to over-power animal studies" }
+> Ethically, when working with animals we need to conduct a harm–benefit analysis to ensure the animal use is justified for the scientific gain. Experiments should be robust, not use more or fewer animals than necessary, and truly add to the knowledge base of science (@Karp2021-lc)
+:::
+
+::: { .callout-warning title="So how should we _appropriately_ power animal studies?" }
+:::
+
+## Statistical power and error 1
+
+We often refer to two kinds of statistical error
+
+::: { .callout-tip title="Type I Error ($\alpha$)" }
+- Type I error is _the probability of **rejecting** a null hypothesis, when the null hypothesis is **true**_
+  - Also known as a "false positive error"
+- Represented by the Greek letter $\alpha$
+:::
+
+::: { .callout-note title="Type II Error ($\beta$)" }
+- Type I error is _the probability of **accepting** a null hypothesis, when the null hypothesis is **false**_
+  - Also known as a "false negative error"
+- Represented by the Greek letter $\beta$
+:::
+
+::: { .callout-important title="Statistical power is $1 - \beta$"}
+:::
+
+## Statistical power and error 2
+
+Statistical power needs context: the expected error rates of the experiment at a given effect size, e.g.
+
+> The experiment has 80% power at $\alpha = 0.05$ for an effect size of 2mM/L
+
+::: { .callout-tip title="How to read this" }
+- "an effect size of 2mM/L": we are aiming to detect an effect of at least 2mM/L (e.g. blood glucose concentration)
+- "$\alpha = 0.05$": we are using a significance test threshold ($\alpha$, _type I error rate_) of $P < 0.05$
+- "80% power": **we expect the study to report a significant effect, _where one truly exists_, 80% of the time**
+:::
+
+## Statistical power and error 3
+
+> The experiment has 80% power at $\alpha = 0.05$ for an effect size of 2mM/L
+
+::: { .callout-important title="If the drug truly has no effect" }
+- The test has $\alpha = 0.05$, so we would expect to reject the null hypothesis **incorrectly** 5% of the time
+- If we ran the experiment 100 times, we would expect to see a result implying that the drug was effective **five times**
+:::
+
+::: { .callout-tip title="If the drug truly has an effect" }
+- The test has predicted power $1 - \beta = 0.8$, so the type II error rate $\beta = 0.2$ and we would expect to accept the null hypothesis **incorrectly** 20% of the time
+- If we ran the experiment 100 times, we would expect to see a result implying that the drug was effective **eighty times**
+:::
+
+## Statistical power and sample size 1
+
+::: { .callout-tip title="What we need, to calculate appropriate sample size" }
+- An **acceptable false positive rate** (type I error, $\alpha$)
+- An **acceptable false negative rate** (type II error, $\beta$)
+  - This is equivalent to knowing the _target statistical power_ ($1 - \beta$)
+- The expected **effect size** and **variance**
+- The **statistical test** being performed
+:::
+
+::: { .callout-important }
+We need this information to calculate an appropriate, _ethical_ sample size
+:::
+
+## Statistical power and sample size 2
+
+::: { .callout-important title="Typical funders' requirements" }
+- False positive rate $\alpha = 0.05$
+- Power $1 - \beta = 0.8$ (80% power)
+
+- These are only a starting point - other values may be more appropriate depending on circumstance
+:::
+
+::: { .callout-warning title="Under experimenter control" }
+- Effect size and variance
+- The appropriate statistical approach
+:::

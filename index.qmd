@@ -36,6 +36,9 @@ bibliography: references.bib
 
 {{< include 06-standard_errors.qmd >}}
 
+{{< include 07-power.qmd >}}
+
+
 # References
 
 ## References
