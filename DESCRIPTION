@@ -1,0 +1,20 @@
+Package: MP968-Workshop_Experimental_Design_Slides
+Title: MP968-Workshop_Experimental_Design_Slides
+Version: 0.1
+Authors@R: c(
+    person("Leighton", "Pritchard", , "leighton.pritchard@strath.ac.uk", role = c("aut", "cre")),
+  )
+URL: https://github.com/sipbs-compbiol/MP968-Workshop_Experimental_Design
+Depends: 
+    R (>= 3.1.0)
+Imports:
+    tidyverse (>= 2.0.0),
+    ggplot2,
+    ggpubr,
+    latex2exp
+Suggests:
+    knitr,
+    sessioninfo
+Remotes: tidyverse/dplyr
+Encoding: UTF-8
+License: CC NC ND 4.0
