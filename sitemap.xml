@@ -2,6 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/index.html</loc>
-    <lastmod>2025-11-14T16:07:02.854Z</lastmod>
+    <lastmod>2025-11-18T16:19:39.359Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/05-significance.html</loc>
+    <lastmod>2025-11-18T16:19:39.284Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/03-distributions.html</loc>
+    <lastmod>2025-11-18T16:19:39.284Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/01-design.html</loc>
+    <lastmod>2025-11-18T16:19:39.283Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/02-nc3rs_arrive.html</loc>
+    <lastmod>2025-11-18T16:19:39.283Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/04-estimates.html</loc>
+    <lastmod>2025-11-18T16:19:39.284Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sipbs-compbiol.github.io/MP968-Workshop_Experimental_Design_Slides/06-standard_errors.html</loc>
+    <lastmod>2025-11-18T16:19:39.284Z</lastmod>
   </url>
 </urlset>

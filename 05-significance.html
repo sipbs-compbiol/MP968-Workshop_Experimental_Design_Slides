@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>significance</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-8fd1faf6fd93e4e6d207ae0f9db51d78.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: ggplot2</code></pre>
+</div>
+</div>
+<section id="statistical-significance-and-hypothesis-testing" class="level1">
+<h1>Statistical significance and hypothesis testing</h1>
+<div class="notes">
+<ul>
+<li>A major concern when performing data analysis in general, which is heightened when animal suffering is a possibility, is that we might _mistakenly) come to strong conclusions that do not replicate or that do not reflect real patterns in the underlying population.</li>
+<li>Statistical theories of hypothesis testing and error analysis have been developed to quantify these possibilities, <strong>to help with decision making</strong></li>
+</ul>
+</div>
+<section id="statistical-significance-1" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-significance-1">Statistical significance 1</h2>
+<ul>
+<li>Some scientists choose to consider a result to be “stable” or “real” if it is “<em>statistically significant</em>”</li>
+<li>They may also consider “non-signifcant” results to be noisy or less reliable</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I, and many other statisticians, do not recommend this approach.</p>
+<p>However, the concept is widespread and we need to discuss it</p>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li><p>Even if you’re not very familiar with what it means precisely, I’m sure you’ve come across “statistical” significance in at least one scientific context.</p></li>
+<li><p>“Statistical significance” is a <strong>decision rule</strong> used by some scientists to consider whether a result is “stable” or “real”</p>
+<ul>
+<li>They may also use “statistical significance” to exclude some results as noisy or unreliable</li>
+</ul></li>
+<li><p>I and many other statisticians do not recommend this approach, and we’ll see why</p></li>
+</ul>
+</div>
+</section>
+<section id="statistical-significance-2" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-significance-2">Statistical significance 2</h2>
+<div class="callout callout-style-default callout-caution callout-titled" title="A common definition">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>A common definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Statistical significance is conventionally defined as a threshold (commonly, a <span class="math inline">\(p\)</span>-value less than 0.05) relative to some <em>null hypothesis</em> or <em>prespecified value</em> that indicates no effect is present.</p></li>
+<li><p>E.g., an estimate may be considered “statistically significant at <span class="math inline">\(P &lt; 0.05\)</span>” if it:</p>
+<ul>
+<li>lies at least two standard errors from the mean</li>
+<li>is a difference that lies at least two standard errors from zero</li>
+</ul></li>
+<li><p>More generally, an estimate is “<strong>not</strong> statistically significant” if, e.g.</p>
+<ul>
+<li>the observed value can reasonably be explained by chance variation</li>
+<li>it is a difference that lies less than two standard errors from zero</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Most tests rely on probability distributions">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Most tests rely on probability distributions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>We need to relate the measured values in the real world to an appropriate distribution that <em>approximates</em> them</li>
+</ul>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li><p>The way you’re likely to see statistical significance presented is that some threshold - usually a p-value of less than 0.05 - is applied in a statistical test, relative to some <em>null hypothesis</em> or <em>prespecified value</em> that indicates the absence of an effect</p></li>
+<li><p>So you are likely to see an estimate be considered “statistically significant at P&lt;0.05” if it lies at least two SEs from the mean, or is a difference that lies at least two SEs from zero</p></li>
+<li><p>Conversely, you will see estimates be considered “not statistically significant at P&lt;0.05” if they lie less than two SEs from the mean, or the observed value can reasonably be explained by chance variation alone</p></li>
+<li><p>As you might have guessed from the talk of standard errors and distances from means, we map our measured values in the real world to statistical probability distributions to calculate these values.</p></li>
+</ul>
+</div>
+</section>
+<section id="a-simple-example-the-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-example-the-experiment">A simple example: The experiment</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="The experiment">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The experiment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Two drugs, <span class="math inline">\(C\)</span> and <span class="math inline">\(T\)</span> lower cholesterol<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and we want to compare their effectiveness</li>
+<li>We randomise assignment of <span class="math inline">\(C\)</span> and <span class="math inline">\(T\)</span> to members of a single cohort of comparable individuals, whose pre-treatment cholesterol level is assumed to be drawn from the same distribution (i.e.&nbsp;be approximately the same)</li>
+<li>We measure the post-treatment cholesterol levels <span class="math inline">\(y_T\)</span> and <span class="math inline">\(y_C\)</span> for each individual in the two groups.</li>
+<li>We calculate the average measured <span class="math inline">\(\bar{y}_T\)</span> and <span class="math inline">\(\bar{y}_C\)</span> for the <em>treatment</em> and <em>control</em> groups as <strong>estimates</strong> for the true post-treatment levels <span class="math inline">\(\theta_T\)</span> and <span class="math inline">\(\theta_C\)</span>.
+<ul>
+<li>We also calculate standard deviation for the two groups, <span class="math inline">\(\sigma_T\)</span> and <span class="math inline">\(\sigma_C\)</span></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li>Let’s consider a simple experiment</li>
+<li>We want to compare the efficacy of two drugs, C and T, in their ability to lower cholesterol
+<ul>
+<li>We assume a uniform pool of individuals, and randomly assign C and T to two equally-sized groups drawn from that cohort</li>
+<li><strong>This implies that the starting cholesterol level of all individuals is drawn from the same distribution</strong></li>
+</ul></li>
+<li>We administer the drugs in the same way, for the same period of time, and measure the post-treatment cholesterol level in each individual
+<ul>
+<li>We calculate the mean and standard deviation for the two groups</li>
+<li>These allow us to estimate the underlying normal distribution of post-treatment cholesterol levels in each group</li>
+</ul></li>
+<li>We can use the estimated means, <span class="math inline">\(\bar{y}_T\)</span> and <span class="math inline">\(\bar{y}_C\)</span> for the <em>treatment</em> and <em>control</em> groups as <strong>estimates</strong> for the true post-treatment levels <span class="math inline">\(\theta_T\)</span> and <span class="math inline">\(\theta_C\)</span>.</li>
+</ul>
+</div>
+</section>
+<section id="a-simple-example-the-hypotheses" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-example-the-hypotheses">A simple example: The hypotheses</h2>
+<ul>
+<li>We want to know if the treatments have different sizes of effect
+<ul>
+<li>If they do, there should be a difference between the (average) post-treatment cholesterol level in each group</li>
+<li>The <em>true</em> post-treatment levels are <span class="math inline">\(\theta_T\)</span> and <span class="math inline">\(\theta_C\)</span></li>
+<li>We have estimated means, <span class="math inline">\(\bar{y}_T\)</span> and <span class="math inline">\(\bar{y}_C\)</span> for post-treatment levels</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled" title="The hypotheses">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>The hypotheses
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>We are interested in <span class="math inline">\(\theta = \theta_T - \theta_C\)</span>, the expected post-test difference in cholesterol between the two groups <span class="math inline">\(T\)</span> and <span class="math inline">\(C\)</span>.</li>
+<li>Our <strong>null hypothesis</strong> (<span class="math inline">\(H_0\)</span>) is that <span class="math inline">\(\theta = 0\)</span>, i.e.&nbsp;<strong>there is no difference</strong> (<span class="math inline">\(\theta_C = \theta_T\)</span>)</li>
+<li>Our <strong>alternative hypothesis</strong> (<span class="math inline">\(H_1\)</span>) is that <strong>there is a difference</strong>, so <span class="math inline">\(\theta \neq 0\)</span>, (i.e.&nbsp;<span class="math inline">\(\theta_C \neq \theta_T\)</span>)</li>
+</ul>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li>Our goal in this experiment is to determine whether the treatments have different effects on lowering cholesterol
+<ul>
+<li>If they do, then there should be a difference between the (average) post-treatment cholesterol levels of groups T and C</li>
+</ul></li>
+<li>There are <em>true</em> post treatment levels for each group: <span class="math inline">\(\theta_T\)</span> and <span class="math inline">\(\theta_C\)</span>
+<ul>
+<li>But we have only estimated them as <span class="math inline">\(\bar{y}_T\)</span> and <span class="math inline">\(\bar{y}_C\)</span></li>
+<li>So we turn to a hypothesis test to determine how likely it is our estimates support there being a difference in the true levels between the two groups</li>
+</ul></li>
+<li>We set up a <strong>null hypothesis</strong> that there is no difference between the groups: <span class="math inline">\(\theta = 0\)</span>
+<ul>
+<li>In this hypothesis, any deviation from zero we see is considered the result of chance variation in the data, or error we cannot eliminate from measurements</li>
+</ul></li>
+<li>We also define an <strong>alternative hypothesis</strong> that there <em>is</em> a difference between the groups: <span class="math inline">\(\theta \neq 0\)</span>
+<ul>
+<li>We’re not insisting that <span class="math inline">\(\theta\)</span> is greater than or less than zero, just that it’s not zero</li>
+<li>And also that any deviation from zero is not accounted for by the null hypothesis</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="a-simple-example-the-distribution-1" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-example-the-distribution-1">A simple example: The distribution 1</h2>
+<ul>
+<li>To perform a statistical test, we may assume a distribution and parameters for the <em>null hypothesis</em>
+<ul>
+<li>We can then test the observed estimate against that distribution to see how likely it is that the <em>null hypothesis</em> would have generated it</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="The distribution">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The distribution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>We use a probability distribution reflecting generation of the null hypothesis: <span class="math inline">\(\theta_C = \theta_T\)</span>
+<ul>
+<li>This allows us to define a test statistic <span class="math inline">\(T\)</span> (i.e.&nbsp;<em>a threshold probability of “significance”</em>) <strong>in advance</strong></li>
+</ul></li>
+<li>We test the estimated value from the experiment (<span class="math inline">\(\bar{y}_T - \bar{y}_C\)</span>) to calculate a <span class="math inline">\(p\)</span>-value for our estimate: <span class="math inline">\(p = \textrm{Pr}(T(y^{\textrm{null}}) &gt; T(\bar{y}_T - \bar{y}_C))\)</span></li>
+</ul>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li>At this point we haven’t defined what our null hypothesis distribution should be, but we need to do so
+<ul>
+<li>Once we have this, we can test our observed estimate of <span class="math inline">\(\hat{\theta} = \bar{y}_T - \bar{y}_C\)</span> against the distribution to see how likely it is to be explained by the null hypothesis</li>
+</ul></li>
+<li>We need to choose a probability distribution that reflects the process generating the null hypothesis
+<ul>
+<li>In this case, we could shoose a normal distribution, which is typically appropriate for this kind of measurement</li>
+</ul></li>
+<li>Then we can define a test statistic <span class="math inline">\(T\)</span> <strong>in advance</strong>
+<ul>
+<li><span class="math inline">\(T\)</span> represents a threshold value in the null distribution - one where we would consider a larger difference to be meaningful</li>
+<li>You may be familiar with setting P&lt;0.05, where the probability of seeing some value in the null distribution is 0.05 or less, and we might choose to set a value of <span class="math inline">\(T\)</span> that corresponds to this</li>
+</ul></li>
+<li>We then calculate the test statistic corresponding to our actual estimate, and calculate the <span class="math inline">\(p\)</span>-value
+<ul>
+<li>This is the probability of observing our estimate, or a more extreme value, under the assumptions of the null model distribution</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="a-simple-example-the-null-hypothesis" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-example-the-null-hypothesis">A simple example: The null hypothesis</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="The null hypothesis">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The null hypothesis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Assume that the true difference <span class="math inline">\(\theta\)</span> is normally-distributed with <span class="math inline">\(\mu_\theta=0\)</span>, <span class="math inline">\(\sigma_\theta=1\)</span></li>
+</ul>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normal_distplot</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-significance_files/figure-html/h0_dist-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li>Suppose that the true difference between means is zero units, with standard error one unit, and that it is normally distributed</li>
+<li>The probability distribution would look like this</li>
+</ul>
+</div>
+</section>
+<section id="a-simple-example-the-estimated-difference" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-example-the-estimated-difference">A simple example: The estimated difference</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Observed between post-treatment levels: $\bar{y}_T - \bar{y}_C = -1.4$">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Observed between post-treatment levels: <span class="math inline">\(\bar{y}_T - \bar{y}_C = -1.4\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Is this an unlikely outcome given the null hypothesis?</li>
+</ul>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normal_distplot</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_x_marker</span>(<span class="sc">-</span><span class="fl">1.7</span>, <span class="fl">0.3</span>, <span class="st">"estimate = -1.7"</span>, <span class="st">"darkorange1"</span>, <span class="st">"darkorange3"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-significance_files/figure-html/estimate-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li><p>Suppose that we measured the post treatment levels in each group, and found the difference between the means to be -1.4 units</p>
+<ul>
+<li>That is, the <span class="math inline">\(T\)</span> drug group had 1.4 units lower cholesterol than the <span class="math inline">\(C\)</span> group</li>
+</ul></li>
+<li><p>Is that unlikely, given the null hypothesis?</p></li>
+<li><p>Well, we don’t know if it’s unlikely because <strong>we haven’t decided what “unlikely” means</strong></p>
+<ul>
+<li>To do that we need to set a significance threshold</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="a-simple-example-a-significance-threshold" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-example-a-significance-threshold">A simple example: A significance threshold</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="We choose a significance threshold _in advance_">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>We choose a significance threshold <em>in advance</em>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Suppose we set a threshold <span class="math inline">\(T\)</span> corresponding to the 90% confidence interval (i.e.&nbsp;<span class="math inline">\(P&lt;0.1\)</span>)
+<ul>
+<li>If the estimate is not in the central 90% of the distribution, we’ll say it’s “significant”</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normal_distplot</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_normal</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>, <span class="at">zstart=</span><span class="fl">0.05</span>, <span class="at">zend=</span><span class="fl">0.95</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ci_normal</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>, <span class="at">ci=</span><span class="fl">0.90</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-significance_files/figure-html/h0_90ci-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li>We must always decide what our significance threshold is <strong>in advance</strong></li>
+<li>Suppose that we decide the central 90% of the distribution/null hypothesis is “not significant”
+<ul>
+<li>This is the 90% confidence interval around the mean</li>
+<li>We can shade this in to see it better</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="a-simple-example-compare-the-estimate" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-example-compare-the-estimate">A simple example: Compare the estimate</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Compare the estimate to the threshold">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Compare the estimate to the threshold
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>The estimate lies outwith the threshold, so we call the difference “significant”</li>
+</ul>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normal_distplot</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_normal</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>, <span class="at">zstart=</span><span class="fl">0.05</span>, <span class="at">zend=</span><span class="fl">0.95</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ci_normal</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>, <span class="at">ci=</span><span class="fl">0.90</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_x_marker</span>(<span class="sc">-</span><span class="fl">1.7</span>, <span class="fl">0.3</span>, <span class="st">"estimate = -1.7"</span>, <span class="st">"darkorange1"</span>, <span class="st">"darkorange3"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-significance_files/figure-html/h0_90ci_est-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li>We can overlay the observed difference on the distribution here, and see that the estimate lies outside the 90% confidence interval
+<ul>
+<li>With our stated assumption of a <span class="math inline">\(P &lt; 0.1\)</span> significance threshold, we would call this difference “significant”</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="a-simple-example-another-threshold" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-example-another-threshold">A simple example: Another threshold</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="We choose a significance threshold _in advance_">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>We choose a significance threshold <em>in advance</em>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Suppose we set the threshold <span class="math inline">\(T\)</span> corresponding to the 95% confidence interval (i.e.&nbsp;<span class="math inline">\(P&lt;0.05\)</span>) instead?</li>
+</ul>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normal_distplot</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_normal</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>, <span class="at">zstart=</span><span class="fl">0.025</span>, <span class="at">zend=</span><span class="fl">0.975</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ci_normal</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>, <span class="at">ci=</span><span class="fl">0.90</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ci_normal</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>, <span class="at">ci=</span><span class="fl">0.95</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-significance_files/figure-html/h0_95ci-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li>Suppose that we had decided in advance that the central 95% of the distribution/null hypothesis was “not significant” instead
+<ul>
+<li>This is the 95% confidence interval around the mean</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="a-simple-example-another-outcome" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-example-another-outcome">A simple example: Another outcome</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Compare the estimate to the threshold">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Compare the estimate to the threshold
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>The estimate lies <em>within</em> the threshold, so the difference is “not significant”</li>
+</ul>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normal_distplot</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_normal</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>, <span class="at">zstart=</span><span class="fl">0.025</span>, <span class="at">zend=</span><span class="fl">0.975</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ci_normal</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>, <span class="at">ci=</span><span class="fl">0.95</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_x_marker</span>(<span class="sc">-</span><span class="fl">1.7</span>, <span class="fl">0.3</span>, <span class="st">"estimate = -1.7"</span>, <span class="st">"purple"</span>, <span class="st">"purple"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-significance_files/figure-html/h0_95ci_est-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li>Suppose that we had decided in advance that the central 95% of the distribution/null hypothesis was “not significant” instead
+<ul>
+<li>This is the 95% confidence interval around the mean</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="a-simple-example-what-changed" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-example-what-changed">A simple example: What changed?</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="What did not change">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>What did not change
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>The null hypothesis was the same</li>
+<li>The observed estimate of difference was the same</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="What changed">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>What changed
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Our choice of significance threshold changed</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Significance threshold choice">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Significance threshold choice
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Once the estimate is known, it is <em>always</em> possible to find a threshold that makes it “significant” or “not significant”</li>
+<li>It is dishonest to select a threshold deliberately to make your result “significant” or “not significant”</li>
+<li><strong>Always choose <em>and record</em> (preregister) your threshold for significance ahead of the experiment</strong></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="tailed-tests-two-tailed" class="level2">
+<h2 class="anchored" data-anchor-id="tailed-tests-two-tailed">Tailed tests: two-tailed</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Use two tails if direction of change doesn't matter">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Use two tails if direction of change doesn’t matter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>With a two-tailed hypothesis test, we do not care which direction of change is significant</li>
+</ul>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normal_distplot</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_normal</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>, <span class="at">zstart=</span><span class="fl">0.025</span>, <span class="at">zend=</span><span class="fl">0.975</span>) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ci_normal</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>, <span class="at">ci=</span><span class="fl">0.95</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_x_marker</span>(<span class="sc">-</span><span class="fl">2.1</span>, <span class="fl">0.35</span>, <span class="st">"estimate = -2.1, significant"</span>, <span class="st">"darkorange1"</span>, <span class="st">"darkorange3"</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_x_marker</span>(<span class="sc">-</span><span class="fl">1.7</span>, <span class="fl">0.3</span>, <span class="st">"estimate = -1.7, not significant"</span>, <span class="st">"purple"</span>, <span class="st">"purple"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_x_marker</span>(<span class="fl">1.2</span>, <span class="fl">0.3</span>, <span class="st">"estimate = 1.2, not significant"</span>, <span class="st">"purple"</span>, <span class="st">"purple"</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_x_marker</span>(<span class="dv">3</span>, <span class="fl">0.35</span>, <span class="st">"estimate = 3, significant"</span>, <span class="st">"darkorange1"</span>, <span class="st">"darkorange3"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-significance_files/figure-html/two_tails-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li>The example we’ve been looking at is a two-tailed test</li>
+<li>This means that we’re concerned with whether the estimate lies within the <em>central mass</em> of the null distribution
+<ul>
+<li>The central 95% of the distribution has 2.5% of the distribution to the left, and 2.5% of the distribution to the right</li>
+<li>If the estimate lies in either of those extreme regions, it’s in the “extreme 5%” from the mean, and we call it “significant”</li>
+<li>Any estimate lying within the central 95% of the distribution is “not significant”</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="tailed-tests-one-tailed-left" class="level2">
+<h2 class="anchored" data-anchor-id="tailed-tests-one-tailed-left">Tailed tests: one-tailed (left)</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Use one-tailed tests when direction matters">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Use one-tailed tests when direction matters
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>If we’re testing specifically for a significant negative difference/reduction, use a left-tailed test</li>
+<li>e.g.&nbsp;if we wanted to know if <span class="math inline">\(T\)</span> reduced post-test levels with respect to <span class="math inline">\(C\)</span> at a threshold of <span class="math inline">\(P &lt; 0.05\)</span></li>
+</ul>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normal_distplot</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_normal</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>, <span class="at">zstart=</span><span class="fl">0.05</span>, <span class="at">zend=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_x_marker</span>(<span class="sc">-</span><span class="fl">2.1</span>, <span class="fl">0.35</span>, <span class="st">"estimate = -2.1, significant"</span>, <span class="st">"purple"</span>, <span class="st">"purple"</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_x_marker</span>(<span class="sc">-</span><span class="fl">1.7</span>, <span class="fl">0.3</span>, <span class="st">"estimate = -1.7, significant"</span>, <span class="st">"purple"</span>, <span class="st">"purple"</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_x_marker</span>(<span class="fl">1.2</span>, <span class="fl">0.3</span>, <span class="st">"estimate = 1.2, not significant"</span>, <span class="st">"darkorange1"</span>, <span class="st">"darkorange3"</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_x_marker</span>(<span class="dv">3</span>, <span class="fl">0.35</span>, <span class="st">"estimate = 3, not significant"</span>, <span class="st">"darkorange1"</span>, <span class="st">"darkorange3"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-significance_files/figure-html/left_tail-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li><p>When we know we want to test for change in a specific direction, we should use a one-tailed test</p></li>
+<li><p>When checking specifically for a negative change where <span class="math inline">\(P &lt; 0.05\)</span>, say that <span class="math inline">\(T\)</span> reduces cholesterol level by more than <span class="math inline">\(C\)</span>, we would use a left-tailed test</p></li>
+<li><p>This means that we’re concerned with whether the estimate lies <em>outside</em> the right-most 95% of the distribution mass</p>
+<ul>
+<li>This means that results in the left-most 5% of the mass are “significant”</li>
+<li>Any estimate lying in the right-most 95% of the distribution is “not significant”</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="tailed-tests-one-tailed-right" class="level2">
+<h2 class="anchored" data-anchor-id="tailed-tests-one-tailed-right">Tailed tests: one-tailed (right)</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Use one-tailed tests when direction matters">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Use one-tailed tests when direction matters
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>If we’re testing specifically for a positive difference/increase, use a right-tailed test</li>
+<li>e.g.&nbsp;if we wanted to know if <span class="math inline">\(T\)</span> <em>increased</em> post-test levels with respect to <span class="math inline">\(C\)</span> at a threshold of <span class="math inline">\(P &lt; 0.05\)</span></li>
+</ul>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">normal_distplot</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shade_normal</span>(<span class="at">mu=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>, <span class="at">zstart=</span><span class="dv">0</span>, <span class="at">zend=</span><span class="fl">0.95</span>) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_x_marker</span>(<span class="sc">-</span><span class="fl">2.1</span>, <span class="fl">0.35</span>, <span class="st">"estimate = -2.1, not significant"</span>, <span class="st">"darkorange1"</span>, <span class="st">"darkorange3"</span>) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_x_marker</span>(<span class="sc">-</span><span class="fl">1.7</span>, <span class="fl">0.3</span>, <span class="st">"estimate = -1.7, not significant"</span>, <span class="st">"darkorange1"</span>, <span class="st">"darkorange3"</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_x_marker</span>(<span class="fl">1.2</span>, <span class="fl">0.3</span>, <span class="st">"estimate = 1.2, not significant"</span>, <span class="st">"darkorange1"</span>, <span class="st">"darkorange3"</span>) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_x_marker</span>(<span class="dv">3</span>, <span class="fl">0.35</span>, <span class="st">"estimate = 3, significant"</span>, <span class="st">"purple"</span>, <span class="st">"purple"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-significance_files/figure-html/right_tail-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li><p>Similarly, if checking specifically for a postitive change where <span class="math inline">\(P &lt; 0.05\)</span>, say that <span class="math inline">\(C\)</span> reduces cholesterol level by more than <span class="math inline">\(T\)</span>, we would use a left-tailed test</p></li>
+<li><p>This means that we’re concerned with whether the estimate lies <em>outside</em> the left-most 95% of the distribution mass</p>
+<ul>
+<li>This means that results in the right-most 5% of the mass are “significant”</li>
+<li>Any estimate lying in the left-most 95% of the distribution is “not significant”</li>
+</ul></li>
+<li><p>It’s possible to dishonestly switch a result between “significant” and “not significant” by choosing to use a one-tailed or two-tailed test</p></li>
+</ul>
+</div>
+</section>
+<section id="problems-with-statistical-significance-1" class="level2">
+<h2 class="anchored" data-anchor-id="problems-with-statistical-significance-1">Problems with statistical significance 1</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is a common error to summarise comparisons by statistical significance into “significant” and “non-significant” results</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Statistical significance is not the same as practical importance">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Statistical significance is not the same as practical importance
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Suppose a treatment increased earnings by £10 per year with a standard error of £2 (average salary £25,000).
+<ul>
+<li>This would be statistically, but not practically, significant</li>
+</ul></li>
+<li>Suppose a different treatment increased earnings by £10,000 per year with a standard error of £10,000
+<ul>
+<li>This would not be statistically significant, but could be important in practice</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="problems-with-statistical-significance-2" class="level2">
+<h2 class="anchored" data-anchor-id="problems-with-statistical-significance-2">Problems with statistical significance 2</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is a common error to summarise comparisons by statistical significance into “significant” and “non-significant” results</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Non-significance is not the same as zero">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Non-significance is not the same as zero
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Suppose an arterial stent treatment group outperforms the control
+<ul>
+<li>mean difference in treadmill time: 16.6s (standard error 9.8)</li>
+<li>the 95% confidence interval for the effect includes zero, <span class="math inline">\(p ≈ 0.20\)</span></li>
+</ul></li>
+<li>It’s not clear whether the net treatment effect is positive or negative
+<ul>
+<li>but we can’t say that stents have no effect</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="problems-with-statistical-significance-3" class="level2">
+<h2 class="anchored" data-anchor-id="problems-with-statistical-significance-3">Problems with statistical significance 3</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="The difference between 'significant' and 'not significant' is not statistically significant">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The difference between ‘significant’ and ‘not significant’ is not statistically significant
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>At a <span class="math inline">\(P&lt;0.05\)</span> threshold, only a small change is required to move from <span class="math inline">\(P &lt; 0.051\)</span> to <span class="math inline">\(P &lt; 0.049\)</span></li>
+<li>Large changes in significance can correspond to non-significant differences in the underlying variables</li>
+</ol>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shaded_normal</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.1</span>, <span class="dv">1</span>, <span class="at">fill=</span><span class="st">"orange"</span>, <span class="at">color=</span><span class="st">"darkorange3"</span>, <span class="at">label=</span><span class="st">"mean=10, sd=10"</span>, <span class="at">textoffset=</span><span class="fl">0.001</span>) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shaded_normal</span>(<span class="dv">25</span>, <span class="dv">10</span>, <span class="fl">0.01</span>, <span class="dv">1</span>, <span class="at">fill=</span><span class="st">"purple"</span>, <span class="at">color=</span><span class="st">"purple"</span>, <span class="at">label=</span><span class="st">"mean=25, sd=10"</span>, <span class="at">textoffset=</span><span class="fl">0.001</span>) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">colour=</span><span class="st">"black"</span>, <span class="at">lty=</span><span class="st">"dashed"</span>, <span class="at">x=</span><span class="dv">0</span>, <span class="at">xend=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">0</span>, <span class="at">yend=</span><span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">60</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="fl">0.001</span>, <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"effect estimate"</span>) <span class="sc">+</span> </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"density"</span>) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 500 rows containing non-finite outside the scale range
+(`stat_align()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-significance_files/figure-html/nonsigdiff1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li>It should hopefully be obvious that any significance threshold is arbitrary, and the difference between a value being on one side of the threshold or the other may be arbitrarily small</li>
+<li>Less obviously, consider two independent studies - orange and purple here
+<ul>
+<li>The purple study estimates an effect size of 25 with standard error of 10 units and is “statistically significant” in that it does not include zero at the 1% significance level</li>
+<li>The orange study estimates an effect size of 10 with standard error of 10 units and is “statistically not significant” as it includes zero even at the 10% significance level</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="problems-with-statistical-significance-4" class="level2">
+<h2 class="anchored" data-anchor-id="problems-with-statistical-significance-4">Problems with statistical significance 4</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="The difference between 'significant' and 'not significant' is not statistically significant">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The difference between ‘significant’ and ‘not significant’ is not statistically significant
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>At a <span class="math inline">\(P&lt;0.05\)</span> threshold, only a small change is required to move from <span class="math inline">\(P &lt; 0.051\)</span> to <span class="math inline">\(P &lt; 0.049\)</span></li>
+<li>Large changes in significance can correspond to non-significant differences in the underlying variables</li>
+</ol>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shaded_normal</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="fl">0.025</span>, <span class="fl">0.975</span>, <span class="at">fill=</span><span class="st">"orange"</span>, <span class="at">color=</span><span class="st">"darkorange3"</span>, <span class="at">label=</span><span class="st">"mean=10, sd=10"</span>, <span class="at">textoffset=</span><span class="fl">0.001</span>) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shaded_normal</span>(<span class="dv">25</span>, <span class="dv">10</span>, <span class="fl">0.025</span>, <span class="fl">0.975</span>, <span class="at">fill=</span><span class="st">"purple"</span>, <span class="at">color=</span><span class="st">"purple"</span>, <span class="at">label=</span><span class="st">"mean=25, sd=10"</span>, <span class="at">textoffset=</span><span class="fl">0.001</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"segment"</span>, <span class="at">colour=</span><span class="st">"black"</span>, <span class="at">lty=</span><span class="st">"dashed"</span>, <span class="at">x=</span><span class="dv">0</span>, <span class="at">xend=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">0</span>, <span class="at">yend=</span><span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">60</span>) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="fl">0.001</span>, <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"effect estimate"</span>) <span class="sc">+</span> </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"density"</span>) <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-significance_files/figure-html/nonsigdiff2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="notes">
+<ul>
+<li>However, the effect sizes estimated by the two studies are not different from each other at a “statistical significance” of 95%
+<ul>
+<li>In both cases, the central mass of each distribution includes the mean of the other</li>
+</ul></li>
+</ul>
+</div>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><span class="math inline">\(C\)</span> for <em>control</em>, the current best-in class; <span class="math inline">\(T\)</span> for <em>treatment</em>, the new compound<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sipbs-compbiol\.github\.io\/MP968-Workshop_Experimental_Design_Slides\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
