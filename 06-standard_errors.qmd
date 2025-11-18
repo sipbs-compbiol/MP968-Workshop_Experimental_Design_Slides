@@ -1,3 +1,9 @@
+```{r}
+#| echo: false
+#| eval: true 
+#| file: normal_curves.R
+```
+
 # Standard errors, sample size, and statistical significance
 
 ::: { .notes }

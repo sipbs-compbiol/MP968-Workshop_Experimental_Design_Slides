@@ -1,3 +1,9 @@
+```{r}
+#| echo: false
+#| eval: true 
+#| file: normal_curves.R
+```
+
 # Statistical significance and hypothesis testing
 
 ::: { .notes }
