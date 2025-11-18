@@ -38,7 +38,6 @@ bibliography: references.bib
 
 {{< include 07-power.qmd >}}
 
+{{< include 08-gpower.qmd >}}
 
-# References
-
-## References
+{{< include 09-references.qmd >}}
