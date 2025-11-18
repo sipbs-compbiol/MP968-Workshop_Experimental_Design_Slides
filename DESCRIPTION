@@ -4,7 +4,7 @@ Version: 0.1
 Authors@R: c(
     person("Leighton", "Pritchard", , "leighton.pritchard@strath.ac.uk", role = c("aut", "cre")),
   )
-URL: https://github.com/sipbs-compbiol/MP968-Workshop_Experimental_Design
+URL: https://github.com/sipbs-compbiol/MP968-Workshop_Experimental_Design_Slides
 Depends: 
     R (>= 3.1.0)
 Imports:

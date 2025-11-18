@@ -140,6 +140,8 @@ Measurements of variables whose value is the sum of many small, independent, add
 
 # Plot normal curves for of height counts for men and women
 # Example from https://avehtari.github.io/ROS-Examples/CentralLimitTheorem/heightweight.html
+library(ggpubr)
+
 ggarrange(heights_f, heights_m, ncol=2)
 ```
 
@@ -335,6 +337,8 @@ You need to design your experiments and analyses to reflect the appropriate proc
 
 ```{r binomial_poisson}
 #| fig-align: center
+
+library(ggpubr)
 
 ggarrange(binomial_dist, poisson_dist, ncol=2)
 ```
