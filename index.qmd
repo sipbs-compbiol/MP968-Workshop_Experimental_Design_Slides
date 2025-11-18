@@ -202,8 +202,6 @@ shaded_normal <- function(mu, sd, zstart, zend, fill="orange", color="orange", l
 
 {{< include 06-standard_errors.qmd >}}
 
-
-
 # References
 
 ## References
