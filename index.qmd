@@ -179,11 +179,11 @@ add_x_marker <- function(x, y, label, linecolor, textcolor) {
 }
 
 # Add shaded normal curve in specific colour with labels
-shaded_normal <- function(mu, sd, zstart, zend, fill="orange", color="orange", label="", alpha=0.5, textoffset=0.01) {
+shaded_normal <- function(mu, sd, zstart, zend, fill="orange", color="orange", label="", alpha=0.5, textoffset=0.01, textyoffset=0) {
   list(
     stat_function(fun=dnorm, args=list(mean=mu, sd=sd), geom="line", colour=color),
     shade_normal(mu=mu, sd=sd, zstart=zstart, zend=zend, fill=fill, alpha=alpha, textoffset=textoffset),
-    annotate("text", colour=color, x=mu, y=dnorm(mu, mu, sd) + 2 * textoffset, label=label),
+    annotate("text", colour=color, x=mu + textyoffset, y=dnorm(mu, mu, sd) + 2 * textoffset, label=label),
     annotate("segment", colour=color, x=mu, xend=mu, y=0, yend=dnorm(mu, mu, sd))
   )
 }
@@ -207,33 +207,170 @@ shaded_normal <- function(mu, sd, zstart, zend, fill="orange", color="orange", l
 - The purpose of experimental design is to ensure we have a sense, **before and after data have been collected**, of what can realistically be learned from the experiment
 :::
 
-## Sampling and variance
-
-We defined variance earlier for a distribution of random variable $z$ as:
-
-$$ \textrm{variance} = E((z - \mu_z)^2) $$
-
-::: { .callout-warning title="But this was for an infinite number of measurements of $z$" }
-:::
+## Standard errors
 
 ::: { .callout-important }
 We cannot make an infinite number of measurements of $z$. We can only _take a **sample**_.
 
-The variance we _estimate_ in an experiment **will not match** that of the infinitely large population[^bias].
+The mean and standard deviation we _estimate_ in an experiment **will not match** those of the infinitely large population.
 :::
 
-[^bias]: The variance we calculate for our small experimental sample uses an estimate of the mean also calculated from the sample, and so is biased.
+::: { .callout-tip title="Standard Error (of the Mean)"}
+The _standard error of the mean_ reflects the uncertainty in our estimate of the mean.
 
-## (Unbiased) sample variance
+When estimating the **mean** of an infinite population, given a simple random sample of size $n$, the standard error is:
 
-::: { .callout-note title="We do not know the true population-level variance" }
-So we calculate the **unbiased sample variance** with a correction for the sample size:
-
-$$ \textrm{variance} = \frac{\sum^{n}_{i=1} (z_i - \mu_z)^2}{n - 1} \implies \textrm{standard deviation} = \sqrt{\frac{\sum^{n}_{i=1} (z_i - \mu_z)^2}{n - 1}} $$
-
+$$ \textrm{standard error} = \sqrt{\frac{\textrm{Variance}}{n}} = \frac{\textrm{standard deviation}}{\sqrt{n}} = \frac{\sigma}{\sqrt{n}} $$
 :::
 
+::: { .notes }
+- When we perform an experiment we measure a limited number of values
+- For statistical analysis, we consider that these values are randomly drawn from a random distribution containing an _infinite number of values_
+- The mean, standard deviation, and other values we measure in our experiment **will not match** the true mean, standard deviation, or whatever of the full infinite distribution
 
+- We can, though, estimate our confidence in our estimate of the mean by the _standard error of the mean_, which reflects the uncertainty in our estimate of the true mean of the infinite distribution.
+  - The standard error is the square root of the variance divided by the size of the sample
+  - This assumes that our sample is **randomly selected from the population and all samples are independent** - the more you violate those assumptions, the less accurate this estimate is
+  - Since standard deviation is the square root of the variance, we can write this as:
+- The standard error of the mean is the standard deviation divided by the square root of sample size
+:::
+
+## Standard error and sample size
+
+::: { .callout-tip }
+Uncertainty in the mean estimate $\mu$ reduces proportionally to the square root of the number of samples, $n$
+:::
+
+```{r stderr}
+#| fig-align: center
+
+# Plots assuming mu = 0, sd = 1
+# So the progressive standard errors are:
+# (n=3, sd=1/3), (n=5, sd=1/5), (n=7, sd=1/7), (n=10, sd=1/10), (n=20, sd=1/20)
+ggplot() +
+  shaded_normal(mu=0, sd=1/3, zstart=0, zend=1, label="mu=0, sd=1, n=3",
+                textyoffset = 1, fill="gold", color="gold4") +
+  shaded_normal(mu=0, sd=1/5, zstart=0, zend=1, label="mu=0, sd=1, n=5",
+                textyoffset = 1, fill="coral", color="coral4") +
+  shaded_normal(mu=0, sd=1/7, zstart=0, zend=1, label="mu=0, sd=1, n=7",
+                textyoffset = 1, fill="lightskyblue", color="lightskyblue4") +
+  shaded_normal(mu=0, sd=1/10, zstart=0, zend=1, label="mu=0, sd=1, n=10",
+                textyoffset = 1, fill="palegreen", color="palegreen4") +
+  shaded_normal(mu=0, sd=1/20, zstart=0, zend=1, label="mu=0, sd=1, n=20",
+                textyoffset = 1, fill="mediumpurple", color="mediumpurple4") +
+  xlab("uncertainty in the mean estimate") + ylab("density") +
+  theme_minimal()
+```
+
+::: { .notes }
+- To visualise this, we can plot the distribution of our uncertainty in the estimate of the mean, where we've estimated that the mean is zero and the standard deviation is one, for a range of sample sizes, n
+- At $n=3$, the uncertainty in our estimate is quite flat and broad
+- As we increase the number of samples $n$, the uncertainty narrows, and the density of the distribution of estimates starts to gather more around the central value of our estimate of the mean.
+
+- This property holds regardless of our assumptions about the shape of the sampling distribution
+  - But it only reflects our confidence in the estimate of the mean, **not** the shape of the underlying distribution!
+  - **The standard error is less informative about our distribution as the sampling distribution deviates more from a normal distribution**
+:::
+
+## Standard error and hypothesis testing 1
+
+::: { .callout-important title="Hypothesis test statistics" }
+- Test statistic $t$ is a point on the distribution representing a _significance threshold_
+  
+$$ t = \frac{Z}{s} = \frac{Z}{\sigma/\sqrt{n}} $$
+
+- $Z$ is some function of the data (difference between estimate and true value); $s$ is standard error of the mean
+:::
+
+::: { .callout-warning title="What happens if we hold $Z$ and $\sigma$ constant and vary sample size?" }
+:::
+
+::: { .notes }
+- In most statistical hypothesis tests, we define a test statistic denoting a significance threshold
+  - Often, if the calculated value for our sample lies within that test statistic, we accept the null hypothesis
+- The statistic is typically defined as $t = \frac{Z}{s}$ where $t$ is the test statistic value, $Z$ is some quantity calculated from the data, and $s$ is the standard error of the mean
+
+- So as $n$ increases, the standard error $\sigma/{\sqrt{n}}$ gets smaller
+- $Z$ however remains the same size, so the $t$ statistic gets larger (for the same value of $Z$).
+:::
+
+## Standard error and hypothesis testing 2
+
+::: { .callout-tip title="The difference ($Z$) we need to see for significance varies with sample size" }
+- Set $t_\textrm{crit} = 2$
+- $n=3 \implies Z_\textrm{crit} \approx 0.62$; $n=10 \implies Z_\textrm{crit} \approx 0.2$
+:::
+
+```{r t_vs_n}
+#| fig-align: center
+#| warning: false
+
+# Assuming sd=1
+# z is the difference between the estimate and the hypothesised mean
+# The t-values correspond to: (t1, 3), (t2, 5), (t3, 7), (t4, 10), (t5, 15)
+dfm <- data.frame(z=seq(0.01, 1, by=0.1)) %>%
+  mutate(t1=z/(1/3)) %>%
+  mutate(t2=z/(1/5)) %>%
+  mutate(t3=z/(1/7)) %>%
+  mutate(t4=z/(1/10)) %>%
+  mutate(t5=z/(1/15)) %>%
+  pivot_longer(cols=c(t1, t2, t3, t4, t5),
+               names_to="sample_size",
+               values_to="t_statistic")
+
+ggplot(dfm, aes(x=z, y=t_statistic, color=sample_size)) +
+  geom_line(size=1.25) +
+  xlab("Z = (estimate - hypothesised mean)") +
+  ylab("calculated t value") +
+  annotate("rect", xmin=0, xmax=1, ymin=0, ymax=2, fill="orange", alpha=0.2) +
+  annotate("segment", x=0, xend=1, y=2, yend=2, colour="orange", lty="dashed", linewidth=1.5) +
+  annotate("text", x=0.5, y=1, label="ACCEPT NULL HYPOTHESIS", color="orange") + 
+  annotate("text", x=0.85, y=2.15, label="t-critical=2", color="orange") + 
+  ylim(0, 4) +
+  scale_color_discrete(labels=c("n=3", "n=5", "n=7", "n=10", "n=15")) +
+  theme_minimal()
+```
+
+::: { .notes }
+- So suppose we set a confidence interval that gives us a test statistic: t-critical=2
+  - So any difference $Z$ between our estimated mean and the test value giving a value of t less than 2 is "not significant" and we accept the null hypothesis
+  - Any difference $Z$ between our estimated mean and the test value giving a value of t greater than 2 is "significant" and we reject the null hypothesis
+  
+- The plot shows the relationship between t and the size of Z for a range of sample sizes from 3 to 15 measurements
+
+- With three measurements, we need a Z value of 0.62 or greater for the line to cross the critical value and for us to reject the null hypothesis
+- With 10 measurements, we only need a Z value of about 0.2 to reject the null hypothesis
+
+- **Changing the sample size changes how sensitive our hypothesis test is**
+:::
+
+## Standard error and hypothesis testing 3
+
+::: { .callout-tip title="One-sample $t$-test" }
+$$ t = \frac{Z}{s} = \frac{\bar{X} - \mu}{\hat{\sigma}/{\sqrt{n}}} = \frac{\bar{X} - \mu}{s(\bar{X})} $$
+
+- $\bar{X}$ is the sample mean; $\mu$ is the hypothesised population mean (being tested)
+- $\hat{\sigma}$ is the sample standard deviation; $n$ is the sample size; $s(\bar{X})$ is the standard error of the mean
+:::
+
+::: { .callout-note title="Wald test" }
+$$ \sqrt{W} = \frac{Z}{s} = \frac{\hat{\theta} - \theta_0}{s(\hat{\theta})} $$
+
+- $\hat{\theta}$ is the estimated maximising argument of the likelihood function; $\theta_0$ is the hypothesised value under test
+- $s(\hat{\theta})$ is the standard error of $\hat{\theta}$ 
+:::
+
+::: { .notes }
+- You may have come across the t-test before?
+- The t-statistic $t$ is calculated as $Z/s$ where $Z$ is the difference between the estimated mean and the hypothesised population mean (the thing you are testing for equality to), and $s$ is the standard error of the estimate of the mean.
+
+- You'll likely _not_ have come across the Wald test?
+- But it follows the same form
+  - Here $\hat{\theta} - \theta_0$ is the difference between an estimated most likely value and the hypothesised most likely value
+  - $s$ is the standard error of the estimate of the most likely value
+  
+- The standard error is influenced by (gets smaller with) the square root of sample size in both cases
+:::
 
 # References
 
