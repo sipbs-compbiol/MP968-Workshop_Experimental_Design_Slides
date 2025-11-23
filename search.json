@@ -595,22 +595,22 @@
     "text": "References\n\n\n\n\nBate, Simon T., and Robin A. Clark. 2014. The Design and Statistical Analysis of Animal Experiments. Cambridge University Press.\n\n\nFaul, Franz, Edgar Erdfelder, Albert-Georg Lang, and Axel Buchner. 2007. “G*Power 3: A Flexible Statistical Power Analysis Program for the Social, Behavioral, and Biomedical Sciences.” Behav. Res. Methods 39 (2): 175–91.\n\n\nKarp, Natasha A, and Derek Fry. 2021. “What Is the Optimum Design for My Animal Experiment?” BMJ Open Sci. 5 (1): e100126.\n\n\nKilkenny, Carol, William J Browne, Innes C Cuthill, Michael Emerson, and Douglas G Altman. 2010. “Improving Bioscience Research Reporting: The ARRIVE Guidelines for Reporting Animal Research.” PLoS Biol. 8 (6): e1000412.\n\n\nKilkenny, Carol, Nick Parsons, Ed Kadyszewski, Michael F W Festing, Innes C Cuthill, Derek Fry, Jane Hutton, and Douglas G Altman. 2009. “Survey of the Quality of Experimental Design, Statistical Analysis and Reporting of Research Using Animals.” PLoS One 4 (11): e7824."
   },
   {
-    "objectID": "08b-summary.html",
-    "href": "08b-summary.html",
+    "objectID": "10-summary.html",
+    "href": "10-summary.html",
     "title": "Summary",
     "section": "",
     "text": "ImportantPower calculations describe what can be learned from statistical analysis of an experiment\n\n\n\n\nWe defined statistical power, and how statistical power tells us what conclusions can reasonably be drawn from statistical analysis of an experiment.\n\nThe goal of experimental design is not to attain statistical significance with some (high) level of probability. The point of designing an experiment and conducting power analysis is to have a sense, both before and after data have been collected, of what can reasonably be learned from the statistical analysis.\n\n\n\n\n\n\n\n\n\n\nTipG*Power\n\n\n\n\nUsing G*Power we worked through a practical example of how to estimate sample size for a desired statistical power\n\n\n\n\n\n\n\n\n\n\n\n\nTipThe NC3Rs EDA can help us design better experiments\n\n\n\nWe worked through the complete design, critique, and analysis of an experiment using the NC3Rs EDA tool, including how to share the resulting design with others.\n\n\n\n\n\n\n\n\nNoteWhat next?\n\n\n\nExperimental design is a large and diverse field, and to become competent in experimental design takes time, and requires practice (which also involves making mistakes, at times).\n\n\n\n\n\n\n\n\nImportantWhat no-one tells you\n\n\n\nEven experienced scientists with many publications and long track records of research funding may never have received any formal training in experimental design. This can lead to entrenched and outdated ideas being propagated.\nIt is always advisable to consult with funding bodies and specialists in statistics, experimental design, and research ethics."
   },
   {
-    "objectID": "08b-summary.html#power-calculations",
-    "href": "08b-summary.html#power-calculations",
+    "objectID": "10-summary.html#power-calculations",
+    "href": "10-summary.html#power-calculations",
     "title": "Summary",
     "section": "",
     "text": "ImportantPower calculations describe what can be learned from statistical analysis of an experiment\n\n\n\n\nWe defined statistical power, and how statistical power tells us what conclusions can reasonably be drawn from statistical analysis of an experiment.\n\nThe goal of experimental design is not to attain statistical significance with some (high) level of probability. The point of designing an experiment and conducting power analysis is to have a sense, both before and after data have been collected, of what can reasonably be learned from the statistical analysis.\n\n\n\n\n\n\n\n\n\n\nTipG*Power\n\n\n\n\nUsing G*Power we worked through a practical example of how to estimate sample size for a desired statistical power"
   },
   {
-    "objectID": "08b-summary.html#experimental-design",
-    "href": "08b-summary.html#experimental-design",
+    "objectID": "10-summary.html#experimental-design",
+    "href": "10-summary.html#experimental-design",
     "title": "Summary",
     "section": "",
     "text": "TipThe NC3Rs EDA can help us design better experiments\n\n\n\nWe worked through the complete design, critique, and analysis of an experiment using the NC3Rs EDA tool, including how to share the resulting design with others.\n\n\n\n\n\n\n\n\nNoteWhat next?\n\n\n\nExperimental design is a large and diverse field, and to become competent in experimental design takes time, and requires practice (which also involves making mistakes, at times).\n\n\n\n\n\n\n\n\nImportantWhat no-one tells you\n\n\n\nEven experienced scientists with many publications and long track records of research funding may never have received any formal training in experimental design. This can lead to entrenched and outdated ideas being propagated.\nIt is always advisable to consult with funding bodies and specialists in statistics, experimental design, and research ethics."
@@ -1204,71 +1204,71 @@
     "text": "Statistical power and sample size 2\n\n\n\n\n\n\nImportantTypical funders’ requirements\n\n\n\n\nFalse positive rate \\(\\alpha = 0.05\\)\nPower \\(1 - \\beta = 0.8\\) (80% power)\nThese are only a starting point - other values may be more appropriate depending on circumstance\n\n\n\n\n\n\n\n\n\nWarningUnder experimenter control\n\n\n\n\nEffect size and variance\nThe appropriate statistical approach"
   },
   {
-    "objectID": "08a-eda.html",
-    "href": "08a-eda.html",
+    "objectID": "09-eda.html",
+    "href": "09-eda.html",
     "title": "Experimental Design Assistant",
     "section": "",
     "text": "NC3Rs EDA website: https://eda.nc3rs.org.uk/\n\n\n\n\n\n\n\n\nFigure 1: NC3Rs EDA\n\n\n\n\n\n\n\n\n\nWe will use NONcNZO10/LtJ mice (JAX) to represent a polygenic form of diabetes. Mice in the treatment group will receive a single subcutaneous injection of drug A (up to 30mg/kg). Mice in the control group will receive a single subcutaneous injection of vehicle. Mice will be randomly assigned to receive either drug A or vehicle only without regard to the sex of the animal. 48 hours after administration of drug or vehicle, the blood glucose level will be measured.\n\n\n\n\n\n\n\n\n\n\nTipOur beliefs about the experiment\n\n\n\n\nWe are testing the effect of a new drug - drug A - on plasma glucose levels\n\nThere is a single experimental variable of interest: whether drug A is present (treatment) or absent (control)\nThe plasma glucose level is our outcome measure\n\nOur experimental subjects are diabetic (NONcNZO10/LtJ) mice\nWe will divide individuals into two groups, by different pharmacological treatment\n\nGroup 1 will receive the vehicle with no active drug (the control)\nGroup 2 will receive the vehicle, containing active drug (the treatment)\n\nIndividuals will be allocated to each group randomly, by complete randomisation\nWe are not testing for the effect of sex on drug performance as an experimental variable of interest\n\nWe are only monitoring for the effect of sex on drug performance as a nuisance factor\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteCausal relationships in the experiment\n\n\n\nPlasma glucose level is potentially dependent on three causal relationships\n\nThe pharmacological effect of drug A\nThe pharmacological effect of the vehicle\nIndividual differences between experimental subjects (mice)\n\n\n\n\n\n\n\n\n\nImportantNon-causal effects\n\n\n\nPlasma glucose level is potentially also dependent on other factors including\n\nsex\ntime the drug is administered\n\nSome of these may be systematic and important (nuisance variables), and others random and not so important (“noise”)\n\n\n\n\n\n\n\n\n\n\n\nTipTreatment vs no treatment\n\n\n\nThe causal influence of administering drug A (or not) on plasma glucose levels of the experimental subjects is the central reason for performing the experiment\n\nPresence or absence of drug A is our independent variable (aka explanatory variable)\n\n\n\n\n\n\n\n\n\nTipIndependent variables\n\n\n\nThe presence/absence of drug A is an independent variable as whether it is administered or not is entirely under our control, as experimenters.\n\n\n\n\n\n\n\n\n\n\n\nImportantControl vs treatment groups\n\n\n\nWe cannot administer the drug in isolation!\nLike most drugs, drug A is carried in a vehicle - a substance expected to be inert in the contect of the treatment.\n\n\n\n\n\n\n\n\nTipControlling for variables\n\n\n\nIt would be unwise to assume we could administer drug A alone to one group of mice and apply no intervention in the other group.\nPhysiological responses may be affected by: - the vehicle - the procedure (e.g. injection)\nSo we must follow the same protocol in the control and treatment groups, with the only variable being presence/absence of drug A.\n\n\n\n\n\n\n\n\n\n\n\nTipRandom assignment to groups\n\n\n\nIndividual mice may respond differently to drug A, the vehicle, and the procedure, due to underlying differences between them.\nWe therefore need to randomise subjects into experimental groups, assuming that all individuals are drawn from the same population (a single pool whose response varies according to some common distribution).\n\nThis means we expect the underlying plasma concentrations, and responses to treatment, in each group to be comparable.\nDifferences in measured outcome between groups are then expected to derive only from our experimental interventions and presence/absence of drug A\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: EDA diagrams are composed of nodes representing aspects of an experiment, and links representing relationships between the nodes\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: The final EDA diagram describing our experiment"
   },
   {
-    "objectID": "08a-eda.html#nc3rs-eda",
-    "href": "08a-eda.html#nc3rs-eda",
+    "objectID": "09-eda.html#nc3rs-eda",
+    "href": "09-eda.html#nc3rs-eda",
     "title": "Experimental Design Assistant",
     "section": "",
     "text": "NC3Rs EDA website: https://eda.nc3rs.org.uk/\n\n\n\n\n\n\n\n\nFigure 1: NC3Rs EDA"
   },
   {
-    "objectID": "08a-eda.html#the-experiment-1",
-    "href": "08a-eda.html#the-experiment-1",
+    "objectID": "09-eda.html#the-experiment-1",
+    "href": "09-eda.html#the-experiment-1",
     "title": "Experimental Design Assistant",
     "section": "",
     "text": "We will use NONcNZO10/LtJ mice (JAX) to represent a polygenic form of diabetes. Mice in the treatment group will receive a single subcutaneous injection of drug A (up to 30mg/kg). Mice in the control group will receive a single subcutaneous injection of vehicle. Mice will be randomly assigned to receive either drug A or vehicle only without regard to the sex of the animal. 48 hours after administration of drug or vehicle, the blood glucose level will be measured."
   },
   {
-    "objectID": "08a-eda.html#the-experiment-2",
-    "href": "08a-eda.html#the-experiment-2",
+    "objectID": "09-eda.html#the-experiment-2",
+    "href": "09-eda.html#the-experiment-2",
     "title": "Experimental Design Assistant",
     "section": "",
     "text": "TipOur beliefs about the experiment\n\n\n\n\nWe are testing the effect of a new drug - drug A - on plasma glucose levels\n\nThere is a single experimental variable of interest: whether drug A is present (treatment) or absent (control)\nThe plasma glucose level is our outcome measure\n\nOur experimental subjects are diabetic (NONcNZO10/LtJ) mice\nWe will divide individuals into two groups, by different pharmacological treatment\n\nGroup 1 will receive the vehicle with no active drug (the control)\nGroup 2 will receive the vehicle, containing active drug (the treatment)\n\nIndividuals will be allocated to each group randomly, by complete randomisation\nWe are not testing for the effect of sex on drug performance as an experimental variable of interest\n\nWe are only monitoring for the effect of sex on drug performance as a nuisance factor"
   },
   {
-    "objectID": "08a-eda.html#the-experiment-3",
-    "href": "08a-eda.html#the-experiment-3",
+    "objectID": "09-eda.html#the-experiment-3",
+    "href": "09-eda.html#the-experiment-3",
     "title": "Experimental Design Assistant",
     "section": "",
     "text": "NoteCausal relationships in the experiment\n\n\n\nPlasma glucose level is potentially dependent on three causal relationships\n\nThe pharmacological effect of drug A\nThe pharmacological effect of the vehicle\nIndividual differences between experimental subjects (mice)\n\n\n\n\n\n\n\n\n\nImportantNon-causal effects\n\n\n\nPlasma glucose level is potentially also dependent on other factors including\n\nsex\ntime the drug is administered\n\nSome of these may be systematic and important (nuisance variables), and others random and not so important (“noise”)"
   },
   {
-    "objectID": "08a-eda.html#the-experiment-4",
-    "href": "08a-eda.html#the-experiment-4",
+    "objectID": "09-eda.html#the-experiment-4",
+    "href": "09-eda.html#the-experiment-4",
     "title": "Experimental Design Assistant",
     "section": "",
     "text": "TipTreatment vs no treatment\n\n\n\nThe causal influence of administering drug A (or not) on plasma glucose levels of the experimental subjects is the central reason for performing the experiment\n\nPresence or absence of drug A is our independent variable (aka explanatory variable)\n\n\n\n\n\n\n\n\n\nTipIndependent variables\n\n\n\nThe presence/absence of drug A is an independent variable as whether it is administered or not is entirely under our control, as experimenters."
   },
   {
-    "objectID": "08a-eda.html#the-experiment-5",
-    "href": "08a-eda.html#the-experiment-5",
+    "objectID": "09-eda.html#the-experiment-5",
+    "href": "09-eda.html#the-experiment-5",
     "title": "Experimental Design Assistant",
     "section": "",
     "text": "ImportantControl vs treatment groups\n\n\n\nWe cannot administer the drug in isolation!\nLike most drugs, drug A is carried in a vehicle - a substance expected to be inert in the contect of the treatment.\n\n\n\n\n\n\n\n\nTipControlling for variables\n\n\n\nIt would be unwise to assume we could administer drug A alone to one group of mice and apply no intervention in the other group.\nPhysiological responses may be affected by: - the vehicle - the procedure (e.g. injection)\nSo we must follow the same protocol in the control and treatment groups, with the only variable being presence/absence of drug A."
   },
   {
-    "objectID": "08a-eda.html#the-experiment-6",
-    "href": "08a-eda.html#the-experiment-6",
+    "objectID": "09-eda.html#the-experiment-6",
+    "href": "09-eda.html#the-experiment-6",
     "title": "Experimental Design Assistant",
     "section": "",
     "text": "TipRandom assignment to groups\n\n\n\nIndividual mice may respond differently to drug A, the vehicle, and the procedure, due to underlying differences between them.\nWe therefore need to randomise subjects into experimental groups, assuming that all individuals are drawn from the same population (a single pool whose response varies according to some common distribution).\n\nThis means we expect the underlying plasma concentrations, and responses to treatment, in each group to be comparable.\nDifferences in measured outcome between groups are then expected to derive only from our experimental interventions and presence/absence of drug A"
   },
   {
-    "objectID": "08a-eda.html#an-eda-diagram",
-    "href": "08a-eda.html#an-eda-diagram",
+    "objectID": "09-eda.html#an-eda-diagram",
+    "href": "09-eda.html#an-eda-diagram",
     "title": "Experimental Design Assistant",
     "section": "",
     "text": "Figure 2: EDA diagrams are composed of nodes representing aspects of an experiment, and links representing relationships between the nodes"
   },
   {
-    "objectID": "08a-eda.html#our-target-diagram",
-    "href": "08a-eda.html#our-target-diagram",
+    "objectID": "09-eda.html#our-target-diagram",
+    "href": "09-eda.html#our-target-diagram",
     "title": "Experimental Design Assistant",
     "section": "",
     "text": "Figure 3: The final EDA diagram describing our experiment"
