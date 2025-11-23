@@ -42,4 +42,6 @@ bibliography: references.bib
 
 {{< include 08a-eda.qmd >}}
 
+{{< include 08b-summary.qmd >}}
+
 {{< include 09-references.qmd >}}

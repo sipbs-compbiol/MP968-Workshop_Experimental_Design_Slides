@@ -1,0 +1,28 @@
+# Summary
+
+## Power calculations
+
+::: { .callout-important title="Power calculations describe what can be learned from statistical analysis of an experiment" }
+- We defined statistical power, and how statistical power tells us what conclusions can reasonably be drawn from statistical analysis of an experiment.
+  - The goal of experimental design is not to attain statistical significance with some (high) level of probability. The point of designing an experiment and conducting power analysis is to have a sense, both before and after data have been collected, of what can reasonably be learned from the statistical analysis.
+:::
+
+::: { .callout-tip title="`G*Power`" }
+- Using `G*Power` we worked through a practical example of how to estimate sample size for a desired statistical power
+:::
+
+## Experimental design
+
+::: { .callout-tip title="The NC3Rs EDA can help us design better experiments" }
+We worked through the complete design, critique, and analysis of an experiment using the NC3Rs EDA tool, including how to share the resulting design with others.
+:::
+
+::: { .callout-note title="What next?" }
+Experimental design is a large and diverse field, and to become competent in experimental design takes time, and requires practice (which also involves making mistakes, at times).
+:::
+
+::: { .callout-important title="What no-one tells you" }
+Even experienced scientists with many publications and long track records of research funding may never have received any formal training in experimental design. This can lead to entrenched and outdated ideas being propagated.
+
+**It is always advisable to consult with funding bodies and specialists in statistics, experimental design, and research ethics.**
+:::
