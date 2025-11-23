@@ -3,6 +3,7 @@
 .Rhistory
 .RData
 .Ruserdata
+.Rbuildignore
 
 # Exclude macOS support files
 .DS_Store

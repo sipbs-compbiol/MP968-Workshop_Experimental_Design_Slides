@@ -40,4 +40,6 @@ bibliography: references.bib
 
 {{< include 08-gpower.qmd >}}
 
+{{< include 08a-eda.qmd >}}
+
 {{< include 09-references.qmd >}}

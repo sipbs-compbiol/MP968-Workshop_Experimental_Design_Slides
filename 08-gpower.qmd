@@ -12,7 +12,7 @@ We will only be introducing you to basic operation of the program.
 
 ## The Experiment 1
 
-> Is the average weight of ten mice statistically different from 25g?
+> Is the average weight of a group of mice statistically different from 25g?
 
 ::: { .callout-tip title="Which statistical test?" }
 - Means of real value measurements like height, weight, tend to follow a normal distribution. **A $t$-test may be appropriate**
@@ -22,7 +22,7 @@ We will only be introducing you to basic operation of the program.
 
 ## The Experiment 2
 
-> Is the average weight of ten mice statistically different from 25g?
+> Is the average weight of a group of mice statistically different from 25g?
 
 ::: { .callout-tip title="What do we want to know from the power calculation?" }
 We want to determine an **appropriate sample size** for our experiment, given an expected effect size, variance, and choices of power and statistical significance threshold
@@ -30,7 +30,7 @@ We want to determine an **appropriate sample size** for our experiment, given an
 
 ## The Experiment 3
 
-> Is the average weight of ten mice statistically different from 25g?
+> Is the average weight of a group of mice statistically different from 25g?
 
 ::: { .callout-tip title="What kind of power calculation should we perform?" }
 We want to calculate an appropriate sample size for our experiment _before_ we perform it, so we require an **_a priori_ power calculation**
@@ -38,7 +38,7 @@ We want to calculate an appropriate sample size for our experiment _before_ we p
 
 ## The Experiment 4
 
-> Is the average weight of ten mice statistically different from 25g?
+> Is the average weight of a group of mice statistically different from 25g?
 
 ::: { .callout-tip title="What statistical power should we use?" }
 We will use standard funders' requirements of 80% power at $P < 0.05$
@@ -48,13 +48,13 @@ $$\alpha=0.05, \beta=0.2, 1-\beta=0.8 $$
 
 ## The Experiment 5
 
-> Is the average weight of ten mice statistically different from 25g?
+> Is the average weight of a group of mice statistically different from 25g?
 
 ::: { .callout-tip title="What is the expected effect size and variation in the sample?" }
-There are no absolute values, but we will make the following assumptions
+There are no absolute values that constitute a meaningful difference in weight under all circumstances, but we will make the following assumptions
 
 - A 10% difference in weight from the expected 25g null would be meaningful, for an **effect size of 2.5g**
-- We assume that the weight of individuals in the sample has a **standard deviation of 1.25g**, so $\sigma = 1.25$
+- We assume that the weight of individuals in the sample has a **standard deviation of 1.25g**, so $\sigma = 1.25$, on the basis of having previously weighed groups of mice.
 :::
 
 ## Let's start!
@@ -74,6 +74,7 @@ We now have enough information to calculate an appropriate sample size
 - Power $1 - \beta = 0.8$
 - Effect size = 2.5
 - Standard deviation, $\sigma = 1.25$
+- Cohen's $d = \frac{\mu - \mu_0}{\sigma}$
 :::
 
 :::

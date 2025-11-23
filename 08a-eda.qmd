@@ -1,0 +1,107 @@
+# Experimental Design Assistant
+
+## NC3Rs EDA
+
+:::: { .columns }
+
+::: { .column width="60%" }
+
+- NC3Rs EDA website: [https://eda.nc3rs.org.uk/](https://eda.nc3rs.org.uk/)
+
+:::
+
+::: { .column width="40%" }
+
+![NC3Rs EDA](assets/images/qr-eda.png){#fig-qr-eda}
+
+:::
+
+::::
+
+## The Experiment 1
+
+> We will use NONcNZO10/LtJ mice (JAX) to represent a polygenic form of diabetes. Mice in the treatment group will receive a single subcutaneous injection of drug A (up to 30mg/kg). Mice in the control group will receive a single subcutaneous injection of vehicle. Mice will be randomly assigned to receive either drug A or vehicle only without regard to the sex of the animal. 48 hours after administration of drug or vehicle, the blood glucose level will be measured.
+
+## The Experiment 2
+
+::: { .callout-tip title="Our beliefs about the experiment" }
+- We are testing the effect of a new drug - drug A - on plasma glucose levels
+  - There is a single experimental variable of interest: whether drug A is present (treatment) or absent (control)
+  - The plasma glucose level is our outcome measure
+- Our experimental subjects are diabetic (NONcNZO10/LtJ) mice
+- We will divide individuals into two groups, by different pharmacological treatment
+  - Group 1 will receive the vehicle with no active drug (the control)
+  - Group 2 will receive the vehicle, containing active drug (the treatment)
+- Individuals will be allocated to each group randomly, by complete randomisation
+- We are not testing for the effect of sex on drug performance as an experimental variable of interest
+  - We are only monitoring for the effect of sex on drug performance as a nuisance factor
+:::
+
+## The Experiment 3
+
+::: { .callout-note title="Causal relationships in the experiment" }
+Plasma glucose level is potentially dependent on three causal relationships
+
+1. The pharmacological effect of drug A
+2. The pharmacological effect of the vehicle
+3. Individual differences between experimental subjects (mice)
+:::
+
+::: { .callout-important title="Non-causal effects" }
+Plasma glucose level is potentially also dependent on other factors including
+
+- sex
+- time the drug is administered
+
+Some of these may be systematic and important (_nuisance variables_), and others random and not so important ("noise")
+:::
+
+## The Experiment 4
+
+::: { .callout-tip title="Treatment _vs_ no treatment" }
+The causal influence of administering drug A (or not) on plasma glucose levels of the experimental subjects is the central reason for performing the experiment
+
+- Presence or absence of drug A is our **independent variable** (aka **explanatory variable**)
+:::
+
+::: { .callout-tip title="Independent variables" }
+The presence/absence of drug A is an independent variable as whether it is administered or not is entirely under our control, as experimenters.
+:::
+
+## The Experiment 5
+
+::: { .callout-important title="Control _vs_ treatment groups" }
+**We cannot administer the drug in isolation!**
+
+Like most drugs, drug A is carried in a _vehicle_ - a substance expected to be inert in the contect of the treatment.
+:::
+
+::: { .callout-tip title="Controlling for variables" }
+It would be unwise to assume we could administer drug A _alone_ to one group of mice and apply no intervention in the other group.
+
+Physiological responses may be affected by:
+- the vehicle
+- the procedure (e.g. injection)
+
+So we **must** follow the same protocol in the control and treatment groups, with the only variable being presence/absence of drug A.
+:::
+
+## The Experiment 6
+
+::: { .callout-tip title="Random assignment to groups" }
+Individual mice may respond differently to drug A, the vehicle, and the procedure, due to underlying differences between them.
+
+We therefore need to **randomise** subjects into experimental groups, assuming that _all individuals are drawn from the same population_ (a single pool whose response varies according to some common distribution).
+
+- This means we expect the underlying plasma concentrations, and responses to treatment, in each group to be comparable.
+- **Differences in measured outcome between groups are then expected to derive only from our experimental interventions and presence/absence of drug A**
+:::
+
+## An EDA diagram
+
+![EDA diagrams are composed of nodes representing aspects of an experiment, and links representing relationships between the nodes](assets/images/nc3rs-eda-sections.png){#fig-nc3rs-eda-sections}
+
+## Our target diagram
+
+![The final EDA diagram describing our experiment](assets/images/eda-diagram-final.png){#fig-nc3rs-eda-final}
+
