@@ -7,8 +7,9 @@
 # Statistical significance and hypothesis testing
 
 ::: { .notes }
-- A major concern when performing data analysis in general, which is heightened when animal suffering is a possibility, is that we might _mistakenly) come to strong conclusions that do not replicate or that do not reflect real patterns in the underlying population.
+- A major concern when performing data analysis in general, which is heightened when animal suffering is a possibility, is that we might _mistakenly_ come to strong conclusions that do not replicate or that do not reflect real patterns in the underlying population.
 - Statistical theories of hypothesis testing and error analysis have been developed to quantify these possibilities, **to help with decision making**
+- **Statistical significance is not a measure of truth or correctness**
 :::
 
 ## Statistical significance 1
@@ -17,40 +18,40 @@
 - They may also consider "non-signifcant" results to be noisy or less reliable
 
 ::: { .callout-warning }
-I, and many other statisticians, do not recommend this approach.
+I, and many other statisticians, do not recommend this approach (though we will not cover alternatives today)
 
 However, the concept is widespread and we need to discuss it
 :::
 
 ::: { .notes }
-- Even if you're not very familiar with what it means precisely, I'm sure you've come across "statistical" significance in at least one scientific context.
+- Even if you're not very familiar with what it means precisely, I'm sure you've come across "statistical significance" in at least one scientific context.
 
 - "Statistical significance" is a **decision rule** used by some scientists to consider whether a result is "stable" or "real"
   - They may also use "statistical significance" to exclude some results as noisy or unreliable
   
-- I and many other statisticians do not recommend this approach, and we'll see why
+- I and many other statisticians do not recommend this approach, and we'll see why, though we'd need a longer course to describe the alternatives
 :::
 
 ## Statistical significance 2
 
 ::: { .callout-caution title="A common definition" }
-- Statistical significance is conventionally defined as a threshold (commonly, a $p$-value less than 0.05) relative to some _null hypothesis_ or _prespecified value_ that indicates no effect is present.
+- Statistical significance is conventionally defined as a threshold (commonly, a $p$-value less than 0.05) **relative to some _null hypothesis_ or _prespecified value_ that indicates no effect is present**.
 
 - E.g., an estimate may be considered "statistically significant at $P < 0.05$" if it:
   - lies at least two standard errors from the mean
   - is a difference that lies at least two standard errors from zero
   
 - More generally, an estimate is "**not** statistically significant" if, e.g.
-  - the observed value can reasonably be explained by chance variation
+  - the observed value can reasonably be explained by chance variation consistent with the null hypothesis
   - it is a difference that lies less than two standard errors from zero
 :::
 
 ::: { .callout-important title="Most tests rely on probability distributions" }
-- We need to relate the measured values in the real world to an appropriate distribution that _approximates_ them
+- We need to relate the measured values in the real world to an appropriate statistical distribution that _approximates_ them
 :::
 
 ::: { .notes }
-- The way you're likely to see statistical significance presented is that some threshold - usually a p-value of less than 0.05 - is applied in a statistical test, relative to some _null hypothesis_ or _prespecified value_ that indicates the absence of an effect
+- The way you're likely to see statistical significance presented is that some threshold - usually a p-value of less than 0.05 - is applied in a statistical test, **relative to some _null hypothesis_ or _prespecified value_ that indicates the absence of an effect**
 - So you are likely to see an estimate be considered "statistically significant at P<0.05" if it lies at least two SEs from the mean, or is a difference that lies at least two SEs from zero
 - Conversely, you will see estimates be considered "not statistically significant at P<0.05" if they lie less than two SEs from the mean, or the observed value can reasonably be explained by chance variation alone
 
@@ -71,10 +72,10 @@ However, the concept is widespread and we need to discuss it
 - Let's consider a simple experiment
 - We want to compare the efficacy of two drugs, C and T, in their ability to lower cholesterol
   - We assume a uniform pool of individuals, and randomly assign C and T to two equally-sized groups drawn from that cohort
-  - **This implies that the starting cholesterol level of all individuals is drawn from the same distribution**
+  - **This implies that the starting cholesterol level of all individuals is drawn from the same distribution, and both groups should have the same mean and variation**
   
 - We administer the drugs in the same way, for the same period of time, and measure the post-treatment cholesterol level in each individual
-  - We calculate the mean and standard deviation for the two groups
+  - We calculate the post-treatment mean and standard deviation for the two groups
   - These allow us to estimate the underlying normal distribution of post-treatment cholesterol levels in each group
 - We can use the estimated means, $\bar{y}_T$ and $\bar{y}_C$ for the _treatment_ and _control_ groups as **estimates** for the true post-treatment levels $\theta_T$ and $\theta_C$.
 :::
@@ -87,7 +88,7 @@ However, the concept is widespread and we need to discuss it
   - We have estimated means, $\bar{y}_T$ and $\bar{y}_C$ for post-treatment levels
 
 ::: { .callout-warning title="The hypotheses" }
-- We are interested in $\theta = \theta_T - \theta_C$, the expected post-test difference in cholesterol between the two groups $T$ and $C$.
+- We are interested in $\theta = \theta_T - \theta_C$, the expected true post-test difference in cholesterol between the two groups $T$ and $C$.
 - Our **null hypothesis** ($H_0$) is that $\theta = 0$, i.e. **there is no difference** ($\theta_C = \theta_T$)
 - Our **alternative hypothesis** ($H_1$) is that **there is a difference**, so $\theta \neq 0$,  (i.e. $\theta_C \neq \theta_T$)
 :::
@@ -114,8 +115,8 @@ However, the concept is widespread and we need to discuss it
 
 ::: { .callout-note title="The distribution" }
 - We use a probability distribution reflecting generation of the null hypothesis: $\theta_C = \theta_T$
-  - This allows us to define a test statistic $T$ (i.e. _a threshold probability of "significance"_) **in advance**
-- We test the estimated value from the experiment ($\bar{y}_T - \bar{y}_C$) to calculate a $p$-value for our estimate: $p = \textrm{Pr}(T(y^{\textrm{null}}) > T(\bar{y}_T - \bar{y}_C))$
+  - This allows us to define a test statistic $T_\textrm{crit}$ (i.e. _a threshold probability of "significance"_) **in advance**
+- We test the estimated value from the experiment ($\bar{y}_T - \bar{y}_C$) to calculate a $p$-value for our estimate: $p = \textrm{Pr}(T(y_{\textrm{null}}) > T_\textrm{crit} = T(\bar{y}_T - \bar{y}_C))$
 :::
 
 [^3]: $C$ for _control_, the current best-in class; $T$ for _treatment_, the new compound
@@ -125,10 +126,10 @@ However, the concept is widespread and we need to discuss it
   - Once we have this, we can test our observed estimate of $\hat{\theta} = \bar{y}_T - \bar{y}_C$ against the distribution to see how likely it is to be explained by the null hypothesis
   
 - We need to choose a probability distribution that reflects the process generating the null hypothesis
-  - In this case, we could shoose a normal distribution, which is typically appropriate for this kind of measurement
-- Then we can define a test statistic $T$ **in advance**
-  - $T$ represents a threshold value in the null distribution - one where we would consider a larger difference to be meaningful
-  - You may be familiar with setting P<0.05, where the probability of seeing some value in the null distribution is 0.05 or less, and we might choose to set a value of $T$ that corresponds to this
+  - In this case, we could choose a normal distribution, which is typically appropriate for this kind of measurement
+- Then we can define a test statistic $T_\textrm{crit}$ **in advance**
+  - $T_\textrm{crit}$ represents a threshold value in the null distribution - one where we would consider difference giving a larger value of $T$ to be meaningful
+  - You may be familiar with setting P<0.05, where the probability of seeing some value in the null distribution is 0.05 or less, and we might choose to set a value of $T_\textrm{crit}$ that corresponds to this
 - We then calculate the test statistic corresponding to our actual estimate, and calculate the $p$-value
   - This is the probability of observing our estimate, or a more extreme value, under the assumptions of the null model distribution
 :::
@@ -165,12 +166,12 @@ normal_distplot(mu=0, sd=1) +
 ```
 
 ::: { .notes }
-- Suppose that we measured the post treatment levels in each group, and found the difference between the means to be -1.4 units
-  - That is, the $T$ drug group had 1.4 units lower cholesterol than the $C$ group
+- Suppose that we measured the post treatment levels in each group, and found the difference between the means to be -1.7 units
+  - That is, the $T$ drug group had 1.7 units lower cholesterol than the $C$ group
 - Is that unlikely, given the null hypothesis?
 
 - Well, we don't know if it's unlikely because **we haven't decided what "unlikely" means**
-  - To do that we need to set a significance threshold
+  - To do that we need to set a significance threshold ($T_\textrm{crit}$)
 :::
 
 ## A simple example: A significance threshold

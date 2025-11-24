@@ -1,5 +1,9 @@
 # The 2009 NC3Rs systematic survey
 
+::: { .notes }
+All of this is important in its own right, but to see why it is so important that you understand and are able to apply these concepts, let's consider the 2009 NC3Rs systematic survey of published experiments using animal subjects.
+:::
+
 ## The importance of experimental design { .smaller }
 
 :::: { .columns }
@@ -67,6 +71,8 @@ The state of the published literature around animal experiments was not good in 
 - We cannot therefore be assured that the number of animals used was chosen to minimise suffering, or to obtain a statistically justifiable result.
 - These papers are published. They are written, and the experiments conducted, by "experienced scientists"
 - Being an "experienced" or "published" scientist is clearly not a benchmark for good experimental design
+
+Remember, these are "experienced," "published" scientists in receipt of tens of thousands, maybe hundreds of thousands of pounds worth of funding. If you query their methods, they are likely to claim that having performed these experiments, published the outcomes, and received funding to do so, makes their opinion right and yours wrong. Resist this bullying. Always question how these numbers are decided upon and how the experiment is designed and performed. You are sometimes the experimental subjects' only voice.
 :::
 
 ## Very strong cause for concern { .smaller }
@@ -82,6 +88,8 @@ As scientists, you - **yourselves** - need to understand the principles behind t
 ::: { .notes }
 - The Kilkenny paper does propose solutions to this problem
 - They require the use and reporting of straightforward statistical calculations
+  - **Power calculations**, which, given assumptions appropriate to the experiment, indicate how many experimental subjects are required to determine the result to a desired level of certainty.
+  - We will work through how to make these calculations in the workshop.
 - It is up to **you** as scientists to maintain your integrity and that of the experiment, in abiding by good practice and choosing appropriate tests and methods.
 :::
 
@@ -103,6 +111,13 @@ The following year @Kilkenny2010-cp proposed the [ARRIVE guidelines](https://nc3
 
 ::::
 
+::: { .notes }
+- Kilkenny and colleagues didn't just highlight the problems and run away.
+- In 2010 they proposed the ARRIVE guidelines for reporting animal research
+  - This takes the form of a checklist that enables good reporting of research, improving manuscript policy and maximising the output of research.
+- In order to fulfil the guidelines, basic activities in experimental design - consideration of the use of both sexes, power calculations and so on - must be incorporated early in the research process.
+:::
+
 ## ARRIVE guidelines highlightes
 
 Many journals now routinely request information in the ARRIVE framework, often as electronic supplementary information. The framework covers 20 items including the following (@Kilkenny2010-cp):
@@ -113,6 +128,17 @@ Many journals now routinely request information in the ARRIVE framework, often a
 - 10. **Sample size**: the total number of animals used in each experiment and the number of animals in each experimental group; how the number of animals was decided
 - 13. **Statistical methods**: details of the statistical methods used for each analysis; methods used to assess whether the data met the assumptions of the statistical approach
 - 16. **Outcomes and estimation**: results for each analysis carried out, with a measure of precision (e.g., standard error or confidence interval).
+:::
+
+::: { .notes }
+- The ARRIVE guidelines have been quite successful
+- Many journals now request information about the experiment in the ARRIVE framework
+- Key steps are included that were highlighted as frequently absent in the 2009 study
+  - The experiment's objectives
+  - How the study was designed to minimise noise and systematic biases
+  - How the sample size was calculated and justified
+  - What statistical methods were used for analysis and why they are appropriate
+  - Reporting of outcomes with estimates of variation/precision
 :::
 
 ## A vital step
@@ -134,3 +160,9 @@ Many journals now routinely request information in the ARRIVE framework, often a
 :::
 
 ::::
+
+::: { .notes }
+- The NC3Rs study and ARRIVE guidelines have been a vital step in changing the research culture from accepting the word of "experienced" senior scientists to good, objective scientific practice.
+  - But there's still a long way to go
+- I can **strongly** recommend the Bate and Clark book as an excellent starting point for if you want to become competent in experimental design and analysis in this context.
+:::

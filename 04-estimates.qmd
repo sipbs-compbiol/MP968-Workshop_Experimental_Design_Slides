@@ -27,9 +27,11 @@ $$ z \sim \textrm{normal}(\mu_z, \sigma) $$
   - You estimate parameter values from the data you collect
   
 - So, if you have a linear regression and are estimating the intercept and gradient in the equation $y_i = a + b x_i$
-  - The intercept $a$, and gradient $b$, are the parameters you are estimating
+  - (suppose that $a$ represents the average baseline weight, $x_i$ is the number of pellets a day you feed a subject, and $y_i$ is the weight of that subject)
+  - The intercept $a$, and gradient $b$, are the _parameters_ you are estimating
   
 - You may be representing the data you collect by a normal distribution
+  - (suppose that $z$ is the distribution of weights in the sample)
   - This is described by the parameters $\mu_z$ and $\sigma$, which you are estimating from your data
 :::
 
@@ -53,6 +55,16 @@ $$ z \sim \textrm{normal}(\mu_z, \sigma) $$
 
 - Estimands are: $\mu_z$ and $\sigma$
   - Maybe you want to determine the 95% confidence interval - **this is also an estimand**
+:::
+
+::: { .notes }
+- In a statistical context, you may hear the term _estimand_ used
+  - An _estimand_ is a **value we are interested in estimating from the data**
+- Estimands include things like the parameters of the statistical model: $a$ and $b$ from the linear fit, or $\mu$ and $\sigma$ from the normal distribution estimate
+  - But estimands also include things like
+    - **predictions** from the model, like **expected values of $y_i$ for a given individual at $x_i$**
+    - and **confidence intervals**, the level of certainty we think we have in the estimate of a value
+
 :::
 
 ## Standard Errors and Confidence Intervals { .smaller }
@@ -80,4 +92,24 @@ $$ z \sim \textrm{normal}(\mu_z, \sigma) $$
 
 ::: { .notes }
 - Now I've mentioned confidence intervals we'll need to talk about them
+- We'll also need to talk about _standard errors_
+
+- The _standard error_ is the **estimated standard deviation of an estimate**
+  - It represents **our estimate of our uncertainty** in the estimate of the quantity
+
+- You will probably have heard of the _standard error of the mean (SEM)_
+  - We _estimate_ the mean of the population by _calculating_ the mean of the representative sample
+  - SEM represents **our estimate of our uncertainty in our estimate of the mean**
+  - The more measurements we have in the sample, the less uncertainty we have in our estimate - and so **SEM tends to decrease as the number of individuals in the sample increases** (and, if the sample gets large enough, the uncertainty can approach zero)
+  
+- A _confidence interval_ represents our uncertainty differently: as **a range of values that are roughlly consistent wiht the data**
+  - The confidence interval has **upper and lower bounds**
+  - The size of a confidence interval is given as a percentage
+- A 50% confidence interval (CI) is **expected to contain the true value about 50% of the time**
+  - That is, half of all 50% confidence intervals _do not contain the true value_
+- A 95% confidence interval (CI) is **expected to contain the true value about 95% of the time**
+  - That is, 5% of all 95% confidence intervals _do not contain the true value_
+  
+- As a rule of thumb, for normal distributions and large samples, the 95% CI is bounded by values two standard errors from the estimate.
+  - The 95% CI for the mean is the range {(mean - 2xSEM), (mean + 2xSEM)}
 :::

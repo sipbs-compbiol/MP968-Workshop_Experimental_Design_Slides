@@ -86,6 +86,8 @@ binomial_dist <- ggplot(bin_pois_data %>% filter(str_detect(params, "^binom")), 
 
 ::: { .notes }
 Before we get into the detail and fun of calculating appropriate group sizes for your experiments, we're going to refresh some relevant statistical concepts.
+
+I know many biologists chose biology to get away from maths and stats, but the sad reality for those people is that being a scientist demands competence in this area. You will not be able to avoid this if you want to make a career out of research.
 :::
 
 ## Random variables
@@ -108,9 +110,10 @@ Random variables are values whose range is _subject to some element of chance_, 
 - When you take a measurement - tail length, concentration of something in blood, survival time, whatever - you are recording the value of a _random variable_
   - **This doesn't mean that the number is chosen randomly**
 - What it means is that the number is subject to the influence of some kind of random variation
-  - So tail length might be under the influence of overall growth, genetic propensity, and some random redistribution of nutrients or random timing of developmental signals
+  - So tail length might be partially determined by variations in influences on overall growth of an individual (like nutrition), genetic propensity, and some random redistribution of nutrients within the individual or random timing of developmental signals
   - Blood concentration might not be entirely uniform, so the measurement is subject to random variations throughout the circulatory system, or transient effects on how you measure the concentration
   - Survival time might not be measured 100% accurately - it can difficult to measure the point of death exactly, so there may be some random variation around the actual time
+- There are numerous ways that random effects ("noise") can impinge on the "signal" we're trying to measure
 :::
 
 ## Probability distributions { .smaller }
@@ -132,13 +135,15 @@ The probability distribution of a random variable $z$ (e.g. what you measure in 
 
 ::: { .notes }
 - A probability distribution describes the range of values that a random variable - let's call it $z$ - takes.
-  - You can think of $z$ being a single ball drawn from a bag containing an infinite number of balls, each ball with a number written on it
+  - So if you're measuring tail length, and that's "constant" for a population, but under the influence of the random variation in how much nutrition an individual can get, the distribution is representing that random effect around the "constant" value.
+  - In more traditional statistical terms, you can think of $z$ being a single ball drawn from a bag containing an infinite number of balls, each ball with a number written on it
 - Probability distributions can describe many measures, including
   - heights of men, incomes of women, political party preference, and so on
-- The _mean_ of a probability distribution - its _expected value_ or _expectation_ is the average of all numbers in the distribution
-  - This may be infinite, and there is an equivalent definition: the _mean_ is the value obtained _on average_ from a random sample taken from the distribution
+- The _mean_ of a probability distribution - its _expected value_ or _expectation_ - is the average of all numbers in the distribution
+  - There may be an infinite amount of numbers in the dataset (in principle), and there is an equivalent definition: the _mean_ is the value obtained _on average_ in a random sample taken from the distribution
 - The _variance_ of a probability distribution expresses how much the individual values might differ from that mean.
   - Variance is defined as the _mean_ of the **square of the difference between each individual value in the distribution and the mean of the distribution**
+  - So, for each ball we draw from the bag, we treat the number as $z$ and calculate the _sum of squares of differences from the mean_ - this is the variance.
 :::
 
 ## Understanding variance
@@ -161,11 +166,13 @@ $$\implies \textrm{variance} = E((z - \mu_z)^2) \gt 0 $$
 
 ::: { .notes }
 - To get some intuition about the idea of variance, imagine that you have a set of values $z$ that are all the same, so there's no randomness
+  - So you have a bag of balls, and all the balls in the bag have the number three on them, say
 - If the value are all the same, then they all have the same value as the _mean_ of the distribution, and $z - \mu_z = 0$
 - This means that, for all $z$, $(z - \mu_z)^2$ is also zero, and the variance is zero.
 - But if any value of $z$ is different then, for at least that value, $z - \mu_z \neq 0$, so the square of that value is greater than zero. It follows that the variance must then be greater than zero: $E((z - \mu_z)^2) \gt 0$
 
-- In any dataset you meet, you are unlikely to have all values be identical, and so the variance is going to take a positive value
+- **In any dataset you meet, you are unlikely to have all values be identical, and so the variance is going to take a positive value**
+  - **All measurements you make will have variability in them! This variability must be accounted for.**
 :::
 
 ## Standard deviation
@@ -209,12 +216,13 @@ Measurements of variables whose value is the sum of many small, independent, add
 :::
 
 ::: { .notes }
-- You may see the normal distribution written like this, as "z is distributed as the Normal distribution with mean $\mu_z$ and standard deviation $\sigma_z$."
+- You may see the normal distribution written like this, as "$z$ is distributed as the Normal distribution with mean $\mu_z$ and standard deviation $\sigma_z$."
   - We only need to know the mean and standard deviation to define a unique normal distribution
 - Values we measure in the real world should follow an approximate normal distribution if each measured value is the sum of many small, independent, additive factors
   - This is a consequence of the Central Limit Theorem
-- **But there is no reason to expect that any random variable representing direct measurement will have this property, or follow a normal distribution**
-  - This is especially the case if there is a large factor affecting variation of the variable
+  - Many real-world variables do follow normal distributions
+- **But there is no reason to expect that any random variable representing any direct measurement you make will have this property, or follow a normal distribution**
+  - This is especially the case if there is a large factor affecting variation of the variable (e.g. sex)
 :::
 
 ## Normal Distribution 2 { .smaller }
@@ -236,7 +244,7 @@ ggarrange(heights_f, heights_m, ncol=2)
 
 ::: { .notes }
 - As an example, we can look at some real data, the heights of men and women in the US.
-  - Here we have counts of individuals whose heights are measured to the nearest inch
+  - Here we have counts of individuals whose heights are measured to the nearest inch - they're shown as counts in the histograms
 - These are two different _random variables_: one for men, one for women
 - For both distributions, we can calculate a mean, and a standard deviation (or variance)
   - Therefore we can calculate a normal distribution representing both men's and women's heights (orange curve)
@@ -266,12 +274,12 @@ heights_adults
 ::: { .notes }
 - By contrast, the distribution of heights of _all_ adults in the US is not close to a normal curve
 - This is because there is an extraneous factor, **sex**, that represents much of the total variation in values
-  - We will come back to this idea later
-  
+
 - Here, the mean may not be the same value as the peak of the curve (i.e. the _mode_)
 - The curve is asymmetrical, so standard deviation does not describe variation equally well on either side of the mean
 
-- Most data you receive will not be normally distributed
+- Data you receive may not be normally distributed
+  - (possibly even most of the data you receive!)
 :::
 
 ## Binomial Distribution 1
@@ -300,8 +308,11 @@ It is different from a normal distribution.
 ::::
 
 ::: { .notes }
+- I mentioned earlier that a normal distribution arises when a process produces the a sum of many independent random variables.
+  - **In general statistical distributions are idealised repreentations of the outcomes of distinct kinds of real-world processes**
+
 - Suppose that instead of measuring height, weight, concentration or something like that, you're measuring _event outcomes_
-  - These do not follow a normal distribution
+  - These are not the result of summing independent random variables, and do not follow a normal distribution
 
 - If you take a bunch of basketball shots (equivalent to our experimental events), each one has some probability of succeeding
 - The number of successful shots is going to depend on the number of shots you take, and how likely you are to score
@@ -311,7 +322,7 @@ It is different from a normal distribution.
 - This kind of process generates a probability distribution that approximates the **binomial distribution**
   - It's the same one you get for coin tosses (or any yes/no process)
 - It is different from a normal distribution
-  - If your underlying biological process resembles coin tosses or basketball shots, you need to design your experiment and analysis to be using an appropriate statistical test, such as one based on the binomial distribution
+  - If your underlying biological process resembles coin tosses or basketball shots, you need to design your experiment and analysis to be using an appropriate statistical test, such as one suitable for a binomial distribution
 :::
 
 ## Binomial Distribution 2 { .smaller }
@@ -345,11 +356,15 @@ You need to design your experiments and analyses to reflect the appropriate proc
 ::::
 
 ::: { .notes }
+- We write the definition of a binomial distribution as $z \sim \textrm{binomial}(n, p)$
+  - Unique distributions are defined by combinations of the number of events, and the probability with which each event occurs
+
 - Imagine you took 20 shots at basketball, and had a probability of 0.3 of scoring any one shot
 - The distribution of shots you scored would follow a binomial distribution with $n=20$ and $p=0.3$
 - You'd expect to score, on average, $20 \times 0.3 = 6$ times
-- The standard deviation we'd expect would be $\sqrt{20 \times 0.3 \times (1 - 0.3)} = \sqrt{6 \times (0.7)} = \sqrt{4.2} = 2.05$
-  - So you'd expect to score about 4 to 8 shots, most of the time
+- I'm not going to derive the variance and standard deviation expression
+  - The standard deviation we'd expect would be $\sqrt{20 \times 0.3 \times (1 - 0.3)} = \sqrt{6 \times (0.7)} = \sqrt{4.2} = 2.05$
+  - So you'd expect to score about 2 to 10 shots, most of the time
 :::
 
 ## Poisson distribution 1
@@ -410,6 +425,7 @@ You need to design your experiments and analyses to reflect the appropriate proc
 
 ::: { .notes }
 - Count or rate data, i.e. discrete events that happen in a given duration, volume or area, generate the _Poisson distribution_
+  - Unique Poisson distributions are described as $z \sim \textrm{poisson}(\lambda)$, defined only by the _expected value_ $\lambda$
 - Examples of this kind of data include the number of cases of cancer in a county, the number of red cars you see on your journey into university, or the number of calcium concentration spikes you count in a survey period.
 
 - The distribution takes only one parameter: the **expectation**, lambda
@@ -435,15 +451,17 @@ ggarrange(binomial_dist, poisson_dist, ncol=2)
 :::
 
 ::: { .notes }
-- Binomial and poisson distributions are quite closely related, and they look like this for the indicated parameter settings
+- Binomial and poisson distributions are related, and they look like this for the indicated parameter settings
   - The distributions are only defined at whole values - the lines are to guide your eye
 
 - For binomial distributions the expected successes shift rightwards as the probability of success increases, and as the number of attempts increases
   - More attempts also increases the variance of the distribution
 
 - For poisson distributions, the peak of the distribution shifts rightwards as the expectation increases in value
+  - The distribution also becomes more symmetric
 
 - **In both cases, all values - counts/rates or successes - are positive whole numbers**
+  - (though $\lambda$ and $p$ can be real values)
 :::
 
 ## Distributions in Practice
@@ -472,6 +490,8 @@ ggarrange(binomial_dist, poisson_dist, ncol=2)
 - In the real world there are many other influences that cause collected data to deviate from these idealisations
   - There is **no reason** to expect real world data to exactly match _any_ statistical distribution
   - Though there are some principles: we ought not to use a normal distribution to model count data (as the normal distribution can drop below zero where counts cannot)
+  
+- **In general we _approximate_ our real data with these idealised distributions in order to obtain more statistical power**
 :::
 
 ## Normal Distribution Redux { .smaller }
@@ -504,7 +524,7 @@ text(1.5, .3*dnorm(1.5), "13.5%", cex=1.3)
 
 ::: { .notes }
 - An intuition worth developing is how much of a (normal) distribution lies within some range of the mean
-  - This is going to be useful whenthinking about _p_-values and hypothesis tests
+  - This is going to be useful when thinking about _p_-values and hypothesis tests
 
 - Here we have a normal distribution with a mean of zero and a standard deviation of 1, so the values on the x-axis represent standard deviations from the mean.
   - It's a normal distribution, so symmetrical about the mean

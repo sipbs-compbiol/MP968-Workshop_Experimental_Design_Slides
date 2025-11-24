@@ -25,6 +25,11 @@ But what is an _acceptable_ (i.e. the _least possible_) amount of suffering nece
 - It's a difficult, emotive topic that crosses people's moral red lines.
 - Animal experiments may be the only practical way to gain essential scientific knowledge
 - Whatever you believe "suffering" means for an animal, our _ethical premise_ is that this suffering should not be in vain
+- The first thing to ask is whether the question we're trying to answer needs to be answered _enough_ that we should cause _any_ suffering
+  - **Not all questions are worth answering in this way**
+- If the question is important enough to ask in this way, we are **ethically obliged** to minimise the amount of distress and suffering caused.
+  - **If we cannot minimise this sufficiently, it still may not be worth asking the question**
+- We need statistics to help us understand **objectively** what the least number of individuals is, to answer our question
 :::
 
 ## Challenge { .quiz-question }
@@ -39,11 +44,11 @@ Suppose you are running a necessary and useful experiment with animal subjects, 
 - [Use as many subjects as you have available, to avoid wastage]{data-explanation="There may be too few individuals available, or more than are required, to obtain a reliable result."}
 
 ::: { .notes }
-We carry out experiments to obtain answers to our scientific hypotheses, but the answers we obtain are rarely if ever 100% certain. We usually aim to obtain answers that are very likely to be correct (think about what a statistical hypothesis test means: that the explanation is _more likely_ or _less likely_ to be the null hypothesis than some alternative), rather than 100% certain.
+We carry out experiments to obtain answers to our scientific hypotheses, but the answers we obtain are rarely if ever 100% certain. We usually aim to obtain answers that are very likely to be correct (think about what a statistical hypothesis test means: that the explanation is _more likely_ or _less likely_ to be explainable by the null hypothesis than some threshold), rather than 100% certain.
 
 If we use too few subjects we may still be able to perform a statistical test, but the results of the experiment will be more uncertain and may be more likely to be incorrect than correct. **The use of animal subjects in an experiment that is unlikely to give a correct answer (e.g. because too few animals are used) causes unnecessary suffering**.
 
-If we attempt to obtain a 100% certain - or nearly so - result we may need to use many more subjects - possibly tens or hundreds more - than are required to obtain a result about which we are (say) 80% certain. **The use of animal subjects to obtain a level of certainty greater than is needed to answer the question reasonably causes unnecessary suffering**.
+If we attempt to obtain a 100% certain outcome - or nearly so - we may need to use many more subjects - possibly tens or hundreds more - than are required to obtain a result about which we are (say) 80% certain. **The use of animal subjects to obtain a level of certainty greater than is needed to answer the question reasonably causes unnecessary suffering**.
 
 If we use the number of subjects that are available, just because it is convenient, then we may not know how likely the experiment is to give us a correct answer. **The use of animal subjects in an experiment where you do not know how likely you are to get a correct answer is likely to cause unnecessary suffering**.
 :::
@@ -66,7 +71,7 @@ The appropriate number of animal subjects to use in an experiment is _always_ th
 
 This may sound like a very flexible statement. _What assumptions are reasonable? What is an appropriate level of certainty?_
 
-We'll consider these questions again later but, for now, just know that **_by convention_ the usual level of certainty is: "we have an 80% chance of getting the correct true/false answer for the hypothesis being tested"._**
+We'll consider these questions again later but, for now, just know that **_by convention_ the usual level of certainty is: "we have an 80% chance of getting the correct true/false answer for the hypothesis being tested".** and that this is the level of certainty asked for by many funders
 
 Note though that the appropriate level of certainty may change depending on the nature of the question being asked.
 :::
