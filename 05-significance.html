@@ -172,8 +172,9 @@ Attaching package: 'dplyr'</code></pre>
 <h1>Statistical significance and hypothesis testing</h1>
 <div class="notes">
 <ul>
-<li>A major concern when performing data analysis in general, which is heightened when animal suffering is a possibility, is that we might _mistakenly) come to strong conclusions that do not replicate or that do not reflect real patterns in the underlying population.</li>
+<li>A major concern when performing data analysis in general, which is heightened when animal suffering is a possibility, is that we might <em>mistakenly</em> come to strong conclusions that do not replicate or that do not reflect real patterns in the underlying population.</li>
 <li>Statistical theories of hypothesis testing and error analysis have been developed to quantify these possibilities, <strong>to help with decision making</strong></li>
+<li><strong>Statistical significance is not a measure of truth or correctness</strong></li>
 </ul>
 </div>
 <section id="statistical-significance-1" class="level2">
@@ -192,18 +193,18 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>I, and many other statisticians, do not recommend this approach.</p>
+<p>I, and many other statisticians, do not recommend this approach (though we will not cover alternatives today)</p>
 <p>However, the concept is widespread and we need to discuss it</p>
 </div>
 </div>
 <div class="notes">
 <ul>
-<li><p>Even if you’re not very familiar with what it means precisely, I’m sure you’ve come across “statistical” significance in at least one scientific context.</p></li>
+<li><p>Even if you’re not very familiar with what it means precisely, I’m sure you’ve come across “statistical significance” in at least one scientific context.</p></li>
 <li><p>“Statistical significance” is a <strong>decision rule</strong> used by some scientists to consider whether a result is “stable” or “real”</p>
 <ul>
 <li>They may also use “statistical significance” to exclude some results as noisy or unreliable</li>
 </ul></li>
-<li><p>I and many other statisticians do not recommend this approach, and we’ll see why</p></li>
+<li><p>I and many other statisticians do not recommend this approach, and we’ll see why, though we’d need a longer course to describe the alternatives</p></li>
 </ul>
 </div>
 </section>
@@ -220,7 +221,7 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><p>Statistical significance is conventionally defined as a threshold (commonly, a <span class="math inline">\(p\)</span>-value less than 0.05) relative to some <em>null hypothesis</em> or <em>prespecified value</em> that indicates no effect is present.</p></li>
+<li><p>Statistical significance is conventionally defined as a threshold (commonly, a <span class="math inline">\(p\)</span>-value less than 0.05) <strong>relative to some <em>null hypothesis</em> or <em>prespecified value</em> that indicates no effect is present</strong>.</p></li>
 <li><p>E.g., an estimate may be considered “statistically significant at <span class="math inline">\(P &lt; 0.05\)</span>” if it:</p>
 <ul>
 <li>lies at least two standard errors from the mean</li>
@@ -228,7 +229,7 @@ Warning
 </ul></li>
 <li><p>More generally, an estimate is “<strong>not</strong> statistically significant” if, e.g.</p>
 <ul>
-<li>the observed value can reasonably be explained by chance variation</li>
+<li>the observed value can reasonably be explained by chance variation consistent with the null hypothesis</li>
 <li>it is a difference that lies less than two standard errors from zero</li>
 </ul></li>
 </ul>
@@ -245,13 +246,13 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>We need to relate the measured values in the real world to an appropriate distribution that <em>approximates</em> them</li>
+<li>We need to relate the measured values in the real world to an appropriate statistical distribution that <em>approximates</em> them</li>
 </ul>
 </div>
 </div>
 <div class="notes">
 <ul>
-<li><p>The way you’re likely to see statistical significance presented is that some threshold - usually a p-value of less than 0.05 - is applied in a statistical test, relative to some <em>null hypothesis</em> or <em>prespecified value</em> that indicates the absence of an effect</p></li>
+<li><p>The way you’re likely to see statistical significance presented is that some threshold - usually a p-value of less than 0.05 - is applied in a statistical test, <strong>relative to some <em>null hypothesis</em> or <em>prespecified value</em> that indicates the absence of an effect</strong></p></li>
 <li><p>So you are likely to see an estimate be considered “statistically significant at P&lt;0.05” if it lies at least two SEs from the mean, or is a difference that lies at least two SEs from zero</p></li>
 <li><p>Conversely, you will see estimates be considered “not statistically significant at P&lt;0.05” if they lie less than two SEs from the mean, or the observed value can reasonably be explained by chance variation alone</p></li>
 <li><p>As you might have guessed from the talk of standard errors and distances from means, we map our measured values in the real world to statistical probability distributions to calculate these values.</p></li>
@@ -287,11 +288,11 @@ Warning
 <li>We want to compare the efficacy of two drugs, C and T, in their ability to lower cholesterol
 <ul>
 <li>We assume a uniform pool of individuals, and randomly assign C and T to two equally-sized groups drawn from that cohort</li>
-<li><strong>This implies that the starting cholesterol level of all individuals is drawn from the same distribution</strong></li>
+<li><strong>This implies that the starting cholesterol level of all individuals is drawn from the same distribution, and both groups should have the same mean and variation</strong></li>
 </ul></li>
 <li>We administer the drugs in the same way, for the same period of time, and measure the post-treatment cholesterol level in each individual
 <ul>
-<li>We calculate the mean and standard deviation for the two groups</li>
+<li>We calculate the post-treatment mean and standard deviation for the two groups</li>
 <li>These allow us to estimate the underlying normal distribution of post-treatment cholesterol levels in each group</li>
 </ul></li>
 <li>We can use the estimated means, <span class="math inline">\(\bar{y}_T\)</span> and <span class="math inline">\(\bar{y}_C\)</span> for the <em>treatment</em> and <em>control</em> groups as <strong>estimates</strong> for the true post-treatment levels <span class="math inline">\(\theta_T\)</span> and <span class="math inline">\(\theta_C\)</span>.</li>
@@ -319,7 +320,7 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>We are interested in <span class="math inline">\(\theta = \theta_T - \theta_C\)</span>, the expected post-test difference in cholesterol between the two groups <span class="math inline">\(T\)</span> and <span class="math inline">\(C\)</span>.</li>
+<li>We are interested in <span class="math inline">\(\theta = \theta_T - \theta_C\)</span>, the expected true post-test difference in cholesterol between the two groups <span class="math inline">\(T\)</span> and <span class="math inline">\(C\)</span>.</li>
 <li>Our <strong>null hypothesis</strong> (<span class="math inline">\(H_0\)</span>) is that <span class="math inline">\(\theta = 0\)</span>, i.e.&nbsp;<strong>there is no difference</strong> (<span class="math inline">\(\theta_C = \theta_T\)</span>)</li>
 <li>Our <strong>alternative hypothesis</strong> (<span class="math inline">\(H_1\)</span>) is that <strong>there is a difference</strong>, so <span class="math inline">\(\theta \neq 0\)</span>, (i.e.&nbsp;<span class="math inline">\(\theta_C \neq \theta_T\)</span>)</li>
 </ul>
@@ -369,9 +370,9 @@ Warning
 <ul>
 <li>We use a probability distribution reflecting generation of the null hypothesis: <span class="math inline">\(\theta_C = \theta_T\)</span>
 <ul>
-<li>This allows us to define a test statistic <span class="math inline">\(T\)</span> (i.e.&nbsp;<em>a threshold probability of “significance”</em>) <strong>in advance</strong></li>
+<li>This allows us to define a test statistic <span class="math inline">\(T_\textrm{crit}\)</span> (i.e.&nbsp;<em>a threshold probability of “significance”</em>) <strong>in advance</strong></li>
 </ul></li>
-<li>We test the estimated value from the experiment (<span class="math inline">\(\bar{y}_T - \bar{y}_C\)</span>) to calculate a <span class="math inline">\(p\)</span>-value for our estimate: <span class="math inline">\(p = \textrm{Pr}(T(y^{\textrm{null}}) &gt; T(\bar{y}_T - \bar{y}_C))\)</span></li>
+<li>We test the estimated value from the experiment (<span class="math inline">\(\bar{y}_T - \bar{y}_C\)</span>) to calculate a <span class="math inline">\(p\)</span>-value for our estimate: <span class="math inline">\(p = \textrm{Pr}(T(y_{\textrm{null}}) &gt; T_\textrm{crit} = T(\bar{y}_T - \bar{y}_C))\)</span></li>
 </ul>
 </div>
 </div>
@@ -383,12 +384,12 @@ Warning
 </ul></li>
 <li>We need to choose a probability distribution that reflects the process generating the null hypothesis
 <ul>
-<li>In this case, we could shoose a normal distribution, which is typically appropriate for this kind of measurement</li>
+<li>In this case, we could choose a normal distribution, which is typically appropriate for this kind of measurement</li>
 </ul></li>
-<li>Then we can define a test statistic <span class="math inline">\(T\)</span> <strong>in advance</strong>
+<li>Then we can define a test statistic <span class="math inline">\(T_\textrm{crit}\)</span> <strong>in advance</strong>
 <ul>
-<li><span class="math inline">\(T\)</span> represents a threshold value in the null distribution - one where we would consider a larger difference to be meaningful</li>
-<li>You may be familiar with setting P&lt;0.05, where the probability of seeing some value in the null distribution is 0.05 or less, and we might choose to set a value of <span class="math inline">\(T\)</span> that corresponds to this</li>
+<li><span class="math inline">\(T_\textrm{crit}\)</span> represents a threshold value in the null distribution - one where we would consider difference giving a larger value of <span class="math inline">\(T\)</span> to be meaningful</li>
+<li>You may be familiar with setting P&lt;0.05, where the probability of seeing some value in the null distribution is 0.05 or less, and we might choose to set a value of <span class="math inline">\(T_\textrm{crit}\)</span> that corresponds to this</li>
 </ul></li>
 <li>We then calculate the test statistic corresponding to our actual estimate, and calculate the <span class="math inline">\(p\)</span>-value
 <ul>
@@ -465,14 +466,14 @@ Warning
 </div>
 <div class="notes">
 <ul>
-<li><p>Suppose that we measured the post treatment levels in each group, and found the difference between the means to be -1.4 units</p>
+<li><p>Suppose that we measured the post treatment levels in each group, and found the difference between the means to be -1.7 units</p>
 <ul>
-<li>That is, the <span class="math inline">\(T\)</span> drug group had 1.4 units lower cholesterol than the <span class="math inline">\(C\)</span> group</li>
+<li>That is, the <span class="math inline">\(T\)</span> drug group had 1.7 units lower cholesterol than the <span class="math inline">\(C\)</span> group</li>
 </ul></li>
 <li><p>Is that unlikely, given the null hypothesis?</p></li>
 <li><p>Well, we don’t know if it’s unlikely because <strong>we haven’t decided what “unlikely” means</strong></p>
 <ul>
-<li>To do that we need to set a significance threshold</li>
+<li>To do that we need to set a significance threshold (<span class="math inline">\(T_\textrm{crit}\)</span>)</li>
 </ul></li>
 </ul>
 </div>

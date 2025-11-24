@@ -253,6 +253,7 @@ Attaching package: 'dplyr'</code></pre>
 <h1>Some Statistical Concepts</h1>
 <div class="notes">
 <p>Before we get into the detail and fun of calculating appropriate group sizes for your experiments, we’re going to refresh some relevant statistical concepts.</p>
+<p>I know many biologists chose biology to get away from maths and stats, but the sad reality for those people is that being a scientist demands competence in this area. You will not be able to avoid this if you want to make a career out of research.</p>
 </div>
 <section id="random-variables" class="level2">
 <h2 class="anchored" data-anchor-id="random-variables">Random variables</h2>
@@ -296,10 +297,11 @@ Caution
 </ul></li>
 <li>What it means is that the number is subject to the influence of some kind of random variation
 <ul>
-<li>So tail length might be under the influence of overall growth, genetic propensity, and some random redistribution of nutrients or random timing of developmental signals</li>
+<li>So tail length might be partially determined by variations in influences on overall growth of an individual (like nutrition), genetic propensity, and some random redistribution of nutrients within the individual or random timing of developmental signals</li>
 <li>Blood concentration might not be entirely uniform, so the measurement is subject to random variations throughout the circulatory system, or transient effects on how you measure the concentration</li>
 <li>Survival time might not be measured 100% accurately - it can difficult to measure the point of death exactly, so there may be some random variation around the actual time</li>
 </ul></li>
+<li>There are numerous ways that random effects (“noise”) can impinge on the “signal” we’re trying to measure</li>
 </ul>
 </div>
 </section>
@@ -347,19 +349,21 @@ Caution
 <ul>
 <li>A probability distribution describes the range of values that a random variable - let’s call it <span class="math inline">\(z\)</span> - takes.
 <ul>
-<li>You can think of <span class="math inline">\(z\)</span> being a single ball drawn from a bag containing an infinite number of balls, each ball with a number written on it</li>
+<li>So if you’re measuring tail length, and that’s “constant” for a population, but under the influence of the random variation in how much nutrition an individual can get, the distribution is representing that random effect around the “constant” value.</li>
+<li>In more traditional statistical terms, you can think of <span class="math inline">\(z\)</span> being a single ball drawn from a bag containing an infinite number of balls, each ball with a number written on it</li>
 </ul></li>
 <li>Probability distributions can describe many measures, including
 <ul>
 <li>heights of men, incomes of women, political party preference, and so on</li>
 </ul></li>
-<li>The <em>mean</em> of a probability distribution - its <em>expected value</em> or <em>expectation</em> is the average of all numbers in the distribution
+<li>The <em>mean</em> of a probability distribution - its <em>expected value</em> or <em>expectation</em> - is the average of all numbers in the distribution
 <ul>
-<li>This may be infinite, and there is an equivalent definition: the <em>mean</em> is the value obtained <em>on average</em> from a random sample taken from the distribution</li>
+<li>There may be an infinite amount of numbers in the dataset (in principle), and there is an equivalent definition: the <em>mean</em> is the value obtained <em>on average</em> in a random sample taken from the distribution</li>
 </ul></li>
 <li>The <em>variance</em> of a probability distribution expresses how much the individual values might differ from that mean.
 <ul>
 <li>Variance is defined as the <em>mean</em> of the <strong>square of the difference between each individual value in the distribution and the mean of the distribution</strong></li>
+<li>So, for each ball we draw from the bag, we treat the number as <span class="math inline">\(z\)</span> and calculate the <em>sum of squares of differences from the mean</em> - this is the variance.</li>
 </ul></li>
 </ul>
 </div>
@@ -398,11 +402,17 @@ Caution
 </div>
 <div class="notes">
 <ul>
-<li><p>To get some intuition about the idea of variance, imagine that you have a set of values <span class="math inline">\(z\)</span> that are all the same, so there’s no randomness</p></li>
+<li><p>To get some intuition about the idea of variance, imagine that you have a set of values <span class="math inline">\(z\)</span> that are all the same, so there’s no randomness</p>
+<ul>
+<li>So you have a bag of balls, and all the balls in the bag have the number three on them, say</li>
+</ul></li>
 <li><p>If the value are all the same, then they all have the same value as the <em>mean</em> of the distribution, and <span class="math inline">\(z - \mu_z = 0\)</span></p></li>
 <li><p>This means that, for all <span class="math inline">\(z\)</span>, <span class="math inline">\((z - \mu_z)^2\)</span> is also zero, and the variance is zero.</p></li>
 <li><p>But if any value of <span class="math inline">\(z\)</span> is different then, for at least that value, <span class="math inline">\(z - \mu_z \neq 0\)</span>, so the square of that value is greater than zero. It follows that the variance must then be greater than zero: <span class="math inline">\(E((z - \mu_z)^2) \gt 0\)</span></p></li>
-<li><p>In any dataset you meet, you are unlikely to have all values be identical, and so the variance is going to take a positive value</p></li>
+<li><p><strong>In any dataset you meet, you are unlikely to have all values be identical, and so the variance is going to take a positive value</strong></p>
+<ul>
+<li><strong>All measurements you make will have variability in them! This variability must be accounted for.</strong></li>
+</ul></li>
 </ul>
 </div>
 </section>
@@ -505,17 +515,18 @@ Important
 </div>
 <div class="notes">
 <ul>
-<li>You may see the normal distribution written like this, as “z is distributed as the Normal distribution with mean <span class="math inline">\(\mu_z\)</span> and standard deviation <span class="math inline">\(\sigma_z\)</span>.”
+<li>You may see the normal distribution written like this, as “<span class="math inline">\(z\)</span> is distributed as the Normal distribution with mean <span class="math inline">\(\mu_z\)</span> and standard deviation <span class="math inline">\(\sigma_z\)</span>.”
 <ul>
 <li>We only need to know the mean and standard deviation to define a unique normal distribution</li>
 </ul></li>
 <li>Values we measure in the real world should follow an approximate normal distribution if each measured value is the sum of many small, independent, additive factors
 <ul>
 <li>This is a consequence of the Central Limit Theorem</li>
+<li>Many real-world variables do follow normal distributions</li>
 </ul></li>
-<li><strong>But there is no reason to expect that any random variable representing direct measurement will have this property, or follow a normal distribution</strong>
+<li><strong>But there is no reason to expect that any random variable representing any direct measurement you make will have this property, or follow a normal distribution</strong>
 <ul>
-<li>This is especially the case if there is a large factor affecting variation of the variable</li>
+<li>This is especially the case if there is a large factor affecting variation of the variable (e.g.&nbsp;sex)</li>
 </ul></li>
 </ul>
 </div>
@@ -556,7 +567,7 @@ Tip
 <ul>
 <li><p>As an example, we can look at some real data, the heights of men and women in the US.</p>
 <ul>
-<li>Here we have counts of individuals whose heights are measured to the nearest inch</li>
+<li>Here we have counts of individuals whose heights are measured to the nearest inch - they’re shown as counts in the histograms</li>
 </ul></li>
 <li><p>These are two different <em>random variables</em>: one for men, one for women</p></li>
 <li><p>For both distributions, we can calculate a mean, and a standard deviation (or variance)</p>
@@ -604,13 +615,13 @@ Tip
 <div class="notes">
 <ul>
 <li><p>By contrast, the distribution of heights of <em>all</em> adults in the US is not close to a normal curve</p></li>
-<li><p>This is because there is an extraneous factor, <strong>sex</strong>, that represents much of the total variation in values</p>
-<ul>
-<li>We will come back to this idea later</li>
-</ul></li>
+<li><p>This is because there is an extraneous factor, <strong>sex</strong>, that represents much of the total variation in values</p></li>
 <li><p>Here, the mean may not be the same value as the peak of the curve (i.e.&nbsp;the <em>mode</em>)</p></li>
 <li><p>The curve is asymmetrical, so standard deviation does not describe variation equally well on either side of the mean</p></li>
-<li><p>Most data you receive will not be normally distributed</p></li>
+<li><p>Data you receive may not be normally distributed</p>
+<ul>
+<li>(possibly even most of the data you receive!)</li>
+</ul></li>
 </ul>
 </div>
 </section>
@@ -644,9 +655,13 @@ Tip
 </div>
 <div class="notes">
 <ul>
+<li><p>I mentioned earlier that a normal distribution arises when a process produces the a sum of many independent random variables.</p>
+<ul>
+<li><strong>In general statistical distributions are idealised repreentations of the outcomes of distinct kinds of real-world processes</strong></li>
+</ul></li>
 <li><p>Suppose that instead of measuring height, weight, concentration or something like that, you’re measuring <em>event outcomes</em></p>
 <ul>
-<li>These do not follow a normal distribution</li>
+<li>These are not the result of summing independent random variables, and do not follow a normal distribution</li>
 </ul></li>
 <li><p>If you take a bunch of basketball shots (equivalent to our experimental events), each one has some probability of succeeding</p></li>
 <li><p>The number of successful shots is going to depend on the number of shots you take, and how likely you are to score</p>
@@ -660,7 +675,7 @@ Tip
 </ul></li>
 <li><p>It is different from a normal distribution</p>
 <ul>
-<li>If your underlying biological process resembles coin tosses or basketball shots, you need to design your experiment and analysis to be using an appropriate statistical test, such as one based on the binomial distribution</li>
+<li>If your underlying biological process resembles coin tosses or basketball shots, you need to design your experiment and analysis to be using an appropriate statistical test, such as one suitable for a binomial distribution</li>
 </ul></li>
 </ul>
 </div>
@@ -718,12 +733,17 @@ Tip
 </div>
 <div class="notes">
 <ul>
+<li>We write the definition of a binomial distribution as <span class="math inline">\(z \sim \textrm{binomial}(n, p)\)</span>
+<ul>
+<li>Unique distributions are defined by combinations of the number of events, and the probability with which each event occurs</li>
+</ul></li>
 <li>Imagine you took 20 shots at basketball, and had a probability of 0.3 of scoring any one shot</li>
 <li>The distribution of shots you scored would follow a binomial distribution with <span class="math inline">\(n=20\)</span> and <span class="math inline">\(p=0.3\)</span></li>
 <li>You’d expect to score, on average, <span class="math inline">\(20 \times 0.3 = 6\)</span> times</li>
-<li>The standard deviation we’d expect would be <span class="math inline">\(\sqrt{20 \times 0.3 \times (1 - 0.3)} = \sqrt{6 \times (0.7)} = \sqrt{4.2} = 2.05\)</span>
+<li>I’m not going to derive the variance and standard deviation expression
 <ul>
-<li>So you’d expect to score about 4 to 8 shots, most of the time</li>
+<li>The standard deviation we’d expect would be <span class="math inline">\(\sqrt{20 \times 0.3 \times (1 - 0.3)} = \sqrt{6 \times (0.7)} = \sqrt{4.2} = 2.05\)</span></li>
+<li>So you’d expect to score about 2 to 10 shots, most of the time</li>
 </ul></li>
 </ul>
 </div>
@@ -821,7 +841,10 @@ Tip
 </div>
 <div class="notes">
 <ul>
-<li><p>Count or rate data, i.e.&nbsp;discrete events that happen in a given duration, volume or area, generate the <em>Poisson distribution</em></p></li>
+<li><p>Count or rate data, i.e.&nbsp;discrete events that happen in a given duration, volume or area, generate the <em>Poisson distribution</em></p>
+<ul>
+<li>Unique Poisson distributions are described as <span class="math inline">\(z \sim \textrm{poisson}(\lambda)\)</span>, defined only by the <em>expected value</em> <span class="math inline">\(\lambda\)</span></li>
+</ul></li>
 <li><p>Examples of this kind of data include the number of cases of cancer in a county, the number of red cars you see on your journey into university, or the number of calcium concentration spikes you count in a survey period.</p></li>
 <li><p>The distribution takes only one parameter: the <strong>expectation</strong>, lambda</p></li>
 <li><p>If your experiment generates data of this kind, you need to use a test that distinguishes between the value of lambda between the two conditions</p></li>
@@ -862,16 +885,22 @@ Tip
 </div>
 <div class="notes">
 <ul>
-<li><p>Binomial and poisson distributions are quite closely related, and they look like this for the indicated parameter settings</p>
+<li>Binomial and poisson distributions are related, and they look like this for the indicated parameter settings
 <ul>
 <li>The distributions are only defined at whole values - the lines are to guide your eye</li>
 </ul></li>
-<li><p>For binomial distributions the expected successes shift rightwards as the probability of success increases, and as the number of attempts increases</p>
+<li>For binomial distributions the expected successes shift rightwards as the probability of success increases, and as the number of attempts increases
 <ul>
 <li>More attempts also increases the variance of the distribution</li>
 </ul></li>
-<li><p>For poisson distributions, the peak of the distribution shifts rightwards as the expectation increases in value</p></li>
-<li><p><strong>In both cases, all values - counts/rates or successes - are positive whole numbers</strong></p></li>
+<li>For poisson distributions, the peak of the distribution shifts rightwards as the expectation increases in value
+<ul>
+<li>The distribution also becomes more symmetric</li>
+</ul></li>
+<li><strong>In both cases, all values - counts/rates or successes - are positive whole numbers</strong>
+<ul>
+<li>(though <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(p\)</span> can be real values)</li>
+</ul></li>
 </ul>
 </div>
 </section>
@@ -929,6 +958,7 @@ Warning
 <li>There is <strong>no reason</strong> to expect real world data to exactly match <em>any</em> statistical distribution</li>
 <li>Though there are some principles: we ought not to use a normal distribution to model count data (as the normal distribution can drop below zero where counts cannot)</li>
 </ul></li>
+<li><strong>In general we <em>approximate</em> our real data with these idealised distributions in order to obtain more statistical power</strong></li>
 </ul>
 </div>
 </section>
@@ -979,7 +1009,7 @@ Warning
 <ul>
 <li>An intuition worth developing is how much of a (normal) distribution lies within some range of the mean
 <ul>
-<li>This is going to be useful whenthinking about <em>p</em>-values and hypothesis tests</li>
+<li>This is going to be useful when thinking about <em>p</em>-values and hypothesis tests</li>
 </ul></li>
 <li>Here we have a normal distribution with a mean of zero and a standard deviation of 1, so the values on the x-axis represent standard deviations from the mean.
 <ul>

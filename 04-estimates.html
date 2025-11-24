@@ -166,10 +166,12 @@ window.Quarto = {
 </ul></li>
 <li>So, if you have a linear regression and are estimating the intercept and gradient in the equation <span class="math inline">\(y_i = a + b x_i\)</span>
 <ul>
-<li>The intercept <span class="math inline">\(a\)</span>, and gradient <span class="math inline">\(b\)</span>, are the parameters you are estimating</li>
+<li>(suppose that <span class="math inline">\(a\)</span> represents the average baseline weight, <span class="math inline">\(x_i\)</span> is the number of pellets a day you feed a subject, and <span class="math inline">\(y_i\)</span> is the weight of that subject)</li>
+<li>The intercept <span class="math inline">\(a\)</span>, and gradient <span class="math inline">\(b\)</span>, are the <em>parameters</em> you are estimating</li>
 </ul></li>
 <li>You may be representing the data you collect by a normal distribution
 <ul>
+<li>(suppose that <span class="math inline">\(z\)</span> is the distribution of weights in the sample)</li>
 <li>This is described by the parameters <span class="math inline">\(\mu_z\)</span> and <span class="math inline">\(\sigma\)</span>, which you are estimating from your data</li>
 </ul></li>
 </ul>
@@ -218,6 +220,22 @@ window.Quarto = {
 </ul></li>
 </ul>
 </div>
+</div>
+<div class="notes">
+<ul>
+<li>In a statistical context, you may hear the term <em>estimand</em> used
+<ul>
+<li>An <em>estimand</em> is a <strong>value we are interested in estimating from the data</strong></li>
+</ul></li>
+<li>Estimands include things like the parameters of the statistical model: <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> from the linear fit, or <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> from the normal distribution estimate
+<ul>
+<li>But estimands also include things like
+<ul>
+<li><strong>predictions</strong> from the model, like <strong>expected values of <span class="math inline">\(y_i\)</span> for a given individual at <span class="math inline">\(x_i\)</span></strong></li>
+<li>and <strong>confidence intervals</strong>, the level of certainty we think we have in the estimate of a value</li>
+</ul></li>
+</ul></li>
+</ul>
 </div>
 </section>
 <section id="standard-errors-and-confidence-intervals" class="level2 smaller">
@@ -285,7 +303,35 @@ Tip
 </div>
 <div class="notes">
 <ul>
-<li>Now I’ve mentioned confidence intervals we’ll need to talk about them</li>
+<li><p>Now I’ve mentioned confidence intervals we’ll need to talk about them</p></li>
+<li><p>We’ll also need to talk about <em>standard errors</em></p></li>
+<li><p>The <em>standard error</em> is the <strong>estimated standard deviation of an estimate</strong></p>
+<ul>
+<li>It represents <strong>our estimate of our uncertainty</strong> in the estimate of the quantity</li>
+</ul></li>
+<li><p>You will probably have heard of the <em>standard error of the mean (SEM)</em></p>
+<ul>
+<li>We <em>estimate</em> the mean of the population by <em>calculating</em> the mean of the representative sample</li>
+<li>SEM represents <strong>our estimate of our uncertainty in our estimate of the mean</strong></li>
+<li>The more measurements we have in the sample, the less uncertainty we have in our estimate - and so <strong>SEM tends to decrease as the number of individuals in the sample increases</strong> (and, if the sample gets large enough, the uncertainty can approach zero)</li>
+</ul></li>
+<li><p>A <em>confidence interval</em> represents our uncertainty differently: as <strong>a range of values that are roughlly consistent wiht the data</strong></p>
+<ul>
+<li>The confidence interval has <strong>upper and lower bounds</strong></li>
+<li>The size of a confidence interval is given as a percentage</li>
+</ul></li>
+<li><p>A 50% confidence interval (CI) is <strong>expected to contain the true value about 50% of the time</strong></p>
+<ul>
+<li>That is, half of all 50% confidence intervals <em>do not contain the true value</em></li>
+</ul></li>
+<li><p>A 95% confidence interval (CI) is <strong>expected to contain the true value about 95% of the time</strong></p>
+<ul>
+<li>That is, 5% of all 95% confidence intervals <em>do not contain the true value</em></li>
+</ul></li>
+<li><p>As a rule of thumb, for normal distributions and large samples, the 95% CI is bounded by values two standard errors from the estimate.</p>
+<ul>
+<li>The 95% CI for the mean is the range {(mean - 2xSEM), (mean + 2xSEM)}</li>
+</ul></li>
 </ul>
 </div>
 
