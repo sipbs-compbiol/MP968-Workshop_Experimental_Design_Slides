@@ -9,10 +9,10 @@ All of this is important in its own right, but to see why it is so important tha
 :::: { .columns }
 
 ::: { .column width="60%" }
-> "For scientific, ethical and economic reasons, **experiments involving animals should be appropriately designed, correctly analysed and transparently reported**. This increases the scientific validity of the results, and maximises the knowledge gained from each experiment. A minimum amount of relevant information must be included in scientific publications to ensure that the methods and results of a study can be reviewed, analysed and repeated. Omitting essential information can raise scientific and ethical concerns." (@Kilkenny2009-cn)
-
-::: { .callout-important title="We rely on the reporting of the experiment to know if it was appropriate"}
+::: { .callout-important title="We rely on the reporting of an experiment to know if it was appropriate"}
 :::
+
+> "For scientific, ethical and economic reasons, **experiments involving animals should be appropriately designed, correctly analysed and transparently reported**. This increases the scientific validity of the results, and maximises the knowledge gained from each experiment. A minimum amount of relevant information must be included in scientific publications to ensure that the methods and results of a study can be reviewed, analysed and repeated. Omitting essential information can raise scientific and ethical concerns." (@Kilkenny2009-cn)
 :::
 
 ::: { .column width="40%" }
@@ -43,7 +43,7 @@ In 2009, the NC3Rs published a systematic survey (Kilkenny et al. (2009)) of the
 ![](assets/images/kilkenny_blinding.png)
 :::
 
-::: { .callout-warning title="We cannot rely on the literature for good examples of experimental design" }
+::: { .callout-warning title="Publication of a paper does not imply good experimental design" }
 :::
 
 ::::
@@ -63,16 +63,18 @@ The state of the published literature around animal experiments was not good in 
 
 :::
 
-::: { .callout-warning title="We cannot rely on the verbal authority of 'published scientists' or 'experienced scientists' for good experimental design" }
+::: { .callout-warning title="Authority ('published scientist,' 'experienced scientist,' etc.) does not imply good experimental design" }
 :::
 
 ::: { .notes }
 - One of the most shocking pieces of information is that, of the 48 papers surveyed, **not a single one explained why they used the number of animals that they did**.
 - We cannot therefore be assured that the number of animals used was chosen to minimise suffering, or to obtain a statistically justifiable result.
 - These papers are published. They are written, and the experiments conducted, by "experienced scientists"
-- Being an "experienced" or "published" scientist is clearly not a benchmark for good experimental design
+- Being an "experienced" or "published" scientist is clearly not a guarantee of good experimental design
 
-Remember, these are "experienced," "published" scientists in receipt of tens of thousands, maybe hundreds of thousands of pounds worth of funding. If you query their methods, they are likely to claim that having performed these experiments, published the outcomes, and received funding to do so, makes their opinion right and yours wrong. Resist this bullying. Always question how these numbers are decided upon and how the experiment is designed and performed. You are sometimes the experimental subjects' only voice.
+Remember, these are "experienced," "published" scientists in receipt of tens of thousands, maybe hundreds of thousands of pounds worth of funding - maybe repeatedly over many years.
+
+When you query their methods, they are likely to claim that having performed these experiments, published the outcomes, and received funding to do so, makes their opinion right and yours wrong. **Resist this bullying.** Always question how these numbers are decided upon and how the experiment is designed and performed. You are sometimes the experimental subjects' only voice.
 :::
 
 ## Very strong cause for concern { .smaller }
@@ -80,9 +82,9 @@ Remember, these are "experienced," "published" scientists in receipt of tens of 
 > "**Power analysis or other very simple calculations**, which are widely used in human clinical trials and are often **expected by regulatory authorities** in some animal studies, can help to determine an appropriate number of animals to use in an experiment in order to detect a biologically important effect if there is one. This is a **scientifically robust and efficient** way of determining animal numbers and may ultimately **help to prevent animals being used unnecessarily**. _Many of the studies that did report the number of animals used reported the numbers inconsistently between the methods and results sections. The reason for this is unclear, but this does pose a significant problem when analysing, interpreting and repeating the results._" (@Kilkenny2009-cn)
 
 ::: { .callout-important }
-As scientists, you - **yourselves** - need to understand the principles behind the statistical tests you use, in order to choose appropriate tests and methods, and to use appropriate measures to minimise animal suffering and obtain meaningful results.
+As scientists, you - **yourselves** - need to understand the experimental design, and the principles behind statistical analyses, in order to choose appropriate tests and methods, and to use appropriate measures to minimise animal suffering and obtain meaningful results.
 
-**You cannot simply rely on the word of "experienced scientists" for this.**
+**You cannot simply rely on examples from literature or the word of "experienced scientists" for this.**
 :::
 
 ::: { .notes }

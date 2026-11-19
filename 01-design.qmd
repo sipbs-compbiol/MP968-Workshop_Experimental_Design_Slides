@@ -3,7 +3,7 @@
 ::: { .notes }
 - Indeed, why _do_ we need experimental design?
 - Well, in general it's because if your experiment is designed poorly you may not get the answer you're trying to find or - even worse - might get entirely the wrong answer to that question
-- But in this workshop we're going to focus on why we need experimental design - _and its conjoined sibling, statistics_ - in the context of experiments that involve animals
+- But in this workshop we're going to focus on why we need experimental design - _and statistics_ - in the context of experiments that involve animals
 :::
 
 ## We should not cause unnecessary suffering
@@ -61,7 +61,7 @@ The appropriate number of animal subjects to use in an experiment is _always_ th
 - What assumptions are reasonable?
 - What is an appropriate level of certainty?
 
-**By convention**[^1] the usual level of certainty for a hypothesis test is: "we have an 80% chance of getting the correct true/false answer for the hypothesis being tested"
+**By convention**[^1] the usual level of certainty for a hypothesis test is: "an 80% chance of getting the correct true/false answer for the hypothesis being tested"
 :::
 
 [^1]: Conventions are guidelines, not rigid standards, and you should always consider whether a convention is appropriate in your use case
@@ -71,7 +71,7 @@ The appropriate number of animal subjects to use in an experiment is _always_ th
 
 This may sound like a very flexible statement. _What assumptions are reasonable? What is an appropriate level of certainty?_
 
-We'll consider these questions again later but, for now, just know that **_by convention_ the usual level of certainty is: "we have an 80% chance of getting the correct true/false answer for the hypothesis being tested".** and that this is the level of certainty asked for by many funders
+We'll consider these questions again later but, for now, just know that **_by convention_ the usual level of certainty is: "we have an 80% chance of getting the correct true/false answer for the hypothesis being tested,"** and that this is the level of certainty asked for by many funders
 
 Note though that the appropriate level of certainty may change depending on the nature of the question being asked.
 :::
@@ -82,7 +82,7 @@ Note though that the appropriate level of certainty may change depending on the 
 Once a research hypothesis has been devised:
 
 - _Experimental design_ is the process of devising a practical way of answering the question
-- _Statistics_ informs the choices of variables, controls, numbers of individuals and groups, and the appropriate analysis of results
+- _Statistics_ is part of the design process and informs the choices of variables, controls, numbers of individuals and groups, and the appropriate analysis of results
 :::
 
 ::: { .callout-warning title="Design your experiment for…" }
@@ -97,5 +97,5 @@ Once a research hypothesis has been devised, Experimental Design is the process 
 
 Statistics is the branch of applied science that allows us to make probabilistic inferences about our certainty in the “signal” - measurements, comparisons and experimental outcomes - even in the face of natural variations in processes and “noise,” and the way we choose small groups to represent populations.
 
-You should design your experiment **specifically** for your combination of population/subject group, the intervention you're applying, the contrast or comparison you're making, and the outcome you're expecting to see - specifically a measurable or clinically relevant effect.
+You should design your experiment **specifically** for your combination of population/subject group, the intervention you're applying, the contrast or comparison you're making, and the outcome you're expecting to see - typically a measurable or clinically relevant effect.
 :::

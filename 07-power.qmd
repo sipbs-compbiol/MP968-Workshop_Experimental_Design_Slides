@@ -20,6 +20,17 @@ Statistical _power_ is defined as the probability, **before a study is performed
 4. Use probability calculations to determine the chance that your observed $p$-value will be below the threshold (accept the null hypothesis) for the hypothesised effect size
 :::
 
+::: { .notes }
+- The _a priori_ statistical power of an experiment is the probability, **before the study is performed**, and assuming that there **a minimum meaningful effect size**, that the results will achieve **"statistical significance" at some predetermined level** (e.g. P<0.05).
+
+- The way you approach this should be as follows:
+  - First, define what is a meaningful effect size (e.g. _how much_ does cholesterol need to be lowered for this to be a meaningful change)
+  - Then determine what level of statistical significance you can accept (e.g. P<0.05); this represents how willing you are to get an incorrect result, just by chance.
+  - Make a reasonable guess about the level of variation you expect to see in the data
+  - Choose a sample size for the experiment
+  - Then use probability calculations to determine the probability that the resulting p-value will not be "significant," even if the effect size you expect is true.
+:::
+
 ## Effect sizes
 
 ::: { .callout-warning title="Power analysis depends on an assumed effect size" }
