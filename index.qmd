@@ -28,8 +28,6 @@ bibliography: references.bib
 
 {{< include 02-nc3rs_arrive.qmd >}}
 
-{{< include 03-distributions.qmd >}}
-
 {{< include 04-estimates.qmd >}}
 
 {{< include 05-significance.qmd >}}
