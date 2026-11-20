@@ -48,6 +48,24 @@ Statistical _power_ is defined as the probability, **before a study is performed
   - Noisy studies suffer from _The Winner's Curse_
 :::
 
+::: { .notes }
+As you've seen, we need to specify some values before we start
+
+- Effect Size
+- Probability Threshold
+- Variation/Variance of the data
+
+To some extent, we do not know these values - so we have to _assert_ reasonable values before we start.
+
+- Effect size should be scientifically motivated: what is a reasonable and biologically-meaningful change in this context?
+  - Are there useful examples from the literature?
+- We do not know variance in advance either, so we have to make a reasoned assumption - often "high/low/medium" variance, rather than a single value.
+  - Again, are there useful examples from the literature?
+- For probability threshold we need to decide whether we can tolerate being incorrect.
+
+It is tempting to run a small pilot study to estimate values; **but this can be highly counterproductive because of something called _the winner's curse_**
+:::
+
 ## The Winner's Curse 1
 
 ::: { .callout-caution title="A low-powered pilot study" }
@@ -71,7 +89,7 @@ ggplot() +
 ```
 
 ::: { .notes }
-To see what I mean, suppose that we ran a pilot study for a treatment where the true effect size was only a two percentage point increase in the outcome, but this effect is estimated with a standard error of about eight percentage points.
+To see what I mean, suppose that we ran a pilot study for a treatment where the **true effect size** was only a two percentage point increase in the outcome, but this effect is estimated with a standard error of about eight percentage points (because we only have a few individuals in the sample).
 
 - We test this against the null hypothesis that the effect size is zero
 - We set up the null hypothesis so that the result of the study is "positive"/"statistically significant" if the measured difference is more than two standard errors away from zero - i.e. outwith the orange shading of the curve
@@ -108,13 +126,15 @@ ggplot() +
 ```
 
 ::: { .notes }
-- In this low-powered experiment, any "statistically significant" result must fall into one of the dark purple sections of the curve at the extremes
+- In this low-powered pilot experiment, **any "statistically significant" result must fall into one of the dark purple sections of the curve at the extremes**
   - The left-most 2.5% of outcomes or
   - The right-most 7% of outcomes
   
 - The problem is this:
-  - "Statistically significant" results on the right hand side overestimate the size of the true effect by at least eight times (minimum value 16%)
-  - "Statistically significant" results on the right hand side indicate that the effect is _negative_ - a reduction in effect, when the true effect is small but positive
+  - "Statistically significant" results on the right hand side **overestimate the size of the true effect** by at least eight times (minimum value 16%)
+  - "Statistically significant" results on the right hand side indicate that the effect is _negative_ - **a reversal of the truth** - a reduction in effect, when the true effect is small but positive
+  
+**"Statistically significant" small pilot studies can be extremely misleading!**
 :::
 
 ## The Winner's Curse 3
@@ -127,6 +147,7 @@ When _signal_ (effect size) is low and _noise_ (standard error) is high, "statis
 **Low-power studies tend not to replicate well**
 :::
 
+
 ::: { .callout-warning }
 **Low-power studies have essentially no chance of providing useful information**
 
@@ -134,6 +155,16 @@ We can say this even before data are collected
 :::
 
 ::: { .callout-caution title="Published results tend to be overestimates" }
+:::
+
+::: { .notes }
+What this means is that "successful" pilot studies can mask larger failures.
+
+- **If the effect size is smaller than the standard error/noise, pilot studies are likely to be quite wrong**
+
+You can quite frequently see the phenomenon, in the literature, of early positive (and small) studies being replicated with better datasets, and no meaningful effect being found. Even better-conducted studies with large effects tend to be revised by replication so that the observed effect size is not so large.
+
+**Low-power studies can be useless, and seen to be so before an experiment is performed**
 :::
 
 ## Statistical power and ethics
@@ -148,6 +179,17 @@ We can say this even before data are collected
 
 ::: { .callout-warning title="So how should we _appropriately_ power animal studies?" }
 :::
+
+::: { .notes }
+What does this mean, ethically?
+
+- Underpowering studies means the results are not reliable. Detection of an effect is likely to be misleading, and result in more experiments - and animal suffering - before it is realised there is nothing useful to be found.
+
+- Overpowering studies (using too many subjects) means that we cause animal suffering for no purpose.
+
+Both of these are unethical. So what should we do?
+:::
+
 
 ## Statistical power and error 1
 
@@ -165,7 +207,20 @@ We often refer to two kinds of statistical error
 - Represented by the Greek letter $\beta$
 :::
 
-::: { .callout-important title="Statistical power is $1 - \beta$"}
+::: { .callout-important title="Statistical power is $1 - \beta$, for a given $\alpha$ value and effect size"}
+:::
+
+::: { .notes }
+So we need to **adequately** power our experiments, but no more than this. To do so, we need to decide how willing we are to be _wrong_; what level of _error_ we can tolerate. And there are two kinds of error we're concerned with.
+
+- Type I error is a "false positive error" - rejecting a null hypothesis when we should accept it.
+  - In practical terms that means something like detecting a cancer when there's none present. If the chemotherapy is severe, especially if it's worse than the cancer itself, then this would be costly and painful and best avoided, and we'd want to minimise this error. If the treatment is a small, inconsequential surgery, then we might accept a higher error rate.
+  - This is the meaning of the P-value in your null hypothesis test: P<0.05 means that there's less than a 5% chance of a "positive" result being false.
+  
+- Type II error is a "false negative error" - accepting the null hypothesis when we should reject it.
+  - In practical terms, that means something like failing to detect a cancer when it is present. If the cancer is benign, then we can accept a fairly high error rate. But if it is fast-acting, painful, and deadly if not treated, we want to minimise the error rate.
+  
+The choice of acceptable error rates - **the desired power of the experiment** - depends on the application.
 :::
 
 ## Statistical power and error 2
@@ -180,9 +235,18 @@ Statistical power needs context: the expected error rates of the experiment at a
 - "80% power": **we expect the study to report a significant effect, _where one truly exists_, 80% of the time**
 :::
 
-## Statistical power and error 3
+::: { .notes }
+There are conventions for $\alpha$ and $\beta$, but effect size is absolutely context-dependent. Typically:
 
-> The experiment has 80% power at $\alpha = 0.05$ for an effect size of 2mM/L
+- $\alpha = 0.05$
+- $\beta = 0.8$
+
+The statement here: "The experiment has 80% power at $\alpha = 0.05$ for an effect size of 2mM/L" means:
+
+**Assuming an effect size of 2mM/L, and a sufficient sample size that we would expect to detect this at P<0.05, the probability of _not finding_ the effect is 0.2 (i.e. 20%)**
+:::
+
+## Statistical power and error 3
 
 ::: { .callout-important title="If the drug truly has no effect" }
 - The test has $\alpha = 0.05$, so we would expect to reject the null hypothesis **incorrectly** 5% of the time
@@ -192,6 +256,22 @@ Statistical power needs context: the expected error rates of the experiment at a
 ::: { .callout-tip title="If the drug truly has an effect" }
 - The test has predicted power $1 - \beta = 0.8$, so the type II error rate $\beta = 0.2$ and we would expect to accept the null hypothesis **incorrectly** 20% of the time
 - If we ran the experiment 100 times, we would expect to see a result implying that the drug was effective **eighty times**
+:::
+
+::: { .callout-warning title="We should believe a positive result" }
+$0.8 / 0.05 = 16$ so a positive result is 16 times more likely to be true than false
+:::
+
+::: { .notes }
+So, with this statistical power, if there was no effect of the drug:
+
+- Over 100 experiments we would expect to **incorrectly** say the drug has an effect 5 times
+
+And if the drug truly had an effect:
+
+- Over 100 experiments we would expect to **correctly** say the drug has an effect 80 times.
+
+So, if we get a positive result, it is 16 times more likely to be a true positive than a false positive.
 :::
 
 ## Statistical power and sample size 1
@@ -208,6 +288,14 @@ Statistical power needs context: the expected error rates of the experiment at a
 We need this information to calculate an appropriate, _ethical_ sample size
 :::
 
+::: { .notes }
+So, to calculate an appropriate, ethical sample size, we need to decide or provide:
+
+- acceptable false positive and false negative rates (i.e. statistical power)
+- an expected effect size and variance
+- and **to know what statistical test is being performed**, because this determines how we calculate an **appropriate sample size** to achieve the desired power
+:::
+
 ## Statistical power and sample size 2
 
 ::: { .callout-important title="Typical funders' requirements" }
@@ -220,4 +308,10 @@ We need this information to calculate an appropriate, _ethical_ sample size
 ::: { .callout-warning title="Under experimenter control" }
 - Effect size and variance
 - The appropriate statistical approach
+:::
+
+::: { .notes }
+The required level of statistical power is often decided by the funder or ethical committee.
+
+But determining effect size, variance, and an appropriate statistical approach is **up to you as a scientist** and you need to make your case to the funder and ethical panel for why your choices are acceptable.
 :::
