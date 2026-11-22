@@ -211,7 +211,9 @@ We often refer to two kinds of statistical error
 :::
 
 ::: { .notes }
-So we need to **adequately** power our experiments, but no more than this. To do so, we need to decide how willing we are to be _wrong_; what level of _error_ we can tolerate. And there are two kinds of error we're concerned with.
+Whate we need to do is **adequately** power our experiments, but no more than this. 
+
+To do this, we need to decide how willing we are to be _wrong_ in our conclusion, and what level of _error_ we can tolerate. This means there are two different kinds of error we need to be concerned with.
 
 - Type I error is a "false positive error" - rejecting a null hypothesis when we should accept it.
   - In practical terms that means something like detecting a cancer when there's none present. If the chemotherapy is severe, especially if it's worse than the cancer itself, then this would be costly and painful and best avoided, and we'd want to minimise this error. If the treatment is a small, inconsequential surgery, then we might accept a higher error rate.
@@ -219,6 +221,7 @@ So we need to **adequately** power our experiments, but no more than this. To do
   
 - Type II error is a "false negative error" - accepting the null hypothesis when we should reject it.
   - In practical terms, that means something like failing to detect a cancer when it is present. If the cancer is benign, then we can accept a fairly high error rate. But if it is fast-acting, painful, and deadly if not treated, we want to minimise the error rate.
+  - At a specific level of type I error rate, this is the _power_ of your experiment.
   
 The choice of acceptable error rates - **the desired power of the experiment** - depends on the application.
 :::
@@ -236,14 +239,16 @@ Statistical power needs context: the expected error rates of the experiment at a
 :::
 
 ::: { .notes }
-There are conventions for $\alpha$ and $\beta$, but effect size is absolutely context-dependent. Typically:
+Statistical power also needs another value, for context: the size of the effect you'r trying to detect.
+
+There are conventions for type I and type II errors $\alpha$ and $\beta$, but effect size is absolutely context-dependent. Typically:
 
 - $\alpha = 0.05$
 - $\beta = 0.8$
 
 The statement here: "The experiment has 80% power at $\alpha = 0.05$ for an effect size of 2mM/L" means:
 
-**Assuming an effect size of 2mM/L, and a sufficient sample size that we would expect to detect this at P<0.05, the probability of _not finding_ the effect is 0.2 (i.e. 20%)**
+**Assuming there is an effect size of 2mM/L (e.g. a change in cholesterol concentration), and when a sufficient sample size that we would expect to detect this effect at P<0.05, the probability of still _not seeing_ this effect (or a larger effect) is 0.2 (i.e. 20%)**.
 :::
 
 ## Statistical power and error 3
@@ -258,20 +263,24 @@ The statement here: "The experiment has 80% power at $\alpha = 0.05$ for an effe
 - If we ran the experiment 100 times, we would expect to see a result implying that the drug was effective **eighty times**
 :::
 
-::: { .callout-warning title="We should believe a positive result" }
-$0.8 / 0.05 = 16$ so a positive result is 16 times more likely to be true than false
+::: { .callout-warning title="We should believe our results" }
+$0.8 / 0.05 = 16$ so a positive result is 16 times more likely to be real than mistaken
+
+$0.95 / 0.2 = 4.75$ so a negative result is ≈5 times more likely to be real than mistaken
 :::
 
 ::: { .notes }
-So, with this statistical power, if there was no effect of the drug:
+So, with this level statistical power, if there was no effect of the drug:
 
-- Over 100 experiments we would expect to **incorrectly** say the drug has an effect 5 times
+- If we ran 100 experiments we would expect to **incorrectly** say the drug has an effect 5 times
 
 And if the drug truly had an effect:
 
-- Over 100 experiments we would expect to **correctly** say the drug has an effect 80 times.
+- If we ran 100 experiments we would expect to **correctly** say the drug has an effect 80 times.
 
 So, if we get a positive result, it is 16 times more likely to be a true positive than a false positive.
+
+And, if we get a negative results, it is five times more likely to be a true negative than a false negative.
 :::
 
 ## Statistical power and sample size 1
@@ -280,12 +289,12 @@ So, if we get a positive result, it is 16 times more likely to be a true positiv
 - An **acceptable false positive rate** (type I error, $\alpha$)
 - An **acceptable false negative rate** (type II error, $\beta$)
   - This is equivalent to knowing the _target statistical power_ ($1 - \beta$)
-- The expected **effect size** and **variance**
+- The expected **effect size** and an estimate of the **variance** of that effect size
 - The **statistical test** being performed
 :::
 
 ::: { .callout-important }
-We need this information to calculate an appropriate, _ethical_ sample size
+We need this information to calculate an appropriate, _ethically justifiable_ sample size
 :::
 
 ::: { .notes }
@@ -313,5 +322,7 @@ So, to calculate an appropriate, ethical sample size, we need to decide or provi
 ::: { .notes }
 The required level of statistical power is often decided by the funder or ethical committee.
 
-But determining effect size, variance, and an appropriate statistical approach is **up to you as a scientist** and you need to make your case to the funder and ethical panel for why your choices are acceptable.
+The usual standard is to set a false positive rate of 0.05 (your P-value) and set the power at 0.8.
+
+But determining effect size, variance, and an appropriate statistical approach is **your responsibility as a scientist** and you need to make your case to the funder and ethical panel for why your choices are acceptable.
 :::
