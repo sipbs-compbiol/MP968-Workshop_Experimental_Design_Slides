@@ -3,7 +3,7 @@ title: "MP968 Experimental Design Workshop"
 author: 
   - name: "Leighton Pritchard"
     affiliation: "University of Strathclyde"
-date: "2025-11-24"
+date: "2026-11-23"
 
 format:
   revealjs:
@@ -27,10 +27,6 @@ bibliography: references.bib
 {{< include 01-design.qmd >}}
 
 {{< include 02-nc3rs_arrive.qmd >}}
-
-{{< include 03-distributions.qmd >}}
-
-{{< include 04-estimates.qmd >}}
 
 {{< include 05-significance.qmd >}}
 

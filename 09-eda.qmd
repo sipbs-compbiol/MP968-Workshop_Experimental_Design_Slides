@@ -80,20 +80,21 @@ Like most drugs, drug A is carried in a _vehicle_ - a substance expected to be i
 It would be unwise to assume we could administer drug A _alone_ to one group of mice and apply no intervention in the other group.
 
 Physiological responses may be affected by:
+
 - the vehicle
 - the procedure (e.g. injection)
 
-So we **must** follow the same protocol in the control and treatment groups, with the only variable being presence/absence of drug A.
+So we **must** follow the same protocol in the control and treatment groups, with the only (non-random) difference being presence/absence of drug A.
 :::
 
 ## The Experiment 6
 
 ::: { .callout-tip title="Random assignment to groups" }
-Individual mice may respond differently to drug A, the vehicle, and the procedure, due to underlying differences between them.
+Individual mice may respond differently to drug A, the vehicle, or the procedure, or any combination of thos, due to underlying differences between them.
 
 We therefore need to **randomise** subjects into experimental groups, assuming that _all individuals are drawn from the same population_ (a single pool whose response varies according to some common distribution).
 
-- This means we expect the underlying plasma concentrations, and responses to treatment, in each group to be comparable.
+- This means we expect the underlying plasma concentrations, and responses to treatment, in each of the two groups to be comparable.
 - **Differences in measured outcome between groups are then expected to derive only from our experimental interventions and presence/absence of drug A**
 :::
 

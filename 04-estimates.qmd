@@ -12,8 +12,8 @@ _Parameters_ are unknown numbers that determine a statistical model
 $$ y_i = a + b x_i $$
 
 - Parameters are:
-  - $a$ (the intercept)
-  - $b$ (the gradient)
+  - $a$  (the intercept)
+  - $b$  (the gradient)
 :::
 
 ::: { .callout-warning title="A normal distribution representing your data" }
@@ -27,12 +27,12 @@ $$ z \sim \textrm{normal}(\mu_z, \sigma) $$
   - You estimate parameter values from the data you collect
   
 - So, if you have a linear regression and are estimating the intercept and gradient in the equation $y_i = a + b x_i$
-  - (suppose that $a$ represents the average baseline weight, $x_i$ is the number of pellets a day you feed a subject, and $y_i$ is the weight of that subject)
+  - (suppose that $a$ represents the average baseline weight at the start of an experiment, $x_i$ is the number of pellets a day you feed a subject, and $y_i$ is the weight of that subject at the end of the experiment)
   - The intercept $a$, and gradient $b$, are the _parameters_ you are estimating
   
 - You may be representing the data you collect by a normal distribution
-  - (suppose that $z$ is the distribution of weights in the sample)
-  - This is described by the parameters $\mu_z$ and $\sigma$, which you are estimating from your data
+  - (suppose that $z$ is the distribution of tail length measurements in a group of mice)
+  - This is described by the parameters $\mu_z$ and $\sigma$ - mean and standard deviation - which you are estimating from your data
 :::
 
 ## Estimands { .smaller }
@@ -96,13 +96,10 @@ $$ z \sim \textrm{normal}(\mu_z, \sigma) $$
 
 - The _standard error_ is the **estimated standard deviation of an estimate**
   - It represents **our estimate of our uncertainty** in the estimate of the quantity
-
-- You will probably have heard of the _standard error of the mean (SEM)_
-  - We _estimate_ the mean of the population by _calculating_ the mean of the representative sample
-  - SEM represents **our estimate of our uncertainty in our estimate of the mean**
-  - The more measurements we have in the sample, the less uncertainty we have in our estimate - and so **SEM tends to decrease as the number of individuals in the sample increases** (and, if the sample gets large enough, the uncertainty can approach zero)
+  - If we've calculated a mean tail length for a group of mice, then the **standard error of the mean (SEM)** is our uncertainty in the estimated mean tail length.
+  - The more measurements we have in the sample, the better we expect our estimate of the mean to be, and the less uncertainty in our estimate - and so **SEM tends to decrease as the number of individuals in the sample increases** (and, if the sample gets large enough, the uncertainty can approach zero)
   
-- A _confidence interval_ represents our uncertainty differently: as **a range of values that are roughlly consistent wiht the data**
+- A _confidence interval_ represents our uncertainty differently: as **a range of values that are roughly consistent with the data**
   - The confidence interval has **upper and lower bounds**
   - The size of a confidence interval is given as a percentage
 - A 50% confidence interval (CI) is **expected to contain the true value about 50% of the time**

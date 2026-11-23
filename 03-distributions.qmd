@@ -95,7 +95,7 @@ I know many biologists chose biology to get away from maths and stats, but the s
 Your experimental measurements are _random variables_
 
 ::: { .callout-important }
-**This does not mean that your measurements are entirely random numbers**
+**This does not mean that your measurements are random numbers**
 :::
 
 ::: { .callout-caution }
@@ -118,32 +118,33 @@ Random variables are values whose range is _subject to some element of chance_, 
 
 ## Probability distributions { .smaller }
 
-The probability distribution of a random variable $z$ (e.g. what you measure in an experiment) takes on some range of values[^infinite]
+- In practice, a random variable $z$ (e.g. what you measure in an experiment) takes on some range of values[^infinite].
+- Not all values in this range are equally likely - some are more likely than others.
+- We call this range of values, and their likely occurrence, a _probability distribution_.
 
 ::: { .callout-tip title="The mean of the distribution of $z$" }
 - The _mean_ (aka _expected value_ or _expectation_) is the average of all the values in $z$
-  - Equivalently: the _mean_ is the value that is obtained **on average** from a random sample from the distribution
+  - Equivalently: the _mean_ is the value we would obtain **on average** by taking many random samples from the distribution
 - Written as $\mu_{z}$ or $E(z)$
 :::
   
 ::: { .callout-tip title="The variance of a distribution of $z$" }
-- The _variance_ of the distribution of $z$ represents the _expected_ mean squared difference from the mean $\mu_z$ (or $E(z)$) of a random sample from the distribution.
+- The _variance_ of the distribution of $z$ represents the _expected_ (i.e. average) mean squared difference of each measurement from the mean $\mu_z$ (or $E(z)$), for a random sample from the distribution.
   - $\textrm{variance} = E((z - \mu_z)^2)$
+- This value is always positive, even though the difference could be in either direction
 :::
 
 [^infinite]: Here we are considering a populations of an infinite number of measurements of $z$
 
 ::: { .notes }
 - A probability distribution describes the range of values that a random variable - let's call it $z$ - takes.
-  - So if you're measuring tail length, and that's "constant" for a population, but under the influence of the random variation in how much nutrition an individual can get, the distribution is representing that random effect around the "constant" value.
-  - In more traditional statistical terms, you can think of $z$ being a single ball drawn from a bag containing an infinite number of balls, each ball with a number written on it
+  - So if you're measuring tail length, and that's "constant" for a population, but under the influence of the random variation in how much nutrition an individual can get. Depending on how much nutrition a mouse got, the length of the tail may be greater or less than this "constant" tail length, and the distribution represents that random effect around the "constant" value.
 - Probability distributions can describe many measures, including
   - heights of men, incomes of women, political party preference, and so on
 - The _mean_ of a probability distribution - its _expected value_ or _expectation_ - is the average of all numbers in the distribution
-  - There may be an infinite amount of numbers in the dataset (in principle), and there is an equivalent definition: the _mean_ is the value obtained _on average_ in a random sample taken from the distribution
+  - There may be an infinite amount of numbers in the dataset (in principle). We can't really count an infinite set of numbers, so there is an equivalent definition: the _mean_ is the value obtained _on average_ in a random sample taken from the distribution
 - The _variance_ of a probability distribution expresses how much the individual values might differ from that mean.
   - Variance is defined as the _mean_ of the **square of the difference between each individual value in the distribution and the mean of the distribution**
-  - So, for each ball we draw from the bag, we treat the number as $z$ and calculate the _sum of squares of differences from the mean_ - this is the variance.
 :::
 
 ## Understanding variance
@@ -166,8 +167,8 @@ $$\implies \textrm{variance} = E((z - \mu_z)^2) \gt 0 $$
 
 ::: { .notes }
 - To get some intuition about the idea of variance, imagine that you have a set of values $z$ that are all the same, so there's no randomness
-  - So you have a bag of balls, and all the balls in the bag have the number three on them, say
-- If the value are all the same, then they all have the same value as the _mean_ of the distribution, and $z - \mu_z = 0$
+  - So you have a group of mice, and all the tails of the mice are exactly three centimetres long.
+- If the values are all the same, then they all have the same value as the _mean_ of the distribution, and $z - \mu_z = 0$
 - This means that, for all $z$, $(z - \mu_z)^2$ is also zero, and the variance is zero.
 - But if any value of $z$ is different then, for at least that value, $z - \mu_z \neq 0$, so the square of that value is greater than zero. It follows that the variance must then be greater than zero: $E((z - \mu_z)^2) \gt 0$
 
@@ -180,6 +181,7 @@ $$\implies \textrm{variance} = E((z - \mu_z)^2) \gt 0 $$
 ::: { .callout-warning title="_Standard deviation_ is the square root of the variance" }
 
 $$\textrm{standard deviation} = \sigma_z = \sqrt{\textrm{variance}} = \sqrt{E((z - \mu_z)^2)} $$
+- The standard deviation is always positive
 :::
 
 ::: { .callout-tip title="Advantages" }
@@ -189,14 +191,19 @@ $$\textrm{standard deviation} = \sigma_z = \sqrt{\textrm{variance}} = \sqrt{E((z
 
 ::: { .callout-note }
 We can calculate _mean_, _variance_, and _standard deviation_ for **any** probability distribution.
+
+(but sometimes this is not necessarily useful)
 :::
 
 ::: { .notes }
 - You are probably more familiar with the _standard deviation_ of a distribution.
-- The standard deviation is on the same kind of scale as the values of the distribution, which makes this an easier value to interpret than the variance
+- This is the square root of the variance we were just talking about.
 
-- While we can calculate the mean, variance and standard deviation for _any_ distribution, this does **not** mean that they are equally informative for all distributions
-- Let's look at some examples
+- The standard deviation is on the same kind of scale as the values of the distribution, which makes this an easier value to interpret than the variance.
+
+- While we can calculate the mean, variance and standard deviation for _any_ distribution, this does **not** mean that they are equally informative for all distributions.
+
+- Let's look at some examples.
 :::
 
 ## Normal Distribution 1
@@ -218,7 +225,7 @@ Measurements of variables whose value is the sum of many small, independent, add
 ::: { .notes }
 - You may see the normal distribution written like this, as "$z$ is distributed as the Normal distribution with mean $\mu_z$ and standard deviation $\sigma_z$."
   - We only need to know the mean and standard deviation to define a unique normal distribution
-- Values we measure in the real world should follow an approximate normal distribution if each measured value is the sum of many small, independent, additive factors
+- Values we measure in the real world should follow an approximate normal distribution when each measured value is the sum of many small, independent, additive factors, like mouse tail length.
   - This is a consequence of the Central Limit Theorem
   - Many real-world variables do follow normal distributions
 - **But there is no reason to expect that any random variable representing any direct measurement you make will have this property, or follow a normal distribution**
@@ -244,15 +251,17 @@ ggarrange(heights_f, heights_m, ncol=2)
 
 ::: { .notes }
 - As an example, we can look at some real data, the heights of men and women in the US.
-  - Here we have counts of individuals whose heights are measured to the nearest inch - they're shown as counts in the histograms
+  - Here we have individuals whose heights are measured to the nearest inch - they're shown as counts in the histograms
 - These are two different _random variables_: one for men, one for women
 - For both distributions, we can calculate a mean, and a standard deviation (or variance)
-  - Therefore we can calculate a normal distribution representing both men's and women's heights (orange curve)
   - We calculate the mean heights for men and women (63.7 and 69.1 inches), and also the standard deviations (2.7 and 2.9 inches)
-- The distributions of heights for each sex, separately, follow an approximate normal distribution
+  - This lets us calculate a normal distribution representing both men's and women's heights (orange curve)
 
 - For a normal distribution, the mean value is the value at the peak of the curve
 - The curve is symmetrical, so the standard deviation describes variability equally well on both sides of the mean
+
+- The curves look like they match the histogram quite well
+- The distributions of heights for each sex, separately, follow an approximate normal distribution
 :::
 
 ## (Non-)Normal Distribution 3 { .smaller }
@@ -272,7 +281,7 @@ heights_adults
 :::
 
 ::: { .notes }
-- By contrast, the distribution of heights of _all_ adults in the US is not close to a normal curve
+- But when we put the sexes together, the distribution of heights of _all_ adults in the US is not close to a normal curve
 - This is because there is an extraneous factor, **sex**, that represents much of the total variation in values
 
 - Here, the mean may not be the same value as the peak of the curve (i.e. the _mode_)
@@ -309,7 +318,7 @@ It is different from a normal distribution.
 
 ::: { .notes }
 - I mentioned earlier that a normal distribution arises when a process produces the a sum of many independent random variables.
-  - **In general statistical distributions are idealised repreentations of the outcomes of distinct kinds of real-world processes**
+  - **In general statistical distributions are idealised representations of the outcomes of distinct kinds of real-world processes**
 
 - Suppose that instead of measuring height, weight, concentration or something like that, you're measuring _event outcomes_
   - These are not the result of summing independent random variables, and do not follow a normal distribution

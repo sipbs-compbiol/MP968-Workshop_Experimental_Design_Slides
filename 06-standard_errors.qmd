@@ -37,6 +37,8 @@ $$ \textrm{standard error} = \sqrt{\frac{\textrm{Variance}}{n}} = \frac{\textrm{
   - This assumes that our sample is **randomly selected from the population and all samples are independent** - the more you violate those assumptions, the less accurate this estimate is
   - Since standard deviation is the square root of the variance, we can write this as:
 - The standard error of the mean is the standard deviation divided by the square root of sample size
+
+- **What it means in practice is that our confidence in the result of the analysis depends on how large our sample is**
 :::
 
 ## Standard error and sample size
@@ -72,8 +74,6 @@ ggplot() +
 - As we increase the number of samples $n$, the uncertainty narrows, and the density of the distribution of estimates starts to gather more around the central value of our estimate of the mean.
 
 - This property holds regardless of our assumptions about the shape of the sampling distribution
-  - But it only reflects our confidence in the estimate of the mean, **not** the shape of the underlying distribution!
-  - **The standard error is less informative about our distribution as the sampling distribution deviates more from a normal distribution**
 :::
 
 ## Standard error and hypothesis testing 1
@@ -90,8 +90,8 @@ $$ t = \frac{Z}{s} = \frac{Z}{\sigma/\sqrt{n}} $$
 :::
 
 ::: { .notes }
-- In most statistical hypothesis tests, we define a test statistic denoting a significance threshold
-  - Often, if the calculated value for our sample lies within that test statistic, we accept the null hypothesis
+- In most statistical hypothesis tests, we define a test statistic denoting a **pre-chosen** significance threshold
+  - Often, if the calculated value for our sample lies within (does not exceed) that test statistic, we accept the null hypothesis
 - The statistic is typically defined as $t = \frac{Z}{s}$ where $t$ is the test statistic value, $Z$ is some quantity calculated from the data, and $s$ is the standard error of the mean, $\sigma/{\sqrt{n}}$
 :::
 
@@ -120,7 +120,7 @@ $$ \sqrt{W} = \frac{Z}{s} = \frac{\hat{\theta} - \theta_0}{s(\hat{\theta})} $$
   - Here $\hat{\theta} - \theta_0$ is the difference between an estimated most likely value and the hypothesised most likely value
   - $s$ is the standard error of the estimate of the most likely value
   
-- The standard error is influenced by (gets smaller with) the square root of sample size in both cases
+- They are different tests, but in both cases, the standard error is influenced by (gets smaller with) the square root of sample size.
 :::
 
 ## Standard error and hypothesis testing 3
@@ -146,7 +146,7 @@ $$ t = \frac{Z}{s} = \frac{Z}{\sigma/\sqrt{n}} $$
 
 ## Sample size and hypothesis testing 1
 
-::: { .callout-tip title="We reject the null hypothesis when $t > $t_\textrm{crit}$" }
+::: { .callout-tip title="We reject the null hypothesis when $t > t_\textrm{crit}$" }
 - Suppose we set $t_\textrm{crit} = 2$ (and $\sigma=1$, $n=3$)
 - We can calculate $t = \frac{Z}{s} = \frac{Z}{\sigma/\sqrt{n}}$ for any value of $Z$
 :::
@@ -184,11 +184,11 @@ ggplot(dfm %>% filter(sample_size=="t1"), aes(x=z, y=t_statistic, color=sample_s
 ```
 
 ::: { .notes }
-- So suppose we set a confidence interval that gives us a test statistic: t-critical=2
+- So suppose we set a confidence interval that gives us a test statistic: $t_{crit}=2$
   - So any difference $Z$ between our estimated mean and the test value giving a value of t less than 2 is "not significant" and we accept the null hypothesis
   - Any difference $Z$ between our estimated mean and the test value giving a value of t greater than 2 is "significant" and we reject the null hypothesis
   
-- The plot now shows the relationship between $Z$, our measured difference from the hypothesised mean, and the value of the resulting test statistic $t$ for a sample size of three measurements
+- The plot now shows as a red line the relationship between $Z$, our measured difference from the hypothesised mean, and the value of the resulting test statistic $t$ for a sample size of three measurements
 
 - With three measurements, we need a Z value of about 1.15 or greater for the line to cross the critical value and for us to reject the null hypothesis
   - If we saw a Z value of less than 1.15, we would accept the null hypothesis
@@ -224,11 +224,13 @@ ggplot(dfm, aes(x=z, y=t_statistic, color=sample_size)) +
 ::: { .notes }
 - The plot shows the relationship between $Z$, our measured difference from the hypothesised mean, and the value of the resulting test statistic $t$ for a range of sample sizes from 3 to 15 measurements
 
-- With three measurements, we need a Z value of about 1.15 or greater for the line to cross the critical value and for us to reject the null hypothesis
-- With 15 measurements, we only need a Z value of about 0.5 to reject the null hypothesis
+- With three measurements, we need a Z value of about 1.15 or greater for the line to cross the critical value and for us to reject the null hypothesis - the red line from the previous plot
+- We can draw similar lines for larger sample sizes: 5, 7, 10, and 15 measurements
+- With 15 measurements, we only need a Z value of about 0.5 to be able reject the null hypothesis at the same value of $t_{crit}$ we needed a Z value of 1.15 to reject, with three measurements.
   - Five times the sample size means we reject the null hypothesis at about half the size of measured difference
 
 - **Changing the sample size changes how sensitive our hypothesis test is**
+- **Increasing sample size allows us to detect _smaller_ real effects, at the same significance threshold.**
 :::
 
 ## Statistical significance and effect size
@@ -246,4 +248,17 @@ ggplot(dfm, aes(x=z, y=t_statistic, color=sample_size)) +
 In all our experiments we should be concerned _not_ with "statistical significance," but with **how likely it is that, if there is a meaningful effect of the treatment, our experiment will be able to detect it?**
 
 - We need to be concerned with _statistical power_
+:::
+
+::: { .notes }
+- What you should take from this is that demonstrating "statistical significance" is not the point of a statistical test
+  - We can always meet _any_ statistical significance threshold by adjusting sample size.
+- A statistically significant result is not the same thing as a practically meaningful result.
+  - We can meet any _arbitrarily small_ significance threshold by adjusting szmple size.
+
+- What matters for us is _effect size_
+  - In all our hypothesis tests for experiments, we really want to know this:
+  - **If there is a meaningful effect (which we need to know in advance) due to the treatment, how likely is our experiment to detect it?**
+  
+- In short, what we care about is what is the **statistical power** of our experiment.
 :::
