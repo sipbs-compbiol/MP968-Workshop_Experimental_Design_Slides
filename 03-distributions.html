@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>distributions</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -66,15 +72,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8fd1faf6fd93e4e6d207ae0f9db51d78.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ded4168630e1422961a6247c4ac5fe91.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -104,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -135,7 +141,7 @@ window.Quarto = {
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="fullcontent quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
 <!-- content -->
@@ -144,7 +150,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content" tabindex="-1"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
@@ -268,7 +274,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>This does not mean that your measurements are entirely random numbers</strong></p>
+<p><strong>This does not mean that your measurements are random numbers</strong></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -307,8 +313,12 @@ Caution
 </section>
 <section id="probability-distributions" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="probability-distributions">Probability distributions</h2>
-<p>The probability distribution of a random variable <span class="math inline">\(z\)</span> (e.g.&nbsp;what you measure in an experiment) takes on some range of values<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="callout callout-style-default callout-tip callout-titled" title="The mean of the distribution of $z$">
+<ul>
+<li>In practice, a random variable <span class="math inline">\(z\)</span> (e.g.&nbsp;what you measure in an experiment) takes on some range of values<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
+<li>Not all values in this range are equally likely - some are more likely than others.</li>
+<li>We call this range of values, and their likely occurrence, a <em>probability distribution</em>.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -321,13 +331,13 @@ Caution
 <ul>
 <li>The <em>mean</em> (aka <em>expected value</em> or <em>expectation</em>) is the average of all the values in <span class="math inline">\(z\)</span>
 <ul>
-<li>Equivalently: the <em>mean</em> is the value that is obtained <strong>on average</strong> from a random sample from the distribution</li>
+<li>Equivalently: the <em>mean</em> is the value we would obtain <strong>on average</strong> by taking many random samples from the distribution</li>
 </ul></li>
 <li>Written as <span class="math inline">\(\mu_{z}\)</span> or <span class="math inline">\(E(z)\)</span></li>
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="The variance of a distribution of $z$">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -338,10 +348,11 @@ Caution
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>The <em>variance</em> of the distribution of <span class="math inline">\(z\)</span> represents the <em>expected</em> mean squared difference from the mean <span class="math inline">\(\mu_z\)</span> (or <span class="math inline">\(E(z)\)</span>) of a random sample from the distribution.
+<li>The <em>variance</em> of the distribution of <span class="math inline">\(z\)</span> represents the <em>expected</em> (i.e.&nbsp;average) mean squared difference of each measurement from the mean <span class="math inline">\(\mu_z\)</span> (or <span class="math inline">\(E(z)\)</span>), for a random sample from the distribution.
 <ul>
 <li><span class="math inline">\(\textrm{variance} = E((z - \mu_z)^2)\)</span></li>
 </ul></li>
+<li>This value is always positive, even though the difference could be in either direction</li>
 </ul>
 </div>
 </div>
@@ -349,8 +360,7 @@ Caution
 <ul>
 <li>A probability distribution describes the range of values that a random variable - let’s call it <span class="math inline">\(z\)</span> - takes.
 <ul>
-<li>So if you’re measuring tail length, and that’s “constant” for a population, but under the influence of the random variation in how much nutrition an individual can get, the distribution is representing that random effect around the “constant” value.</li>
-<li>In more traditional statistical terms, you can think of <span class="math inline">\(z\)</span> being a single ball drawn from a bag containing an infinite number of balls, each ball with a number written on it</li>
+<li>So if you’re measuring tail length, and that’s “constant” for a population, but under the influence of the random variation in how much nutrition an individual can get. Depending on how much nutrition a mouse got, the length of the tail may be greater or less than this “constant” tail length, and the distribution represents that random effect around the “constant” value.</li>
 </ul></li>
 <li>Probability distributions can describe many measures, including
 <ul>
@@ -358,19 +368,18 @@ Caution
 </ul></li>
 <li>The <em>mean</em> of a probability distribution - its <em>expected value</em> or <em>expectation</em> - is the average of all numbers in the distribution
 <ul>
-<li>There may be an infinite amount of numbers in the dataset (in principle), and there is an equivalent definition: the <em>mean</em> is the value obtained <em>on average</em> in a random sample taken from the distribution</li>
+<li>There may be an infinite amount of numbers in the dataset (in principle). We can’t really count an infinite set of numbers, so there is an equivalent definition: the <em>mean</em> is the value obtained <em>on average</em> in a random sample taken from the distribution</li>
 </ul></li>
 <li>The <em>variance</em> of a probability distribution expresses how much the individual values might differ from that mean.
 <ul>
 <li>Variance is defined as the <em>mean</em> of the <strong>square of the difference between each individual value in the distribution and the mean of the distribution</strong></li>
-<li>So, for each ball we draw from the bag, we treat the number as <span class="math inline">\(z\)</span> and calculate the <em>sum of squares of differences from the mean</em> - this is the variance.</li>
 </ul></li>
 </ul>
 </div>
 </section>
 <section id="understanding-variance" class="level2">
 <h2 class="anchored" data-anchor-id="understanding-variance">Understanding variance</h2>
-<div class="callout callout-style-default callout-caution callout-titled" title="A distribution where all values of $z$ are the same">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -386,7 +395,7 @@ Caution
 <p><span class="math display">\[z = \mu_z \implies z - \mu_z = 0 \implies (z - \mu_z)^2 = 0\]</span> <span class="math display">\[\textrm{variance} = E((z - \mu_z)^2) = E(0^2) = 0\]</span></p>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="All other distributions">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -404,9 +413,9 @@ Caution
 <ul>
 <li><p>To get some intuition about the idea of variance, imagine that you have a set of values <span class="math inline">\(z\)</span> that are all the same, so there’s no randomness</p>
 <ul>
-<li>So you have a bag of balls, and all the balls in the bag have the number three on them, say</li>
+<li>So you have a group of mice, and all the tails of the mice are exactly three centimetres long.</li>
 </ul></li>
-<li><p>If the value are all the same, then they all have the same value as the <em>mean</em> of the distribution, and <span class="math inline">\(z - \mu_z = 0\)</span></p></li>
+<li><p>If the values are all the same, then they all have the same value as the <em>mean</em> of the distribution, and <span class="math inline">\(z - \mu_z = 0\)</span></p></li>
 <li><p>This means that, for all <span class="math inline">\(z\)</span>, <span class="math inline">\((z - \mu_z)^2\)</span> is also zero, and the variance is zero.</p></li>
 <li><p>But if any value of <span class="math inline">\(z\)</span> is different then, for at least that value, <span class="math inline">\(z - \mu_z \neq 0\)</span>, so the square of that value is greater than zero. It follows that the variance must then be greater than zero: <span class="math inline">\(E((z - \mu_z)^2) \gt 0\)</span></p></li>
 <li><p><strong>In any dataset you meet, you are unlikely to have all values be identical, and so the variance is going to take a positive value</strong></p>
@@ -418,7 +427,7 @@ Caution
 </section>
 <section id="standard-deviation" class="level2">
 <h2 class="anchored" data-anchor-id="standard-deviation">Standard deviation</h2>
-<div class="callout callout-style-default callout-warning callout-titled" title="_Standard deviation_ is the square root of the variance">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -428,10 +437,10 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><span class="math display">\[\textrm{standard deviation} = \sigma_z = \sqrt{\textrm{variance}} = \sqrt{E((z - \mu_z)^2)} \]</span></p>
+<p><span class="math display">\[\textrm{standard deviation} = \sigma_z = \sqrt{\textrm{variance}} = \sqrt{E((z - \mu_z)^2)} \]</span> - The standard deviation is always positive</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Advantages">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -460,14 +469,16 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>We can calculate <em>mean</em>, <em>variance</em>, and <em>standard deviation</em> for <strong>any</strong> probability distribution.</p>
+<p>(but sometimes this is not necessarily useful)</p>
 </div>
 </div>
 <div class="notes">
 <ul>
 <li><p>You are probably more familiar with the <em>standard deviation</em> of a distribution.</p></li>
-<li><p>The standard deviation is on the same kind of scale as the values of the distribution, which makes this an easier value to interpret than the variance</p></li>
-<li><p>While we can calculate the mean, variance and standard deviation for <em>any</em> distribution, this does <strong>not</strong> mean that they are equally informative for all distributions</p></li>
-<li><p>Let’s look at some examples</p></li>
+<li><p>This is the square root of the variance we were just talking about.</p></li>
+<li><p>The standard deviation is on the same kind of scale as the values of the distribution, which makes this an easier value to interpret than the variance.</p></li>
+<li><p>While we can calculate the mean, variance and standard deviation for <em>any</em> distribution, this does <strong>not</strong> mean that they are equally informative for all distributions.</p></li>
+<li><p>Let’s look at some examples.</p></li>
 </ul>
 </div>
 </section>
@@ -519,7 +530,7 @@ Important
 <ul>
 <li>We only need to know the mean and standard deviation to define a unique normal distribution</li>
 </ul></li>
-<li>Values we measure in the real world should follow an approximate normal distribution if each measured value is the sum of many small, independent, additive factors
+<li>Values we measure in the real world should follow an approximate normal distribution when each measured value is the sum of many small, independent, additive factors, like mouse tail length.
 <ul>
 <li>This is a consequence of the Central Limit Theorem</li>
 <li>Many real-world variables do follow normal distributions</li>
@@ -567,17 +578,18 @@ Tip
 <ul>
 <li><p>As an example, we can look at some real data, the heights of men and women in the US.</p>
 <ul>
-<li>Here we have counts of individuals whose heights are measured to the nearest inch - they’re shown as counts in the histograms</li>
+<li>Here we have individuals whose heights are measured to the nearest inch - they’re shown as counts in the histograms</li>
 </ul></li>
 <li><p>These are two different <em>random variables</em>: one for men, one for women</p></li>
 <li><p>For both distributions, we can calculate a mean, and a standard deviation (or variance)</p>
 <ul>
-<li>Therefore we can calculate a normal distribution representing both men’s and women’s heights (orange curve)</li>
 <li>We calculate the mean heights for men and women (63.7 and 69.1 inches), and also the standard deviations (2.7 and 2.9 inches)</li>
+<li>This lets us calculate a normal distribution representing both men’s and women’s heights (orange curve)</li>
 </ul></li>
-<li><p>The distributions of heights for each sex, separately, follow an approximate normal distribution</p></li>
 <li><p>For a normal distribution, the mean value is the value at the peak of the curve</p></li>
 <li><p>The curve is symmetrical, so the standard deviation describes variability equally well on both sides of the mean</p></li>
+<li><p>The curves look like they match the histogram quite well</p></li>
+<li><p>The distributions of heights for each sex, separately, follow an approximate normal distribution</p></li>
 </ul>
 </div>
 </section>
@@ -614,7 +626,7 @@ Tip
 </div>
 <div class="notes">
 <ul>
-<li><p>By contrast, the distribution of heights of <em>all</em> adults in the US is not close to a normal curve</p></li>
+<li><p>But when we put the sexes together, the distribution of heights of <em>all</em> adults in the US is not close to a normal curve</p></li>
 <li><p>This is because there is an extraneous factor, <strong>sex</strong>, that represents much of the total variation in values</p></li>
 <li><p>Here, the mean may not be the same value as the peak of the curve (i.e.&nbsp;the <em>mode</em>)</p></li>
 <li><p>The curve is asymmetrical, so standard deviation does not describe variation equally well on either side of the mean</p></li>
@@ -657,7 +669,7 @@ Tip
 <ul>
 <li><p>I mentioned earlier that a normal distribution arises when a process produces the a sum of many independent random variables.</p>
 <ul>
-<li><strong>In general statistical distributions are idealised repreentations of the outcomes of distinct kinds of real-world processes</strong></li>
+<li><strong>In general statistical distributions are idealised representations of the outcomes of distinct kinds of real-world processes</strong></li>
 </ul></li>
 <li><p>Suppose that instead of measuring height, weight, concentration or something like that, you’re measuring <em>event outcomes</em></p>
 <ul>
@@ -701,7 +713,7 @@ Tip
 <p><span class="math display">\[z \sim \textrm{binomial}(20, 0.3) \]</span></p>
 </div>
 </div>
-<div class="callout callout-style-default callout-caution callout-titled" title="mean and sd">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -714,7 +726,7 @@ Tip
 <p><span class="math display">\[ \textrm{mean} = n \times p \]</span> <span class="math display">\[ \textrm{sd} = \sqrt{n \times p \times (1-p)}\]</span></p>
 </div>
 </div>
-<div class="callout callout-style-default callout-important callout-titled" title="Design note">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -755,7 +767,7 @@ Tip
 <blockquote class="blockquote">
 <p>In prior experiments the frequency of calcium events in WKY was 3.8 <span class="math inline">\(\pm\)</span> 1.1 events/field/min compared to 18.9 <span class="math inline">\(\pm\)</span> 7.1 in SHR</p>
 </blockquote>
-<div class="callout callout-style-default callout-warning callout-titled" title="This is not normal (or binomial)">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -793,7 +805,7 @@ Tip
 <section id="poisson-distribution-2" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="poisson-distribution-2">Poisson distribution 2</h2>
 <p><span class="math display">\[z \sim \textrm{poisson}(\lambda)\]</span></p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Poisson distribution">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -806,7 +818,7 @@ Tip
 <p><span class="math display">\[ \textrm{mean} = \lambda \]</span> <span class="math display">\[ \textrm{sd} = \sqrt{\lambda} \]</span></p>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled" title="Expectation ($\lambda$)">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -823,7 +835,7 @@ Tip
 <p><span class="math display">\[z \sim \textrm{poisson}(45,200,000/100,000) = \textrm{poisson}(4.52) \]</span></p>
 </div>
 </div>
-<div class="callout callout-style-default callout-important callout-titled" title="Design note">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -865,7 +877,7 @@ Tip
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-important callout-titled" title="Some important features">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -906,7 +918,7 @@ Tip
 </section>
 <section id="distributions-in-practice" class="level2">
 <h2 class="anchored" data-anchor-id="distributions-in-practice">Distributions in Practice</h2>
-<div class="callout callout-style-default callout-caution callout-titled" title="Distributions are starting points">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -987,7 +999,7 @@ Warning
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Probability mass">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1110,7 +1122,8 @@ Warning
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -1119,8 +1132,69 @@ Warning
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -1134,6 +1208,7 @@ Warning
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -1296,44 +1371,54 @@ Warning
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -1431,6 +1516,9 @@ Warning
       }
     }
   });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script>
 </div> <!-- /content -->
 

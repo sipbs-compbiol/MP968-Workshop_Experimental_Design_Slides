@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>standard_errors</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -66,15 +72,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8fd1faf6fd93e4e6d207ae0f9db51d78.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ded4168630e1422961a6247c4ac5fe91.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -104,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -135,7 +141,7 @@ window.Quarto = {
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="fullcontent quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
 <!-- content -->
@@ -144,7 +150,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content" tabindex="-1"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
@@ -192,7 +198,7 @@ Important
 <p>The mean and standard deviation we <em>estimate</em> in an experiment <strong>will not match</strong> those of the infinitely large population.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Standard Error (of the Mean)">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -219,6 +225,7 @@ Important
 <li>Since standard deviation is the square root of the variance, we can write this as:</li>
 </ul></li>
 <li><p>The standard error of the mean is the standard deviation divided by the square root of sample size</p></li>
+<li><p><strong>What it means in practice is that our confidence in the result of the analysis depends on how large our sample is</strong></p></li>
 </ul>
 </div>
 </section>
@@ -267,17 +274,13 @@ Tip
 <li><p>To visualise this, we can plot the distribution of our uncertainty in the estimate of the mean, where we’ve estimated that the mean is zero and the standard deviation is one, for a range of sample sizes, n</p></li>
 <li><p>At <span class="math inline">\(n=3\)</span>, the uncertainty in our estimate is quite flat and broad</p></li>
 <li><p>As we increase the number of samples <span class="math inline">\(n\)</span>, the uncertainty narrows, and the density of the distribution of estimates starts to gather more around the central value of our estimate of the mean.</p></li>
-<li><p>This property holds regardless of our assumptions about the shape of the sampling distribution</p>
-<ul>
-<li>But it only reflects our confidence in the estimate of the mean, <strong>not</strong> the shape of the underlying distribution!</li>
-<li><strong>The standard error is less informative about our distribution as the sampling distribution deviates more from a normal distribution</strong></li>
-</ul></li>
+<li><p>This property holds regardless of our assumptions about the shape of the sampling distribution</p></li>
 </ul>
 </div>
 </section>
 <section id="standard-error-and-hypothesis-testing-1" class="level2">
 <h2 class="anchored" data-anchor-id="standard-error-and-hypothesis-testing-1">Standard error and hypothesis testing 1</h2>
-<div class="callout callout-style-default callout-important callout-titled" title="Hypothesis test statistics">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -296,7 +299,7 @@ Tip
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-empty-content callout-titled" title="This is true for many hypothesis test methods">
+<div class="callout callout-style-default callout-warning callout-empty-content callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -311,9 +314,9 @@ Tip
 </div>
 <div class="notes">
 <ul>
-<li>In most statistical hypothesis tests, we define a test statistic denoting a significance threshold
+<li>In most statistical hypothesis tests, we define a test statistic denoting a <strong>pre-chosen</strong> significance threshold
 <ul>
-<li>Often, if the calculated value for our sample lies within that test statistic, we accept the null hypothesis</li>
+<li>Often, if the calculated value for our sample lies within (does not exceed) that test statistic, we accept the null hypothesis</li>
 </ul></li>
 <li>The statistic is typically defined as <span class="math inline">\(t = \frac{Z}{s}\)</span> where <span class="math inline">\(t\)</span> is the test statistic value, <span class="math inline">\(Z\)</span> is some quantity calculated from the data, and <span class="math inline">\(s\)</span> is the standard error of the mean, <span class="math inline">\(\sigma/{\sqrt{n}}\)</span></li>
 </ul>
@@ -321,7 +324,7 @@ Tip
 </section>
 <section id="standard-error-and-hypothesis-testing-2" class="level2">
 <h2 class="anchored" data-anchor-id="standard-error-and-hypothesis-testing-2">Standard error and hypothesis testing 2</h2>
-<div class="callout callout-style-default callout-tip callout-titled" title="One-sample $t$-test">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -338,7 +341,7 @@ Tip
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Wald test">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -365,13 +368,13 @@ Tip
 <li>Here <span class="math inline">\(\hat{\theta} - \theta_0\)</span> is the difference between an estimated most likely value and the hypothesised most likely value</li>
 <li><span class="math inline">\(s\)</span> is the standard error of the estimate of the most likely value</li>
 </ul></li>
-<li><p>The standard error is influenced by (gets smaller with) the square root of sample size in both cases</p></li>
+<li><p>They are different tests, but in both cases, the standard error is influenced by (gets smaller with) the square root of sample size.</p></li>
 </ul>
 </div>
 </section>
 <section id="standard-error-and-hypothesis-testing-3" class="level2">
 <h2 class="anchored" data-anchor-id="standard-error-and-hypothesis-testing-3">Standard error and hypothesis testing 3</h2>
-<div class="callout callout-style-default callout-important callout-titled" title="Hypothesis test statistics">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -390,7 +393,7 @@ Tip
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-empty-content callout-titled" title="What happens if we hold $Z$ and $\sigma$ constant and vary sample size?">
+<div class="callout callout-style-default callout-warning callout-empty-content callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -413,13 +416,13 @@ Tip
 </section>
 <section id="sample-size-and-hypothesis-testing-1" class="level2">
 <h2 class="anchored" data-anchor-id="sample-size-and-hypothesis-testing-1">Sample size and hypothesis testing 1</h2>
-<div class="callout callout-style-default callout-tip callout-titled" title="We reject the null hypothesis when $t > $t_\textrm{crit}$">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>We reject the null hypothesis when $t &gt; <span class="math inline">\(t_\textrm{crit}\)</span>
+<span class="screen-reader-only">Tip</span>We reject the null hypothesis when <span class="math inline">\(t &gt; t_\textrm{crit}\)</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -466,12 +469,12 @@ Tip
 </div>
 <div class="notes">
 <ul>
-<li><p>So suppose we set a confidence interval that gives us a test statistic: t-critical=2</p>
+<li><p>So suppose we set a confidence interval that gives us a test statistic: <span class="math inline">\(t_{crit}=2\)</span></p>
 <ul>
 <li>So any difference <span class="math inline">\(Z\)</span> between our estimated mean and the test value giving a value of t less than 2 is “not significant” and we accept the null hypothesis</li>
 <li>Any difference <span class="math inline">\(Z\)</span> between our estimated mean and the test value giving a value of t greater than 2 is “significant” and we reject the null hypothesis</li>
 </ul></li>
-<li><p>The plot now shows the relationship between <span class="math inline">\(Z\)</span>, our measured difference from the hypothesised mean, and the value of the resulting test statistic <span class="math inline">\(t\)</span> for a sample size of three measurements</p></li>
+<li><p>The plot now shows as a red line the relationship between <span class="math inline">\(Z\)</span>, our measured difference from the hypothesised mean, and the value of the resulting test statistic <span class="math inline">\(t\)</span> for a sample size of three measurements</p></li>
 <li><p>With three measurements, we need a Z value of about 1.15 or greater for the line to cross the critical value and for us to reject the null hypothesis</p>
 <ul>
 <li>If we saw a Z value of less than 1.15, we would accept the null hypothesis</li>
@@ -482,7 +485,7 @@ Tip
 </section>
 <section id="sample-size-and-hypothesis-testing-2" class="level2">
 <h2 class="anchored" data-anchor-id="sample-size-and-hypothesis-testing-2">Sample size and hypothesis testing 2</h2>
-<div class="callout callout-style-default callout-tip callout-titled" title="The difference ($Z$) we need to see to reject the null varies with sample size">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -523,18 +526,20 @@ Tip
 <div class="notes">
 <ul>
 <li><p>The plot shows the relationship between <span class="math inline">\(Z\)</span>, our measured difference from the hypothesised mean, and the value of the resulting test statistic <span class="math inline">\(t\)</span> for a range of sample sizes from 3 to 15 measurements</p></li>
-<li><p>With three measurements, we need a Z value of about 1.15 or greater for the line to cross the critical value and for us to reject the null hypothesis</p></li>
-<li><p>With 15 measurements, we only need a Z value of about 0.5 to reject the null hypothesis</p>
+<li><p>With three measurements, we need a Z value of about 1.15 or greater for the line to cross the critical value and for us to reject the null hypothesis - the red line from the previous plot</p></li>
+<li><p>We can draw similar lines for larger sample sizes: 5, 7, 10, and 15 measurements</p></li>
+<li><p>With 15 measurements, we only need a Z value of about 0.5 to be able reject the null hypothesis at the same value of <span class="math inline">\(t_{crit}\)</span> we needed a Z value of 1.15 to reject, with three measurements.</p>
 <ul>
 <li>Five times the sample size means we reject the null hypothesis at about half the size of measured difference</li>
 </ul></li>
 <li><p><strong>Changing the sample size changes how sensitive our hypothesis test is</strong></p></li>
+<li><p><strong>Increasing sample size allows us to detect <em>smaller</em> real effects, at the same significance threshold.</strong></p></li>
 </ul>
 </div>
 </section>
 <section id="statistical-significance-and-effect-size" class="level2">
 <h2 class="anchored" data-anchor-id="statistical-significance-and-effect-size">Statistical significance and effect size</h2>
-<div class="callout callout-style-default callout-important callout-titled" title="Statistical significance is not the point">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -549,7 +554,7 @@ Tip
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled" title="Statistical significance is not the same as practical importance">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -567,7 +572,7 @@ Tip
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="What matters is _effect size_">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -582,6 +587,24 @@ Tip
 <li>We need to be concerned with <em>statistical power</em></li>
 </ul>
 </div>
+</div>
+<div class="notes">
+<ul>
+<li>What you should take from this is that demonstrating “statistical significance” is not the point of a statistical test
+<ul>
+<li>We can always meet <em>any</em> statistical significance threshold by adjusting sample size.</li>
+</ul></li>
+<li>A statistically significant result is not the same thing as a practically meaningful result.
+<ul>
+<li>We can meet any <em>arbitrarily small</em> significance threshold by adjusting szmple size.</li>
+</ul></li>
+<li>What matters for us is <em>effect size</em>
+<ul>
+<li>In all our hypothesis tests for experiments, we really want to know this:</li>
+<li><strong>If there is a meaningful effect (which we need to know in advance) due to the treatment, how likely is our experiment to detect it?</strong></li>
+</ul></li>
+<li>In short, what we care about is what is the <strong>statistical power</strong> of our experiment.</li>
+</ul>
 </div>
 
 
@@ -667,7 +690,8 @@ Tip
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -676,8 +700,69 @@ Tip
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -691,6 +776,7 @@ Tip
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -853,44 +939,54 @@ Tip
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -988,6 +1084,9 @@ Tip
       }
     }
   });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script>
 </div> <!-- /content -->
 

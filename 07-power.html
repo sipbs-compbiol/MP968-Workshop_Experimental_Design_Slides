@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>power</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -66,15 +72,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8fd1faf6fd93e4e6d207ae0f9db51d78.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ded4168630e1422961a6247c4ac5fe91.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -104,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -135,7 +141,7 @@ window.Quarto = {
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="fullcontent quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
 <!-- content -->
@@ -144,7 +150,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content" tabindex="-1"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
@@ -185,7 +191,7 @@ Important
 <p>Statistical <em>power</em> is defined as the probability, <strong>before a study is performed</strong>, that a particular comparison will achieve “statistical significance” at some predetermined level (e.g.&nbsp;<span class="math inline">\(P &lt; 0.05\)</span>) <strong>given an assumed true effect size</strong>.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled" title="The process">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -204,10 +210,23 @@ Important
 </ol>
 </div>
 </div>
+<div class="notes">
+<ul>
+<li><p>The <em>a priori</em> statistical power of an experiment is the probability, <strong>before the study is performed</strong>, and assuming that there <strong>a minimum meaningful effect size</strong>, that the results will achieve <strong>“statistical significance” at some predetermined level</strong> (e.g.&nbsp;P&lt;0.05).</p></li>
+<li><p>The way you approach this should be as follows:</p>
+<ul>
+<li>First, define what is a meaningful effect size (e.g.&nbsp;<em>how much</em> does cholesterol need to be lowered for this to be a meaningful change)</li>
+<li>Then determine what level of statistical significance you can accept (e.g.&nbsp;P&lt;0.05); this represents how willing you are to get an incorrect result, just by chance.</li>
+<li>Make a reasonable guess about the level of variation you expect to see in the data</li>
+<li>Choose a sample size for the experiment</li>
+<li>Then use probability calculations to determine the probability that the resulting p-value will not be “significant,” even if the effect size you expect is true.</li>
+</ul></li>
+</ul>
+</div>
 </section>
 <section id="effect-sizes" class="level2">
 <h2 class="anchored" data-anchor-id="effect-sizes">Effect sizes</h2>
-<div class="callout callout-style-default callout-warning callout-titled" title="Power analysis depends on an assumed effect size">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -225,7 +244,7 @@ Important
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="How to choose effect sizes">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -241,7 +260,7 @@ Important
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-important callout-titled" title="How _not_ to choose effect size">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -259,10 +278,31 @@ Important
 </ul>
 </div>
 </div>
+<div class="notes">
+<p>As you’ve seen, we need to specify some values before we start</p>
+<ul>
+<li>Effect Size</li>
+<li>Probability Threshold</li>
+<li>Variation/Variance of the data</li>
+</ul>
+<p>To some extent, we do not know these values - so we have to <em>assert</em> reasonable values before we start.</p>
+<ul>
+<li>Effect size should be scientifically motivated: what is a reasonable and biologically-meaningful change in this context?
+<ul>
+<li>Are there useful examples from the literature?</li>
+</ul></li>
+<li>We do not know variance in advance either, so we have to make a reasoned assumption - often “high/low/medium” variance, rather than a single value.
+<ul>
+<li>Again, are there useful examples from the literature?</li>
+</ul></li>
+<li>For probability threshold we need to decide whether we can tolerate being incorrect.</li>
+</ul>
+<p>It is tempting to run a small pilot study to estimate values; <strong>but this can be highly counterproductive because of something called <em>the winner’s curse</em></strong></p>
+</div>
 </section>
 <section id="the-winners-curse-1" class="level2">
 <h2 class="anchored" data-anchor-id="the-winners-curse-1">The Winner’s Curse 1</h2>
-<div class="callout callout-style-default callout-caution callout-titled" title="A low-powered pilot study">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -304,7 +344,7 @@ Important
 </div>
 </div>
 <div class="notes">
-<p>To see what I mean, suppose that we ran a pilot study for a treatment where the true effect size was only a two percentage point increase in the outcome, but this effect is estimated with a standard error of about eight percentage points.</p>
+<p>To see what I mean, suppose that we ran a pilot study for a treatment where the <strong>true effect size</strong> was only a two percentage point increase in the outcome, but this effect is estimated with a standard error of about eight percentage points (because we only have a few individuals in the sample).</p>
 <ul>
 <li><p>We test this against the null hypothesis that the effect size is zero</p></li>
 <li><p>We set up the null hypothesis so that the result of the study is “positive”/“statistically significant” if the measured difference is more than two standard errors away from zero - i.e.&nbsp;outwith the orange shading of the curve</p></li>
@@ -314,7 +354,7 @@ Important
 </section>
 <section id="the-winners-curse-2" class="level2">
 <h2 class="anchored" data-anchor-id="the-winners-curse-2">The Winner’s Curse 2</h2>
-<div class="callout callout-style-default callout-caution callout-titled" title="You get a statistically significant result!">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -363,22 +403,23 @@ Important
 </div>
 <div class="notes">
 <ul>
-<li>In this low-powered experiment, any “statistically significant” result must fall into one of the dark purple sections of the curve at the extremes
+<li>In this low-powered pilot experiment, <strong>any “statistically significant” result must fall into one of the dark purple sections of the curve at the extremes</strong>
 <ul>
 <li>The left-most 2.5% of outcomes or</li>
 <li>The right-most 7% of outcomes</li>
 </ul></li>
 <li>The problem is this:
 <ul>
-<li>“Statistically significant” results on the right hand side overestimate the size of the true effect by at least eight times (minimum value 16%)</li>
-<li>“Statistically significant” results on the right hand side indicate that the effect is <em>negative</em> - a reduction in effect, when the true effect is small but positive</li>
+<li>“Statistically significant” results on the right hand side <strong>overestimate the size of the true effect</strong> by at least eight times (minimum value 16%)</li>
+<li>“Statistically significant” results on the right hand side indicate that the effect is <em>negative</em> - <strong>a reversal of the truth</strong> - a reduction in effect, when the true effect is small but positive</li>
 </ul></li>
 </ul>
+<p><strong>“Statistically significant” small pilot studies can be extremely misleading!</strong></p>
 </div>
 </section>
 <section id="the-winners-curse-3" class="level2">
 <h2 class="anchored" data-anchor-id="the-winners-curse-3">The Winner’s Curse 3</h2>
-<div class="callout callout-style-default callout-important callout-titled" title="The trap">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -407,7 +448,7 @@ Warning
 <p>We can say this even before data are collected</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-caution callout-empty-content callout-titled" title="Published results tend to be overestimates">
+<div class="callout callout-style-default callout-caution callout-empty-content callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -420,10 +461,18 @@ Warning
 
 </div>
 </div>
+<div class="notes">
+<p>What this means is that “successful” pilot studies can mask larger failures.</p>
+<ul>
+<li><strong>If the effect size is smaller than the standard error/noise, pilot studies are likely to be quite wrong</strong></li>
+</ul>
+<p>You can quite frequently see the phenomenon, in the literature, of early positive (and small) studies being replicated with better datasets, and no meaningful effect being found. Even better-conducted studies with large effects tend to be revised by replication so that the observed effect size is not so large.</p>
+<p><strong>Low-power studies can be useless, and seen to be so before an experiment is performed</strong></p>
+</div>
 </section>
 <section id="statistical-power-and-ethics" class="level2">
 <h2 class="anchored" data-anchor-id="statistical-power-and-ethics">Statistical power and ethics</h2>
-<div class="callout callout-style-default callout-important callout-titled" title="It is unethical to under-power animal studies">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -438,7 +487,7 @@ Warning
 </blockquote>
 </div>
 </div>
-<div class="callout callout-style-default callout-caution callout-titled" title="It is unethical to over-power animal studies">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -453,7 +502,7 @@ Warning
 </blockquote>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-empty-content callout-titled" title="So how should we _appropriately_ power animal studies?">
+<div class="callout callout-style-default callout-warning callout-empty-content callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -466,11 +515,19 @@ Warning
 
 </div>
 </div>
+<div class="notes">
+<p>What does this mean, ethically?</p>
+<ul>
+<li><p>Underpowering studies means the results are not reliable. Detection of an effect is likely to be misleading, and result in more experiments - and animal suffering - before it is realised there is nothing useful to be found.</p></li>
+<li><p>Overpowering studies (using too many subjects) means that we cause animal suffering for no purpose.</p></li>
+</ul>
+<p>Both of these are unethical. So what should we do?</p>
+</div>
 </section>
 <section id="statistical-power-and-error-1" class="level2">
 <h2 class="anchored" data-anchor-id="statistical-power-and-error-1">Statistical power and error 1</h2>
 <p>We often refer to two kinds of statistical error</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Type I Error ($\alpha$)">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -489,7 +546,7 @@ Warning
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Type II Error ($\beta$)">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -508,18 +565,35 @@ Warning
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-important callout-empty-content callout-titled" title="Statistical power is $1 - \beta$">
+<div class="callout callout-style-default callout-important callout-empty-content callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Statistical power is <span class="math inline">\(1 - \beta\)</span>
+<span class="screen-reader-only">Important</span>Statistical power is <span class="math inline">\(1 - \beta\)</span>, for a given <span class="math inline">\(\alpha\)</span> value and effect size
 </div>
 </div>
 <div class="callout-body-container callout-body">
 
 </div>
+</div>
+<div class="notes">
+<p>Whate we need to do is <strong>adequately</strong> power our experiments, but no more than this.</p>
+<p>To do this, we need to decide how willing we are to be <em>wrong</em> in our conclusion, and what level of <em>error</em> we can tolerate. This means there are two different kinds of error we need to be concerned with.</p>
+<ul>
+<li>Type I error is a “false positive error” - rejecting a null hypothesis when we should accept it.
+<ul>
+<li>In practical terms that means something like detecting a cancer when there’s none present. If the chemotherapy is severe, especially if it’s worse than the cancer itself, then this would be costly and painful and best avoided, and we’d want to minimise this error. If the treatment is a small, inconsequential surgery, then we might accept a higher error rate.</li>
+<li>This is the meaning of the P-value in your null hypothesis test: P&lt;0.05 means that there’s less than a 5% chance of a “positive” result being false.</li>
+</ul></li>
+<li>Type II error is a “false negative error” - accepting the null hypothesis when we should reject it.
+<ul>
+<li>In practical terms, that means something like failing to detect a cancer when it is present. If the cancer is benign, then we can accept a fairly high error rate. But if it is fast-acting, painful, and deadly if not treated, we want to minimise the error rate.</li>
+<li>At a specific level of type I error rate, this is the <em>power</em> of your experiment.</li>
+</ul></li>
+</ul>
+<p>The choice of acceptable error rates - <strong>the desired power of the experiment</strong> - depends on the application.</p>
 </div>
 </section>
 <section id="statistical-power-and-error-2" class="level2">
@@ -528,7 +602,7 @@ Warning
 <blockquote class="blockquote">
 <p>The experiment has 80% power at <span class="math inline">\(\alpha = 0.05\)</span> for an effect size of 2mM/L</p>
 </blockquote>
-<div class="callout callout-style-default callout-tip callout-titled" title="How to read this">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -545,13 +619,20 @@ Warning
 </ul>
 </div>
 </div>
+<div class="notes">
+<p>Statistical power also needs another value, for context: the size of the effect you’r trying to detect.</p>
+<p>There are conventions for type I and type II errors <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, but effect size is absolutely context-dependent. Typically:</p>
+<ul>
+<li><span class="math inline">\(\alpha = 0.05\)</span></li>
+<li><span class="math inline">\(\beta = 0.8\)</span></li>
+</ul>
+<p>The statement here: “The experiment has 80% power at <span class="math inline">\(\alpha = 0.05\)</span> for an effect size of 2mM/L” means:</p>
+<p><strong>Assuming there is an effect size of 2mM/L (e.g.&nbsp;a change in cholesterol concentration), and when a sufficient sample size that we would expect to detect this effect at P&lt;0.05, the probability of still <em>not seeing</em> this effect (or a larger effect) is 0.2 (i.e.&nbsp;20%)</strong>.</p>
+</div>
 </section>
 <section id="statistical-power-and-error-3" class="level2">
 <h2 class="anchored" data-anchor-id="statistical-power-and-error-3">Statistical power and error 3</h2>
-<blockquote class="blockquote">
-<p>The experiment has 80% power at <span class="math inline">\(\alpha = 0.05\)</span> for an effect size of 2mM/L</p>
-</blockquote>
-<div class="callout callout-style-default callout-important callout-titled" title="If the drug truly has no effect">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -567,7 +648,7 @@ Warning
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="If the drug truly has an effect">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -583,10 +664,36 @@ Warning
 </ul>
 </div>
 </div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>We should believe our results
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(0.8 / 0.05 = 16\)</span> so a positive result is 16 times more likely to be real than mistaken</p>
+<p><span class="math inline">\(0.95 / 0.2 = 4.75\)</span> so a negative result is ≈5 times more likely to be real than mistaken</p>
+</div>
+</div>
+<div class="notes">
+<p>So, with this level statistical power, if there was no effect of the drug:</p>
+<ul>
+<li>If we ran 100 experiments we would expect to <strong>incorrectly</strong> say the drug has an effect 5 times</li>
+</ul>
+<p>And if the drug truly had an effect:</p>
+<ul>
+<li>If we ran 100 experiments we would expect to <strong>correctly</strong> say the drug has an effect 80 times.</li>
+</ul>
+<p>So, if we get a positive result, it is 16 times more likely to be a true positive than a false positive.</p>
+<p>And, if we get a negative results, it is five times more likely to be a true negative than a false negative.</p>
+</div>
 </section>
 <section id="statistical-power-and-sample-size-1" class="level2">
 <h2 class="anchored" data-anchor-id="statistical-power-and-sample-size-1">Statistical power and sample size 1</h2>
-<div class="callout callout-style-default callout-tip callout-titled" title="What we need, to calculate appropriate sample size">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -602,7 +709,7 @@ Warning
 <ul>
 <li>This is equivalent to knowing the <em>target statistical power</em> (<span class="math inline">\(1 - \beta\)</span>)</li>
 </ul></li>
-<li>The expected <strong>effect size</strong> and <strong>variance</strong></li>
+<li>The expected <strong>effect size</strong> and an estimate of the <strong>variance</strong> of that effect size</li>
 <li>The <strong>statistical test</strong> being performed</li>
 </ul>
 </div>
@@ -617,13 +724,21 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We need this information to calculate an appropriate, <em>ethical</em> sample size</p>
+<p>We need this information to calculate an appropriate, <em>ethically justifiable</em> sample size</p>
 </div>
+</div>
+<div class="notes">
+<p>So, to calculate an appropriate, ethical sample size, we need to decide or provide:</p>
+<ul>
+<li>acceptable false positive and false negative rates (i.e.&nbsp;statistical power)</li>
+<li>an expected effect size and variance</li>
+<li>and <strong>to know what statistical test is being performed</strong>, because this determines how we calculate an <strong>appropriate sample size</strong> to achieve the desired power</li>
+</ul>
 </div>
 </section>
 <section id="statistical-power-and-sample-size-2" class="level2">
 <h2 class="anchored" data-anchor-id="statistical-power-and-sample-size-2">Statistical power and sample size 2</h2>
-<div class="callout callout-style-default callout-important callout-titled" title="Typical funders' requirements">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -640,7 +755,7 @@ Important
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled" title="Under experimenter control">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -655,6 +770,11 @@ Important
 <li>The appropriate statistical approach</li>
 </ul>
 </div>
+</div>
+<div class="notes">
+<p>The required level of statistical power is often decided by the funder or ethical committee.</p>
+<p>The usual standard is to set a false positive rate of 0.05 (your P-value) and set the power at 0.8.</p>
+<p>But determining effect size, variance, and an appropriate statistical approach is <strong>your responsibility as a scientist</strong> and you need to make your case to the funder and ethical panel for why your choices are acceptable.</p>
 </div>
 
 
@@ -740,7 +860,8 @@ Important
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -749,8 +870,69 @@ Important
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -764,6 +946,7 @@ Important
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -926,44 +1109,54 @@ Important
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -1061,6 +1254,9 @@ Important
       }
     }
   });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script>
 </div> <!-- /content -->
 
